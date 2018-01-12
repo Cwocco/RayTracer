@@ -1,0 +1,15 @@
+#CAM
+camera: posX posY posZ Ux Uy Uz Vx Vy Vz Nx Ny Nz
+~exemple_camera: 0 -50 0 1 0 0 0 0 1 0 1 0
+
+#OBJ
+sphere:
+plan:
+cone:
+cylinder:
+
+#LIGHT
+light:
+light:
+light:
+light:
