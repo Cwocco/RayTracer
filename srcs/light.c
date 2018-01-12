@@ -6,7 +6,7 @@
 /*   By: ada-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 12:39:42 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/01/12 12:15:21 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/01/12 16:04:04 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,13 @@ t_color     lights(t_point inter, t_env *env, t_object *obj)
 			set_color(tmp.o);
 			if (intersection(tmp.s_ray, tmp.o, &tmp.final_inter))
 			{
+				tmp.angle = -tmp.angle;
 				if (tmp.angle <= 0)
 					c = ((t_color){0, 0, 0, 1});
 				//if (tmp.angle > 0)			
 				else if (calc_dist(tmp.final_inter, inter) > calc_dist(inter, tmp.l_pos))
 				{
-					c.r =  (tmp.o->mater.diffuse.r * tmp.l->color.r) * (tmp.angle) / 255;
+					c.r = (tmp.o->mater.diffuse.r * tmp.l->color.r) * (tmp.angle) / 255;
 					c.g = (tmp.o->mater.diffuse.g * tmp.l->color.g) * (tmp.angle) / 255;
 					c.b = (tmp.o->mater.diffuse.b * tmp.l->color.b) * (tmp.angle) / 255;
 				}
@@ -68,8 +69,8 @@ t_ray       calc_vector(t_point a, t_point b)
 
 void        set_color(t_object *o)
 {
-	o->color = (t_color){0, 150, 200, 0};
+	o->color = (t_color){170, 50, 170, 0};
 	o->mater.specular = (t_color){255, 255, 255, 1};
 	o->mater.ambient = (t_color){255, 255, 255, 1};
-	o->mater.diffuse = (t_color){0, 0, 255, 1};
+	o->mater.diffuse = (t_color){255, 255, 255, 1};
 }

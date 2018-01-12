@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/31 20:38:35 by nboste            #+#    #+#             */
-/*   Updated: 2018/01/11 17:11:48 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/01/12 13:43:49 by nboste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static t_bool   inter_cylinder(t_ray r, t_object *obj, t_point *inter)
 	}
 }
 
-t_bool          inter_cone(t_ray r, t_object *obj, t_point *inter)
+static t_bool          inter_cone(t_ray r, t_object *obj, t_point *inter)
 {
 	t_point pos;
 	t_point dir;
@@ -150,9 +150,11 @@ static t_bool	inter_plan(t_ray r, t_object *obj, t_point *inter)
 	p0 = obj->pos;
 	l0 = r.pos;
 	denom = dotProduct(n, l);
-	inter++;
 	if (denom > 1e-9)
 	{
+		inter->x = r.pos.x + denom * r.dir.x;
+		inter->y = r.pos.y + denom * r.dir.y;
+		inter->z = r.pos.z + denom * r.dir.z;
 		return 1;
 	}
 	return 0;
