@@ -6,7 +6,7 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 15:03:57 by nboste            #+#    #+#             */
-/*   Updated: 2018/01/12 15:55:28 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/01/15 15:42:02 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,33 +53,120 @@ t_ray	get_prim_ray(t_2ipair p, t_env *env)
 	r.depth = MAX_RAY_DEPTH;
 	return (r);
 }
-
-static double	vec_dist(t_point p1, t_point p2)
-{
-	return (sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y) + (p2.z - p1.z) * (p2.z - p1.z)));
-}
-
+/*
 t_color			raytrace(t_ray r, t_env *env)
 {
-	t_object	*obj;
+	t_tmp		tmp;
 	t_point		inter;
+	t_color		culer;
+	t_object	*obj_ptr;
 	double		dist;
-	t_color		c;
 
-	c = (t_color){0, 0, 0, 1};
 	dist = 0xfffff;
-	obj = env->scene.objs;
-	while (obj != NULL)
+	tmp.obj = env->scene.objs;
+	obj_ptr = NULL;
+	culer = (t_color){0, 0, 0, 1};
+	while (tmp.obj != NULL)
 	{
-		if (intersection(r, obj, &inter))
+		if (intersection(r, tmp.obj, &inter))
 		{
-			if (vec_dist(inter, r.pos) < dist)
+			if (vec_dist(r.pos, inter) < dist)
 			{
-				dist = vec_dist(inter, r.pos);
-				c = lights(inter, env, obj);
+				dist = vec_dist(r.pos, inter);
+				obj_ptr->pos = tmp.obj->pos;
+				tmp.final_inter = inter;
 			}
 		}
-		obj = obj->next;
+		tmp.obj = tmp.obj->next;
 	}
-	return c;
+	if (obj_ptr != NULL)
+		culer = process_light(env, tmp.final_inter, culer, obj_ptr);
+	return (culer);
+}
+
+t_color		process_light(t_env *env, t_point inter, t_color c, t_object *obj_ptr)
+{
+	t_tmp	tmp;
+	int		i;
+	int		r = 0;
+	int		g = 0;
+	int		b = 0;
+
+	i = 0;
+	tmp.light = env->scene.lgts;
+	tmp.obj = env->scene.objs;
+	while (tmp.light != NULL)
+	{
+		while (tmp.obj != NULL)
+		{
+//			tmp.obj->pos = inter;
+			if (tmp.obj != obj_ptr)
+			{
+				if (check_object_between(tmp.light->pos, inter, tmp.obj))
+				{
+					i++;
+					tmp.c = get_light_color(tmp.obj, inter, tmp.light);
+					r += tmp.c.r;
+					g += tmp.c.g;
+					b += tmp.c.b;
+				}
+			}
+			tmp.obj = tmp.obj->next;
+		}
+		tmp.light = tmp.light->next;
+	}
+	if (i)
+		c = (t_color){(t_uchar)(r / i), (t_uchar)(g / i), (t_uchar)(b / i), 1};
+	else
+		c = (t_color){0, 0, 0, 1};
+	return (c);
+}
+
+t_bool		check_object_between(t_point light_pos, t_point inter, t_object *obj)
+{
+	t_tmp	tmp;
+
+	tmp.shadow_ray = calc_vector(inter, light_pos);
+	normalize_vector(&tmp.shadow_ray.pos);
+	if (intersection(tmp.shadow_ray, obj, &tmp.final_inter))
+	{
+		if (calc_dist(inter, tmp.final_inter) > calc_dist(inter, tmp.light_pos))
+			return (1);
+	}
+	return (0);
+}
+*/
+
+
+t_color		raytrace(t_env *env, t_ray ray)
+{
+	t_color		c;
+	t_tmp		tmp;
+	t_tmp		*tmp_obj;
+
+	tmp.d = 0xfffff;
+	tmp.obj = env->scene.objs;
+	tmp_obj = NULL;
+	while (tmp.obj != NULL)
+	{
+		if (intersection(r, tmp.obj, &tmp.inter))
+		{
+			if (calc_dist(r.pos, tmp.inter) < tmp.d)
+			{
+				tmp.d = calc_dist(r.pos, tmp.inter);
+				tmp_obj = tmp.obj;
+			}
+		}
+		tmp.obj = tmp.obj->next;
+	}
+	if (tmp.inter)
+	{
+		if (tmp_obj != NULL)
+		{
+			tmp.final_inter = tmp.inter;
+			c = (t_color){100, 100, 100, 1};
+		}
+	}
+	process_light();
+	return (c);
 }

@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 15:43:47 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/01/10 18:54:00 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/01/14 11:47:56 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		check_data_array(char **d, int size)
 
 	i = 1;
 	if ((check_s = ft_tablen(d)) != size + 1)
-		ft_exit("Wrong number of datas.");
+		ft_exit("Wrong number of data.");
 	while (i <= size)
 	{
 		check_s = ft_strlen(d[i]);

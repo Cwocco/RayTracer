@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 15:30:43 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/01/12 10:39:34 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/01/14 11:54:04 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	init_light(t_env *env, char **light_data)
 	t_light *light;
 
 	light = env->scene.lgts;
-	if (check_data_array(light_data, 18) == 1)
+	if (check_data_array(light_data, 7) == 1)
 		ft_exit("Invalid light data.");
 	if (!light)
 	{
@@ -70,7 +70,7 @@ void	get_cam_data(t_env *env, t_list *lst)
 		camera_data = (char**)lst->content;
 	}
 	else
-		ft_exit("Empty #CAM datas.");
+		ft_exit("Empty #CAM data.");
 	if (ft_strcmp(camera_data[0], "camera:") == 0)
 	{
 		if (lst->next)
@@ -84,7 +84,7 @@ void	get_cam_data(t_env *env, t_list *lst)
 			ft_exit("Invalid file.");
 	}
 	else
-		ft_exit("Invalid #CAM datas.");
+		ft_exit("Invalid #CAM data.");
 }
 
 void	get_obj_data(t_env *env, t_list *lst)
