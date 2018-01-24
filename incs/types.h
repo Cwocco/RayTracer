@@ -1,29 +1,27 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/30 13:44:47 by nboste            #+#    #+#             */
-/*   Updated: 2018/01/11 14:12:54 by ada-cunh         ###   ########.fr       */
+/*   Created: 2018/01/24 18:32:28 by ada-cunh          #+#    #+#             */
+/*   Updated: 2018/01/24 18:32:29 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #ifndef TYPES_H
 # define TYPES_H
-
-# include "ft_types.h"
 
 typedef unsigned char	t_uchar;
 
 typedef struct			s_color
 {
-	t_uchar		r;
-	t_uchar		g;
-	t_uchar		b;
-	t_uchar		a;
+	double		r;
+	double		g;
+	double		b;
+	double		a;
 }						t_color;
 
 typedef struct			s_point
@@ -133,21 +131,23 @@ typedef struct          s_object
 	//CONE
 	//double		alpha;
 	//t_point		axis;
+	t_ray			normal_vector;
       
     struct s_object *next;
 }                       t_object;
 
-typedef struct          s_degueulasse
+typedef struct          s_tmp
 {
-    t_light		*l;
-    t_object	*o;
-    t_point		l_pos;
-    t_ray		s_ray;
+    t_light		*light;
+    t_object	*obj;
+    t_point		light_pos;
+    t_ray		shadow_ray;
     t_point		final_inter;
+	t_color		c;
 //   double		d1;
 //   double		d2;
     float		angle;
 
-}                       t_degueulasse;
+}                       t_tmp;
 
 #endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nboste <nboste@student.42.fr>              +#+  +:+       +#+         #
+#    By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/10/30 12:55:14 by nboste            #+#    #+#              #
-#    Updated: 2018/01/08 17:11:05 by rpinoit          ###   ########.fr        #
+#    Created: 2018/01/24 11:54:00 by rpinoit           #+#    #+#              #
+#    Updated: 2018/01/24 13:23:22 by rpinoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,19 +20,19 @@ SRC = srcs/main.c \
 	  srcs/drawer.c \
 	  srcs/event.c \
 	  srcs/raytracer.c \
-	  srcs/camera.c \
 	  srcs/vector_utility.c \
 	  srcs/intersection.c \
 	  srcs/light.c \
 	  srcs/parser.c \
 	  srcs/parser_obj.c \
 	  srcs/parser_utils.c \
-	  srcs/parser_libft.c
+	  srcs/parser_libft.c \
+	  srcs/light_utils.c
 
 OBJ = $(SRC:%.c=%.o)
 
 INC = -I./incs \
-	  -I./libft/includes \
+	  -I./libft/ \
 	  -I/usr/include \
 	  -I ~/Library/Frameworks/SDL2.framework/Headers \
 
@@ -44,18 +44,6 @@ all: $(NAME)
 $(NAME):
 	make -C libft
 	gcc $(FLG) $(LIB) $(INC) $(SRC) -lm -lft -framework SDL2 -o $(NAME)
-
-debug:
-	make -C libft
-	gcc $(FLG) $(LIB) $(INC) $(SRC) -lm -lft -framework SDL2 -o $(NAME) -g
-
-linux:
-	make -C libft
-	gcc $(FLG) $(INC) $(SRC) $(LIB) -lm -lft -lSDL2 -o $(NAME) -O3 -flto
-
-linuxd:
-	make -C libft
-	gcc $(FLG) $(LIB) $(INC) $(SRC) -lm -lft -lSDL2 -o $(NAME) -O3 -g -pg
 
 clean:
 	make -C libft clean

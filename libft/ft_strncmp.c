@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rpinoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/07 18:47:39 by nboste            #+#    #+#             */
-/*   Updated: 2016/11/09 02:55:10 by nboste           ###   ########.fr       */
+/*   Created: 2017/11/08 16:00:36 by rpinoit           #+#    #+#             */
+/*   Updated: 2017/11/16 18:36:01 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	while (*s1 == *s2 && *s1 && *s2 && n)
-	{
-		s1++;
-		s2++;
-		n--;
-	}
-	if (n == 0 || *s1 == *s2)
+	size_t			i;
+	unsigned char	*tmp_s1;
+	unsigned char	*tmp_s2;
+
+	i = 0;
+	tmp_s1 = (unsigned char*)s1;
+	tmp_s2 = (unsigned char*)s2;
+	if (n == 0)
 		return (0);
-	return (((unsigned char)*s1 - (unsigned char)*s2));
+	while (tmp_s1[i] == tmp_s2[i] && tmp_s1[i] != '\0' && tmp_s2[i] != '\0' \
+			&& (i < (n - 1)))
+		i++;
+	return (tmp_s1[i] - tmp_s2[i]);
 }

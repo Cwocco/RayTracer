@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/14 13:10:17 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/01/15 13:01:17 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/01/24 14:07:53 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ t_color		get_light_color(t_object *object, t_point inter, t_light *light)
 		c = (t_color){0, 0, 0, 1};
 	else
 	{
-		c.r = object->mater.diffuse.r * light->color.r * angle / 255;
-		c.g = object->mater.diffuse.g * light->color.g * angle / 255;
-		c.b = object->mater.diffuse.b * light->color.b * angle / 255;
+		c.r = (object->mater.diffuse.r * light->color.r * angle) / 255;
+		c.g = (object->mater.diffuse.g * light->color.g * angle) / 255;
+		c.b = (object->mater.diffuse.b * light->color.b * angle) / 255;
+		printf("color = %f\n", c.r);
 	}
 	return (c);
 }

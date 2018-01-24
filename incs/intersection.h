@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/31 20:37:19 by nboste            #+#    #+#             */
-/*   Updated: 2018/01/11 08:55:32 by nboste           ###   ########.fr       */
+/*   Created: 2018/01/24 18:31:44 by ada-cunh          #+#    #+#             */
+/*   Updated: 2018/01/24 18:31:45 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef INTERSECTION_H
 # define INTERSECTION_H

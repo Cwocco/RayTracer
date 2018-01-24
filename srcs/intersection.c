@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/31 20:38:35 by nboste            #+#    #+#             */
-/*   Updated: 2018/01/15 12:24:05 by rpinoit          ###   ########.fr       */
+/*   Created: 2018/01/24 15:51:28 by ada-cunh          #+#    #+#             */
+/*   Updated: 2018/01/24 16:03:35 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static double dotProduct(t_point p1, t_point p2)
 
 	normalize_vector(&p1);
 	normalize_vector(&p2);
-	n1 = get_norm(p1);
-	n2 = get_norm(p2);
+	n1 = vect_len(p1);
+	n2 = vect_len(p2);
 	return (p1.x * p2.x + p1.y * p2.y + p1.z * p2.z);
 }
 

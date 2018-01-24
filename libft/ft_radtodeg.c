@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_radtodeg.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nboste <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/14 00:01:21 by nboste            #+#    #+#             */
-/*   Updated: 2016/11/14 00:02:05 by nboste           ###   ########.fr       */
+/*   Created: 2018/01/24 12:11:09 by rpinoit           #+#    #+#             */
+/*   Updated: 2018/01/24 12:11:30 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-double	ft_radtodeg(double rad)
+double  ft_radtodeg(double rad)
 {
-	return (rad * 180 / FT_PI);
+	return (rad * 180 / DEFINE_PI);
 }

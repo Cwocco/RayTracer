@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_degtorad.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nboste <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/13 23:58:32 by nboste            #+#    #+#             */
-/*   Updated: 2016/11/13 23:59:33 by nboste           ###   ########.fr       */
+/*   Created: 2018/01/24 12:04:05 by rpinoit           #+#    #+#             */
+/*   Updated: 2018/01/24 12:04:42 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-double	ft_degtorad(double deg)
+double  ft_degtorad(double deg)
 {
-	return (deg * FT_PI / 180);
+	return (deg * DEFINE_PI / 180);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_utility.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/31 20:17:46 by nboste            #+#    #+#             */
-/*   Updated: 2018/01/11 08:56:46 by nboste           ###   ########.fr       */
+/*   Created: 2018/01/24 18:28:33 by ada-cunh          #+#    #+#             */
+/*   Updated: 2018/01/24 18:28:35 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,16 @@
 
 #include "rtv1.h"
 
+t_point vector_sub(t_point p1, t_point p2);
+
 void	normalize_vector(t_point *p);
 
-double	get_norm(t_point p);
+// double	get_norm(t_point p);
 
-float 	get_angle(t_point a, t_point b);
+double	vect_len(t_point p);
 
-double	calc_dist(t_point a, t_point b);
+double 	get_angle(t_point a, t_point b);
+
+double  vec_dist(t_point p1, t_point p2);
 
 #endif

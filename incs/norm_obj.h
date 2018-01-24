@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isodd.c                                         :+:      :+:    :+:   */
+/*   norm_obj.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nboste <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/13 22:49:22 by nboste            #+#    #+#             */
-/*   Updated: 2016/11/13 22:49:37 by nboste           ###   ########.fr       */
+/*   Created: 2018/01/24 15:55:03 by ada-cunh          #+#    #+#             */
+/*   Updated: 2018/01/24 15:58:45 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef NORM_OBJ_H
+# define NORM_OBJ_H
 
-int		ft_isodd(int n)
-{
-	if (n % 2)
-		return (1);
-	return (0);
-}
+#include "rtv1.h"
+
+t_point get_normal(t_point *pos, t_object *o);
+
+#endif

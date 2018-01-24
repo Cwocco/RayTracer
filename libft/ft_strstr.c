@@ -3,37 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rpinoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/07 18:15:05 by nboste            #+#    #+#             */
-/*   Updated: 2016/10/12 21:21:52 by nboste           ###   ########.fr       */
+/*   Created: 2017/11/08 13:53:45 by rpinoit           #+#    #+#             */
+/*   Updated: 2017/11/16 18:34:50 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-char	*ft_strstr(const char *h, const char *n)
+char	*ft_strstr(const char *haystack, const char *needle)
 {
-	char	*oc;
-	char	*t_n;
+	int i;
+	int j;
 
-	if (!*n)
-		return ((char *)h);
-	while (*h)
+	i = 0;
+	if (needle[i] == '\0')
+		return (char*)(haystack);
+	while (haystack[i] != '\0')
 	{
-		t_n = (char *)n;
-		while (*h && *t_n != *h)
-			h++;
-		oc = (char *)h;
-		while (*h && *t_n && *h == *t_n)
+		j = 0;
+		while (needle[j] == haystack[i + j])
 		{
-			h++;
-			t_n++;
+			if (needle[j + 1] == '\0')
+			{
+				return (char*)(haystack + i);
+			}
+			else
+				j++;
 		}
-		if (*t_n == '\0')
-			return (oc);
-		else if (*h)
-			h = (const char *)(oc + 1);
+		i++;
 	}
 	return (NULL);
 }

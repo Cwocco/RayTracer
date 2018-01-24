@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrev.c                                        :+:      :+:    :+:   */
+/*   ft_tablen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rpinoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/07 21:50:40 by nboste            #+#    #+#             */
-/*   Updated: 2016/10/08 11:27:04 by nboste           ###   ########.fr       */
+/*   Created: 2017/12/13 16:58:36 by rpinoit           #+#    #+#             */
+/*   Updated: 2018/01/08 17:43:57 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_strrev(char *str, int idx)
+int		ft_tablen(char **str)
 {
-	int		size;
-	char	tmp;
+	size_t i;
 
-	size = ft_strlen(str);
-	if (idx < size / 2)
-	{
-		tmp = str[idx];
-		str[idx] = str[size - idx - 1];
-		str[size - idx - 1] = tmp;
-		ft_strrev(str, idx + 1);
-	}
+	i = 0;
+	while (*str++)
+		i++;
+	return (i);
 }

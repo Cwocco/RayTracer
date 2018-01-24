@@ -6,13 +6,12 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 15:43:47 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/01/14 11:47:56 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/01/24 12:06:34 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include "parser.h"
-#include "get_next_line.h"
 #include <fcntl.h>
 
 int		check_data_array(char **d, int size)
