@@ -6,14 +6,14 @@
 /*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 15:03:57 by nboste            #+#    #+#             */
-/*   Updated: 2018/01/24 14:41:43 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/01/26 10:28:42 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracer.h"
 #include "drawer.h"
 #include <math.h>
-#include "vector_utility.h"
+#include "vector_utilities.h"
 #include "intersection.h"
 #include "error.h"
 #include "light.h"

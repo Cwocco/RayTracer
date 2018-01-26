@@ -6,29 +6,13 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:51:28 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/01/24 16:03:35 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/01/26 10:34:51 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "intersection.h"
-#include "vector_utility.h"
-
-static double	get_delta(double a, double b, double c)
-{
-	return (b * b - 4 * a * c);
-}
-
-static double dotProduct(t_point p1, t_point p2)
-{
-	double n1;
-	double n2;
-
-	normalize_vector(&p1);
-	normalize_vector(&p2);
-	n1 = vect_len(p1);
-	n2 = vect_len(p2);
-	return (p1.x * p2.x + p1.y * p2.y + p1.z * p2.z);
-}
+#include "vector_utilities.h"
+#include "math_utilities.h"
 
 static t_bool   inter_cylinder(t_ray r, t_object *obj, t_point *inter)
 {
@@ -149,7 +133,7 @@ static t_bool	inter_plan(t_ray r, t_object *obj, t_point *inter)
 	n = obj->normal;
 	p0 = obj->pos;
 	l0 = r.pos;
-	denom = dotProduct(n, l);
+	denom = dot_product(n, l);
 	if (denom > 1e-9)
 	{
 		inter->x = r.pos.x + denom * r.dir.x;
