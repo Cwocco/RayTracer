@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light.h                                            :+:      :+:    :+:   */
+/*   obj_normal.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ada-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/20 12:41:34 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/01/29 14:32:34 by rpinoit          ###   ########.fr       */
+/*   Created: 2018/01/29 15:25:18 by rpinoit           #+#    #+#             */
+/*   Updated: 2018/01/29 15:55:20 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIGHT_H
-# define LIGHT_H
+#ifndef OBJ_NORMAL_H
+# define OBJ_NORMAL_H
 
-# include "rtv1.h"
+#include "rtv1.h"
 
-t_color		process_light(t_light *lst_light, t_object *lst_obj, t_intersection *inter);
+t_point		get_normal(t_point normal, t_intersection *inter);
 
 #endif

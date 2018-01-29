@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/14 13:10:17 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/01/29 11:53:45 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/01/29 19:06:54 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,82 +14,68 @@
 #include "vector_utilities.h"
 #include "intersection.h"
 #include "math_utilities.h"
+#include "obj_normal.h"
 
-double           vector_dot(t_point a, t_point b)
+double           get_cos(t_point a, t_point b)
 {
-	    return (a.x * b.x + a.y * b.y + a.z * b.z);
+	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
 
-t_color		process_light(t_light *lst_light, t_object *lst_obj, t_object *obj_ptr, t_point inter)
+double			vector_norm(t_point a)
+{
+	return (sqrt(a.x * a.x + a.y * a.y + a.z * a.z));
+}
+
+int				no_object_obstructing_light(t_light *light, t_intersection *inter, t_object *lst_obj)
+{
+	t_intersection	new_inter;
+	t_ray			light_ray;
+	double			light_distance;
+
+	new_inter.t = MAX_RAY_LENGTH;
+	light_ray.pos = inter->pos;
+	light_ray.dir = vector_sub(light->pos, inter->pos);
+	light_distance = vector_norm(light_ray.dir);
+	intersection(light_ray, lst_obj, &new_inter);
+	if (new_inter.t <= light_distance)
+		return (0);
+	return (1);
+}
+
+void		add_diffuse_light(t_color *c, t_object *obj, t_light *light, double cos)
+{
+	c->r += cos * (obj->mater.diffuse.r / 255.0) * (light->color.r / 255.0);
+	c->g += cos * (obj->mater.diffuse.g / 255.0) * (light->color.g / 255.0);
+	c->b += cos * (obj->mater.diffuse.b / 255.0) * (light->color.b / 255.0);
+}
+
+t_color		process_light(t_light *lst_light, t_object *lst_obj, t_intersection *inter)
 {
 	t_color c;
-	//	t_color shadow;
-	t_ray	light_ray;
-	t_tmp	tmp;
 	t_color ambient;
-	t_intersection tmp_inter;
+	t_point	normal;
+	t_point	light_vector;
+	double	cos_angle;
 
-	tmp_inter.t = 0xffffff;
-	ambient = (t_color){0.2, 0.2, 0.2, 1};
-	//	shadow = (t_color){139, 139, 139, 1};
-	c = (t_color){ambient.r * (obj_ptr->color.r / 255.0),
-		ambient.g * (obj_ptr->color.g / 255.0),
-		ambient.b * (obj_ptr->color.b / 255.0), 1};
-	while (lst_light != NULL)
+	// c = ambient_light();
+	ambient = (t_color){0.1, 0.1, 0.1, 1};
+	c = (t_color){ambient.r * (inter->obj->color.r / 255.0),
+		ambient.g * (inter->obj->color.g / 255.0),
+		ambient.b * (inter->obj->color.b / 255.0), 1};
+	normal = (t_point){0, 0, 0};
+	normal = get_normal(normal, inter);
+	normalize_vector(&normal);
+	while (lst_light)
 	{
-		light_ray.pos = lst_light->pos;
-		light_ray.dir = vector_sub(inter, light_ray.pos);
-		normalize_vector(&light_ray.dir);
-		intersection(light_ray, lst_obj, &tmp_inter);
-		if (vec_dist(inter, light_ray.pos) < vec_dist(inter, tmp_inter.pos))
+		if (no_object_obstructing_light(lst_light, inter, lst_obj))
 		{
-			tmp.c = get_light_color(obj_ptr, inter, lst_light);
-			c.r += tmp.c.r;
-			c.g += tmp.c.g;
-			c.b += tmp.c.b;
+			light_vector = vector_sub(lst_light->pos, inter->pos);
+			normalize_vector(&light_vector);
+			cos_angle = get_cos(normal, light_vector);
+			if (cos_angle > 0)
+				add_diffuse_light(&c, inter->obj, lst_light, cos_angle);
 		}
 		lst_light = lst_light->next;
 	}
 	return (c);
 }
-
-t_color		get_light_color(t_object *object, t_point inter, t_light *light)
-{
-	t_ray	light_vector;
-	t_color	c;
-	double	angle;
-
-	light_vector.pos = vector_sub(inter, light->pos);
-	normalize_vector(&light_vector.pos);
-	object->normal_vector.pos = vector_sub(object->pos, inter);
-//	if (object->type == cone)
-//		object->normal_vector.pos.z *= -1;
-//	if (object->type == cylinder)
-//		object->normal_vector.pos.z = 0;
-	normalize_vector(&object->normal_vector.pos);
-	angle = vector_dot(light_vector.pos, object->normal_vector.pos);
-	if (angle <= 0)
-		c = (t_color){0, 0, 0, 1};
-	else
-	{
-		c.r = (255.0 / 255.0) * (255.0 / 255.0) * angle;
-		c.g = (255.0 / 255.0) * (255.0 / 255.0) * angle;
-		c.b = (255.0 / 255.0) * (255.0 / 255.0) * angle;
-	}
-	return (c);
-}
-
-t_point       calc_vector(t_point a, t_point b)
-{
-	t_point pos;
-
-	pos.x = b.x - a.x;
-	pos.y = b.y - a.y;
-	pos.z = b.z - a.z;
-	return (pos);
-}
-/*
-   double           vect_norm(t_vector *a)
-   {
-   return (SQRT(a->x * a->x + a->y * a->y + a->z * a->z));
-   } */
