@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rtv1.c                                           :+:      :+:    :+:   */
+/*   rtv1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nboste <nboste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/14 21:40:50 by nboste            #+#    #+#             */
-/*   Updated: 2018/01/24 10:25:49 by rpinoit          ###   ########.fr       */
+/*   Created: 2018/01/26 12:47:34 by ada-cunh          #+#    #+#             */
+/*   Updated: 2018/01/26 14:01:58 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include "drawer.h"
 #include "error.h"
-#include "camera.h"
 #include "raytracer.h"
 #include "parser.h"
 

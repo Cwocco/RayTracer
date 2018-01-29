@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:32:17 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/01/24 18:32:19 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/01/29 11:29:34 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define W_HEIGHT 900
 
 # define MAX_RAY_DEPTH 4
-
+# define MAX_RAY_LENGTH 0xffffff
 
 typedef struct			s_win
 {

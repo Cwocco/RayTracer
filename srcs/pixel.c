@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math_utilities.h                                   :+:      :+:    :+:   */
+/*   pixel.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/26 10:26:21 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/01/29 10:07:24 by rpinoit          ###   ########.fr       */
+/*   Created: 2018/01/26 15:24:30 by rpinoit           #+#    #+#             */
+/*   Updated: 2018/01/26 17:14:57 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATH_UTILITIES_H
-# define MATH_UTILITIES_H
-
+#include "pixel.h"
 #include "rtv1.h"
+#include "math.h"
+#include "types.h"
 
-double	get_delta(double a, double b, double c);
-
-double	dot_product(t_point p1, t_point p2);
-
-t_point	cross_product(t_point a, t_point b);
-
-double  solve_equation(t_point poly, double *t);
-
-#endif
+t_color		get_final_color(t_color c)
+{
+	c.r = fmin(c.r, 1.0) * 255.0;
+	c.g = fmin(c.g, 1.0) * 255.0;
+	c.b = fmin(c.b, 1.0) * 255.0;
+	return (c);
+}

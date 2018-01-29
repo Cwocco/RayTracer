@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 16:54:34 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/01/09 09:36:40 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/01/24 17:49:15 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,18 @@ int     ft_tablen(char **str)
 int     ft_strdigit(const char *s)
 {
 	int i;
+	int mark;
 
 	i = 0;
+	mark = 0;
 	while (s[i])
 	{
-		if (!(s[i] >= '0' && s[i] <= '9'))
+		if (s[i] == '.')
+		{
+			i++;
+			mark++;
+		}
+		if (!(s[i] >= '0' && s[i] <= '9') || mark > 1)
 			return (0);
 		i++;
 	}

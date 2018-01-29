@@ -6,7 +6,7 @@
 #    By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/24 11:54:00 by rpinoit           #+#    #+#              #
-#    Updated: 2018/01/26 10:31:53 by ada-cunh         ###   ########.fr        #
+#    Updated: 2018/01/26 18:09:23 by rpinoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRC = srcs/main.c \
 	  srcs/parser_utils.c \
 	  srcs/parser_libft.c \
 	  srcs/light_utils.c \
-	  srcs/math_utilities.c 
+	  srcs/math_utilities.c \
+	  srcs/pixel.c \
 
 OBJ = $(SRC:%.c=%.o)
 

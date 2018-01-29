@@ -6,13 +6,15 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:32:28 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/01/24 18:32:29 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/01/28 19:47:44 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #ifndef TYPES_H
 # define TYPES_H
+
+#include "rtv1.h"
 
 typedef unsigned char	t_uchar;
 
@@ -126,15 +128,21 @@ typedef struct          s_object
 
     // CYLINDER
     //double        radius;
-    t_point         axis;
+	t_point			axis;
 
 	//CONE
-	//double		alpha;
-	//t_point		axis;
+	//double		radius;
 	t_ray			normal_vector;
       
     struct s_object *next;
 }                       t_object;
+
+typedef struct			s_intersection
+{
+	t_object	*obj;
+	t_point		pos;
+	double		t;
+}						t_intersection;
 
 typedef struct          s_tmp
 {
@@ -142,7 +150,7 @@ typedef struct          s_tmp
     t_object	*obj;
     t_point		light_pos;
     t_ray		shadow_ray;
-    t_point		final_inter;
+    t_intersection final_inter;
 	t_color		c;
 //   double		d1;
 //   double		d2;

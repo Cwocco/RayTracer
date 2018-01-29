@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 10:30:57 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/01/26 10:30:57 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/01/28 17:37:40 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,31 @@ void	normalize_vector(t_point *p)
 		p->y = p->y / len;
 		p->z = p->z / len;
 	}
+}
+
+double	vector_multiply(t_point p1, t_point p2)
+{
+	return (p1.x * p2.x + p1.y * p2.y + p1.z * p2.z);
+}
+
+t_point	vector_mul(t_point p1, double d)
+{
+	t_point p;
+
+	p.x = p1.x * d;
+	p.y = p1.y * d;
+	p.z = p1.z * d;
+	return (p);
+}
+
+t_point	vector_add(t_point p1, t_point p2)
+{
+	t_point p;
+
+	p.x = p1.x + p2.x;
+	p.y = p1.y + p2.y;
+	p.x = p1.z + p2.z;
+	return (p);
 }
 
 // Commented by ada-cunh: Norm
