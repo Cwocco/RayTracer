@@ -6,7 +6,7 @@
 /*   By: rpinoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 10:38:40 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/01/28 18:07:11 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/02/02 13:33:04 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # define BUFF_SIZE 32
 # define DEFINE_PI 3.14159265359
 
-typedef unsigned char   t_bool;
-typedef unsigned int    t_uint32;
+typedef unsigned char	t_bool;
+typedef unsigned int	t_uint32;
 
 typedef struct		s_list
 {
@@ -33,17 +33,17 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-typedef struct          s_2ipair
+typedef struct		s_2ipair
 {
-	    int x;
-		    int y;
-}                       t_2ipair;
+	int x;
+	int y;
+}					t_2ipair;
 
-typedef struct          s_2dpair
+typedef struct		s_2dpair
 {
-	    double  x;
-		    double  y;
-}                       t_2dpair;
+	double x;
+	double y;
+}					t_2dpair;
 
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);

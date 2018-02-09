@@ -6,13 +6,11 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:46:43 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/01/26 12:46:43 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/01/31 17:26:18 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
-#include <stdlib.h>
-#include "libft.h"
+#include "rtv1.h"
 
 void	ft_exit(char *msg)
 {

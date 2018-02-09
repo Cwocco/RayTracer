@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   vector_rotate.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/24 18:31:22 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/01/31 17:37:10 by rpinoit          ###   ########.fr       */
+/*   Created: 2018/02/05 08:49:37 by rpinoit           #+#    #+#             */
+/*   Updated: 2018/02/05 10:18:50 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#ifndef VECTOR_ROTATE_H
+# define VECTOR_ROTATE_H
 
-# include "rtv1.h"
+void vec_unrotate(t_point *vec, t_point rotate);
 
-void	ft_exit(char *msg);
+void rotate_vec(t_point *vec, t_point rotate);
 
 #endif

@@ -6,47 +6,52 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:26:06 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/01/29 16:08:51 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/02/09 15:00:32 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "obj_normal.h"
-#include "vector_utilities.h"
+#include "rtv1.h"
 
-void	get_sphere_normal(t_point *normal, t_intersection *inter)
+void	get_sphere_normal(t_intersection *inter)
 {
-	*normal = vector_sub(inter->pos, inter->obj->pos);
+	inter->normal = vector_sub(inter->pos, inter->obj.pos);
 }
 
-void	get_plane_normal(t_point *normal, t_intersection *inter)
+void	get_plane_normal(t_intersection *inter)
 {
-	*normal = inter->obj->normal;
+	inter->normal = inter->obj.normal;
 }
 
-void	get_cylinder_normal(t_point *normal, t_intersection *inter)
+void	get_cylinder_normal(t_intersection *inter)
 {
-	(void)inter;
-	*normal = (t_point){0, 0, 0};
+	t_point rotate;
+
+	rotate = (t_point){90, 30, 0};
+	inter->normal = vector_sub(inter->pos, inter->obj.pos);
+	rotate_vec(&inter->normal, rotate);
+	inter->normal.z = 0;
+//	inter->normal.y = 0;
+//	inter->normal.x = 0;
+	vec_unrotate(&inter->normal, rotate);
 }
 
-void	get_cone_normal(t_point *normal, t_intersection *inter)
+void	get_cone_normal(t_intersection *inter)
 {
-	(void)inter;
-	*normal = (t_point){0, 0, 0};
+	inter->normal = vector_sub(inter->pos, inter->obj.pos);
+	inter->normal.z *= -1;
 }
 
-t_point		get_normal(t_point normal, t_intersection *inter)
+void	get_normal(t_intersection *inter)
 {
-	t_object	*obj;
+	t_object_type	type;
 
-	obj = inter->obj;
-	if (obj->type == sphere)
-		get_sphere_normal(&normal, inter);
-	else if (obj->type == plan)
-		get_plane_normal(&normal, inter);
-	else if (obj->type == cylinder)
-		get_cylinder_normal(&normal, inter);
-	else if (obj->type == cone)
-		get_cone_normal(&normal, inter);
-	return (normal);
+	type = inter->obj.type;
+	if (type == sphere)
+		get_sphere_normal(inter);
+	else if (type == plan)
+		get_plane_normal(inter);
+	else if (type == cylinder)
+		get_cylinder_normal(inter);
+	else if (type == cone)
+		get_cone_normal(inter);
 }

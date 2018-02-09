@@ -6,11 +6,11 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:46:53 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/01/26 12:46:54 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/01/31 17:27:57 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "event.h"
+#include "rtv1.h"
 
 void	event_process(t_event *event)
 {

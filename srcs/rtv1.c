@@ -6,16 +6,12 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:47:34 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/01/26 14:01:58 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/02/02 16:59:27 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
-#include "drawer.h"
-#include "error.h"
-#include "raytracer.h"
-#include "parser.h"
-
+/*
 static void	print_fps(void)
 {
 	static int	time;
@@ -34,7 +30,7 @@ static void	print_fps(void)
 		time = t;
 	}
 }
-
+*/
 void		init(t_env *env)
 {
 	env->win.name = "RTv1";
@@ -59,7 +55,7 @@ void		process(t_env *env)
 	env->event.draw = 1;
 	while (!env->event.exit)
 	{
-		print_fps();
+/*		print_fps();*/
 		if (env->event.draw)
 		{
 			raytracer_process(env);

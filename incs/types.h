@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:32:28 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/01/29 11:59:54 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/02/05 12:54:32 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #ifndef TYPES_H
 # define TYPES_H
 
-#include "rtv1.h"
+# include "rtv1.h"
 
 typedef unsigned char	t_uchar;
 
@@ -139,8 +139,10 @@ typedef struct          s_object
 
 typedef struct			s_intersection
 {
-	t_object	*obj;
+	t_object	obj;
 	t_point		pos;
+	t_point		normal;
+	t_point		light_vector;
 	double		t;
 }						t_intersection;
 
@@ -154,8 +156,7 @@ typedef struct          s_tmp
 	t_color		c;
 //   double		d1;
 //   double		d2;
-    float		angle;
-
+    double		angle;
 }                       t_tmp;
 
 #endif

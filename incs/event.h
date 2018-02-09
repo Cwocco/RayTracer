@@ -6,15 +6,14 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:31:34 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/01/24 18:31:35 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/01/31 17:37:11 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EVENT_H
 # define EVENT_H
 
-# include "libft.h"
-# include "SDL.h"
+# include "rtv1.h"
 
 typedef struct		s_mouse
 {

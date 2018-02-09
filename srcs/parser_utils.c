@@ -6,12 +6,11 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 15:30:43 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/01/24 17:49:31 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/01/31 17:28:07 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
-#include "parser.h"
 
 void	init_cam(t_env *env, char **d)
 {

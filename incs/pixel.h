@@ -6,15 +6,15 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 15:27:04 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/01/29 16:44:10 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/01/31 18:07:47 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIXEL_H
 # define PIXEL_H
 
-#include "rtv1.h"
+# include "rtv1.h"
 
-void        get_final_color(t_color *c);
+void	get_final_color(t_color *c);
 
 #endif

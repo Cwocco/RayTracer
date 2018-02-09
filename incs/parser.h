@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:32:01 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/01/24 18:32:02 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/01/31 17:37:14 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PARSER_H
 
 # include "rtv1.h"
-# include "error.h"
 
 void	reader(t_env *env);
 

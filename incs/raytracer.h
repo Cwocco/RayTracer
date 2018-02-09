@@ -6,14 +6,14 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:32:10 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/01/26 16:26:18 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/01/31 18:06:44 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYTRACER_H
 # define RAYTRACER_H
 
-#include "rtv1.h"
+# include "rtv1.h"
 
 void		raytracer_process(t_env *env);
 

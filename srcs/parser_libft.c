@@ -6,12 +6,11 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 16:54:34 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/01/24 17:49:15 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/01/31 17:28:06 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
-#include "parser.h"
 
 void    ft_print_words_tables(char **tab)
 {
