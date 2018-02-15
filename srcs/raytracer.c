@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:47:44 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/02/05 15:30:10 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/02/14 15:08:20 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ void		raytracer_process(t_env *env)
 		while (win_pos.y < env->rend.size.y)
 		{
 			r = get_prim_ray(win_pos, env);
+//				(t_ray){env->scene.cam.pos,(t_point){
+//						win_pos.x - (env->rend.size.x / 2),
+//						win_pos.y - (env->rend.size.y / 2),
+//						0},
+//					MAX_RAY_DEPTH
+//				};
 			c = raytrace(r, env);
 			drawer_putpixel(env, win_pos, c);
 			win_pos.y++;
@@ -63,15 +69,17 @@ t_ray		get_prim_ray(t_2ipair p, t_env *env)
 t_color		raytrace(t_ray r, t_env *env)
 {
 	t_intersection	inter;
+//	t_point			reflect;
 	t_color			c;
 
 	c = (t_color){ .r = 0.0, .g = 0.0, .b = 0.0, .a = 1};
 	inter.t = MAX_RAY_LENGTH;
 	if (intersection(r, env->scene.objs, &inter))
 	{
-		inter.pos.x = r.pos.x + r.dir.x * inter.t;
-		inter.pos.y = r.pos.y + r.dir.y * inter.t;
-		inter.pos.z = r.pos.z + r.dir.z * inter.t;
+	//	get_reflected_ray(&r.reflect);
+	//	get_inter_pos(&inter.pos, &r.reflect);
+		inter.pos = vector_add(r.pos, vector_multiply(r.dir, inter.t)); //+ reflect * EPSILON;
+		get_normal(&inter);
 		c = process_light(env->scene.lgts, env->scene.objs, &inter, r);
 		get_final_color(&c);
 	}

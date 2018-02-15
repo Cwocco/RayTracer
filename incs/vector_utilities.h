@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 10:26:47 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/02/02 12:32:38 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/02/13 12:48:23 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ t_point	vector_multiply(t_point vec, double factor);
 void	normalize_vector(t_point *p);
 
 t_point	vector_sub(t_point p1, t_point p2);
+
+t_point vector_add(t_point p1, t_point p2);
 
 #endif

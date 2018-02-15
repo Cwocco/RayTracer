@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:26:06 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/02/09 15:00:32 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/02/15 13:59:39 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,43 @@
 void	get_sphere_normal(t_intersection *inter)
 {
 	inter->normal = vector_sub(inter->pos, inter->obj.pos);
+	normalize_vector(&inter->normal);
 }
 
 void	get_plane_normal(t_intersection *inter)
 {
 	inter->normal = inter->obj.normal;
+	normalize_vector(&inter->normal);
 }
 
 void	get_cylinder_normal(t_intersection *inter)
 {
 	t_point rotate;
+	t_point	normal;
 
-	rotate = (t_point){90, 30, 0};
-	inter->normal = vector_sub(inter->pos, inter->obj.pos);
-	rotate_vec(&inter->normal, rotate);
-	inter->normal.z = 0;
-//	inter->normal.y = 0;
-//	inter->normal.x = 0;
-	vec_unrotate(&inter->normal, rotate);
+	rotate = (t_point){90, -30, 90};
+	normal = vector_sub(inter->pos, inter->obj.pos);
+	rotate_vec(&normal, rotate);
+	normal.z = 0;
+	vec_unrotate(&normal, rotate);
+	inter->normal = normal;
+	normalize_vector(&inter->normal);
 }
 
 void	get_cone_normal(t_intersection *inter)
 {
-	inter->normal = vector_sub(inter->pos, inter->obj.pos);
-	inter->normal.z *= -1;
+	t_point rotate;
+	t_point	normal;
+
+	rotate = (t_point){0, 0, 0};
+	normal = vector_sub(inter->pos, inter->obj.pos);
+	rotate_vec(&normal, rotate);
+	normal.z *= -1;
+	vec_unrotate(&normal, rotate);
+	inter->normal = normal;
+	normalize_vector(&inter->normal);
 }
+
 
 void	get_normal(t_intersection *inter)
 {

@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 18:25:39 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/02/09 15:16:55 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/02/13 13:15:52 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	set_ambient_light(t_color *c, t_object obj)
 {
 	t_color ambient;
 
-	ambient = (t_color){ .r = 0.2, .g = 0.2, .b = 0.2, .a = 1};
+	ambient = (t_color){ .r = 0.3, .g = 0.3, .b = 0.3, .a = 1};
 	*c = (t_color){ .r = ambient.r * (obj.color.r / 255.0),
 		.g = ambient.g * (obj.color.g / 255.0),
 		.b = ambient.b * (obj.color.b / 255.0),
@@ -56,12 +56,11 @@ void	add_specular_light(t_color *c, t_point r_pos, t_intersection *inter)
 	light_i = 0.8;
 	tmp = vector_multiply(inter->normal,
 			2.0 * dot_product(inter->normal, inter->light_vector));
-//	normalize_vector(&tmp);
 	refra = vector_sub(tmp, inter->light_vector);
 	normalize_vector(&refra);
 	vision = vector_sub(r_pos, inter->pos);
 	normalize_vector(&vision);
-	cos_omega = pow(fmax(0, dot_product(refra, vision)), 200.0);
+	cos_omega = pow(fmax(0, dot_product(refra, vision)), 1000.0);
 	if (cos_omega > 0)
 	{
 		c->r += cos_omega * (inter->obj.mater.specular.r / 255.0 * light_i);
