@@ -6,57 +6,55 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/05 08:48:09 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/02/15 14:04:54 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/02/21 11:52:20 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-static void rotate_x(t_point *vec, double angle)
+void    vec_rotate_x(t_point *v, double ang)
 {
-	double	tmp_y;
-	double	tmp_z;
+    double      tmp_y;
+    double      tmp_x;
 
-	tmp_y = vec->y;
-	tmp_z = vec->z;
-	vec->y = ((tmp_y * cos(angle)) - (tmp_z * sin(angle)));
-	vec->z = ((tmp_y * sin(angle)) + (tmp_z * cos(angle)));
+    tmp_y = v->y;
+    tmp_x = v->z;
+    v->y = tmp_y * cos(ang) - tmp_x * sin(ang);
+    v->z = tmp_y * sin(ang) + tmp_x * cos(ang);
 }
 
-//Profondeur-> Formule Z
-static void rotate_y(t_point *vec, double angle)
+void    vec_rotate_y(t_point *v, double ang)
 {
-	double	tmp_x;
-	double	tmp_z;
+    double      temp_x;
+    double      tmp_x;
 
-	tmp_x = vec->x;
-	tmp_z = vec->z;
-	vec->z = ((tmp_z * cos(angle)) - (tmp_x * sin(angle)));
-	vec->x = ((tmp_z * sin(angle)) + (tmp_x * cos(angle)));
+    temp_x = v->x;
+    tmp_x = v->z;
+    v->z = tmp_x * cos(ang) - temp_x * sin(ang);
+    v->x = tmp_x * sin(ang) + temp_x * cos(ang);
 }
 
-//Hauteur-> formule Y
-static void rotate_z(t_point *vec, double angle)
+void    vec_rotate_z(t_point *v, double ang)
 {
-	double  tmp_x;
-	double  tmp_y;
+    double      temp_x;
+    double      tmp_y;
 
-	tmp_x = vec->x;
-	tmp_y = vec->y;
-	vec->x = ((tmp_x * cos(angle)) - (tmp_y * sin(angle)));
-	vec->y = ((tmp_x * sin(angle)) + (tmp_y * cos(angle)));
+    temp_x = v->x;
+    tmp_y = v->y;
+    v->x = temp_x * cos(ang) - tmp_y * sin(ang);
+    v->y = temp_x * sin(ang) + tmp_y * cos(ang);
 }
 
-void vec_unrotate(t_point *vec, t_point rotate)
+void    rotate_vec(t_point *v, t_point rot)
 {
-	rotate_x(vec, -ft_degtorad(rotate.x));
-	rotate_y(vec, -ft_degtorad(rotate.y));
-	rotate_z(vec, -ft_degtorad(rotate.z));
+    vec_rotate_x(v, ft_degtorad(rot.x));
+    vec_rotate_y(v, ft_degtorad(rot.y));
+    vec_rotate_z(v, ft_degtorad(rot.z));
 }
 
-void rotate_vec(t_point *vec, t_point rotate)
+void    vec_unrotate(t_point *v, t_point rot)
 {
-	rotate_x(vec, ft_degtorad(rotate.x));
-	rotate_y(vec, ft_degtorad(rotate.y));
-	rotate_z(vec, ft_degtorad(rotate.z));
+    vec_rotate_x(v, -ft_degtorad(rot.x));
+    vec_rotate_y(v, -ft_degtorad(rot.y));
+    vec_rotate_z(v, -ft_degtorad(rot.z));
 }

@@ -6,13 +6,13 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 10:30:57 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/02/13 12:50:34 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/02/21 15:36:38 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-double	vector_norm(t_point a)
+double	vector_len(t_point a)
 {
 	return (sqrt(a.x * a.x + a.y * a.y + a.z * a.z));
 }

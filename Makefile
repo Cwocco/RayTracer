@@ -6,7 +6,7 @@
 #    By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/24 11:54:00 by rpinoit           #+#    #+#              #
-#    Updated: 2018/02/05 08:50:57 by rpinoit          ###   ########.fr        #
+#    Updated: 2018/02/21 10:56:49 by ada-cunh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,7 @@ NAME = rtv1
 FLG = -Wall -Wextra -Werror
 
 SRC = srcs/main.c \
-	  srcs/rtv1.c \
 	  srcs/error.c \
-	  srcs/drawer.c \
-	  srcs/event.c \
 	  srcs/raytracer.c \
 	  srcs/vector_utilities.c \
 	  srcs/intersection.c \
@@ -31,7 +28,10 @@ SRC = srcs/main.c \
 	  srcs/pixel.c \
 	  srcs/obj_normal.c \
 	  srcs/light_phong_shading.c \
-	  srcs/vector_rotate.c
+	  srcs/vector_rotate.c \
+	  srcs/draw.c \
+	  srcs/hook.c \
+	  srcs/anti_alias.c
 
 OBJ = $(SRC:%.c=%.o)
 
@@ -42,12 +42,14 @@ INC = -I./incs \
 
 LIB = -L./libft \
 	  -F ~/Library/Frameworks/SDL2.framework/Versions/Current \
+	  -L./minilibx_macos/
 
 all: $(NAME)
 
 $(NAME):
+	make -C minilibx_macos
 	make -C libft
-	gcc $(FLG) $(LIB) $(INC) $(SRC) -lm -lft -framework SDL2 -o $(NAME)
+	gcc $(FLG) $(LIB) $(INC) $(SRC) -lm -lft -lmlx -framework OpenGL -framework Appkit -o $(NAME)
 
 clean:
 	make -C libft clean

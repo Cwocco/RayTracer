@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:32:28 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/02/13 16:30:14 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/02/16 14:04:21 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct			s_camera
 	t_2dpair	near;
 	t_2dpair	step;
 	t_uvn		uvn;
+	t_point		rot;
 }						t_camera;
 
 typedef struct			s_material
@@ -133,7 +134,7 @@ typedef struct          s_object
 	//CONE
 	//double		radius;
 	t_ray			normal_vector;
-      
+	t_point			rot;      
     struct s_object *next;
 }                       t_object;
 

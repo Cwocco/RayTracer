@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 10:26:47 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/02/13 12:48:23 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/02/21 14:49:38 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "rtv1.h"
 
-double	vector_norm(t_point a);
+double	vector_len(t_point a);
 
 double	dot_product(t_point a, t_point b);
 

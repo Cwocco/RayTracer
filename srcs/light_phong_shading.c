@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 18:25:39 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/02/13 13:15:52 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/02/21 15:21:29 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void	add_specular_light(t_color *c, t_point r_pos, t_intersection *inter)
 	normalize_vector(&refra);
 	vision = vector_sub(r_pos, inter->pos);
 	normalize_vector(&vision);
-	cos_omega = pow(fmax(0, dot_product(refra, vision)), 1000.0);
-	if (cos_omega > 0)
+	cos_omega = pow(fmax(0, dot_product(refra, vision)), 300.0);
+	if (cos_omega >= 0)
 	{
 		c->r += cos_omega * (inter->obj.mater.specular.r / 255.0 * light_i);
 		c->g += cos_omega * (inter->obj.mater.specular.g / 255.0 * light_i);

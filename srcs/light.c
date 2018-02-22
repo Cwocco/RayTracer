@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/14 13:10:17 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/02/14 20:15:58 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/02/21 15:21:54 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			check_distance_between_light_and_intersection(t_point light_pos,
 
 	if (light_pos.x == 0 && light_pos.y == 0 && light_pos.z == 0)
 	{
-		distance = vector_norm(vector_sub(light_pos, inter_pos));
+		distance = vector_len(vector_sub(light_pos, inter_pos));
 		distance = distance < 0 ? -distance : distance;
 		if (distance < 10.000001)
 		{
@@ -30,7 +30,7 @@ int			check_distance_between_light_and_intersection(t_point light_pos,
 	return (0);
 }
 
-int			no_object_obstructing_light(t_light *light, t_intersection *inter,
+int			no_object_obstructing_light(t_env *env, t_light *light, t_intersection *inter,
 		t_object *lst_obj)
 {
 	t_intersection	new_inter;
@@ -42,24 +42,25 @@ int			no_object_obstructing_light(t_light *light, t_intersection *inter,
 	new_inter.t = MAX_RAY_LENGTH;
 	light_ray.pos = inter->pos;
 	light_ray.dir = vector_sub(light->pos, inter->pos);
-	light_distance = vector_norm(light_ray.dir);
+	light_distance = vector_len(light_ray.dir);
 	normalize_vector(&light_ray.dir);
-	intersection(light_ray, lst_obj, &new_inter);
-	if (new_inter.t <= light_distance)
+	intersection(env, light_ray, lst_obj, &new_inter);
+	if (new_inter.t < light_distance)
 		return (0);
 	return (1);
 }
 
-t_color		process_light(t_light *lst_light, t_object *lst_obj,
+t_color		process_light(t_env *env, t_light *lst_light, t_object *lst_obj,
 		t_intersection *inter, t_ray r)
 {
 	t_color c;
 	double	cos_teta;
 
 	set_ambient_light(&c, inter->obj);
+//	inter->normal = get_normal(inter, env->scene.objs);
 	while (lst_light)
 	{
-		if (no_object_obstructing_light(lst_light, inter, lst_obj))
+		if (no_object_obstructing_light(env, lst_light, inter, lst_obj))
 		{
 			inter->light_vector = vector_sub(lst_light->pos, inter->pos);
 			normalize_vector(&inter->light_vector);
