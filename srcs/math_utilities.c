@@ -6,11 +6,16 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 10:32:34 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/02/14 20:21:48 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/02/23 16:51:33 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+
+double get_sqr(double val)
+{
+	return ((val) * (val));
+}
 
 void	solve_equation(t_point poly, double *t)
 {
