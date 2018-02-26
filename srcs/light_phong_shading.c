@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 18:25:39 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/02/21 15:21:29 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/02/26 14:26:24 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	set_ambient_light(t_color *c, t_object obj)
 		.g = ambient.g * (obj.color.g / 255.0),
 		.b = ambient.b * (obj.color.b / 255.0),
 		.a = 1 };
+	if (SEPIA == 1)
+		sepia(c);
 }
 
 void	add_diffuse_light(t_color *c, t_object obj, t_light *light, double cos)
@@ -43,6 +45,8 @@ void	add_diffuse_light(t_color *c, t_object obj, t_light *light, double cos)
 		* (light->color.b / 255.0)
 		* (obj.color.b / 255.0)
 		* light_intensity.b;
+	if (SEPIA == 1)
+		sepia(c);
 }
 
 void	add_specular_light(t_color *c, t_point r_pos, t_intersection *inter)
@@ -66,5 +70,7 @@ void	add_specular_light(t_color *c, t_point r_pos, t_intersection *inter)
 		c->r += cos_omega * (inter->obj.mater.specular.r / 255.0 * light_i);
 		c->g += cos_omega * (inter->obj.mater.specular.g / 255.0 * light_i);
 		c->b += cos_omega * (inter->obj.mater.specular.b / 255.0 * light_i);
+		if (SEPIA == 1)
+			sepia(c);
 	}
 }

@@ -4,7 +4,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 15:24:30 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/02/26 13:22:58 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/02/26 14:18:43 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@ void		get_final_color(t_color *c)
 	c->r = fmin(c->r, 1.0) * 255.0;
 	c->g = fmin(c->g, 1.0) * 255.0;
 	c->b = fmin(c->b, 1.0) * 255.0;
-	if (SEPIA == 1)
-		sepia(c);
 }
 
 void		sepia(t_color *prim_color)

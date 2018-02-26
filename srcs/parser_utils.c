@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 15:30:43 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/02/20 13:08:21 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/02/26 14:58:16 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	init_cam(t_env *env, char **d)
 {
-	/*	t_camera *cam;
+	t_camera	*cam;
 
+/*
 		if (check_data_array(d, 13) == 1)
 		ft_exit("Invalid camera data.");
 		cam = &env->scene.cam;
@@ -30,8 +31,6 @@ void	init_cam(t_env *env, char **d)
 		cam->near.x = cam->near.y * cam->ratio;
 		cam->step.x = cam->near.x / (double)env->win.size.x;
 		cam->step.y = cam->near.y / (double)env->win.size.y; */
-	t_camera *cam;
-
 	if (check_data_array(d, 13) == 1)
 		ft_exit("Invalid camera data.");
 	cam = &env->scene.cam;

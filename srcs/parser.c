@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 15:43:47 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/01/31 17:28:05 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/02/26 14:55:11 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int		check_data_array(char **d, int size)
 	while (i <= size)
 	{
 		check_s = ft_strlen(d[i]);
-		if ((check_s > 0 && ft_strdigit(d[i])) || (d[i][0] == '-' && check_s > 1 && ft_strdigit(d[i] + 1)))
+		if ((check_s > 0 && ft_strdigit(d[i])) ||
+			(d[i][0] == '-' && check_s > 1 && ft_strdigit(d[i] + 1)))
 			i++;
 		else
 			return (1);
@@ -80,12 +81,12 @@ void	get_data(t_env *env, t_list *lst)
 	ft_lstdel(&tmp, ft_deltab);
 }
 
-void    reader(t_env *env)
+void	reader(t_env *env)
 {
-	int     fd;
-	char    *line;
-	char    **split;
-	t_list  *lst;
+	int		fd;
+	char	*line;
+	char	**split;
+	t_list	*lst;
 
 	line = NULL;
 	env->scene.objs = NULL;
@@ -104,8 +105,10 @@ void    reader(t_env *env)
 			lst->content = (void*)split;
 		}
 		else
+		{
 			if (!(lst = ft_lstnew(NULL, sizeof(char **))))
 				ft_exit("Failed to malloc");
+		}
 		lst->content = (void*)split;
 	}
 	ft_lstrev(&lst);

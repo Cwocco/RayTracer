@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/14 13:10:17 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/02/23 17:06:33 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/02/26 14:26:01 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ t_color		process_light(t_env *env, t_light *lst_light, t_object *lst_obj,
 {
 	t_color c;
 	double	cos_teta;
-	(void)r;
 
 	set_ambient_light(&c, inter->obj);
 //	inter->normal = get_normal(inter, env->scene.objs);
