@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:47:44 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/02/23 17:09:45 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/02/26 13:10:56 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ t_ray		get_prim_ray(t_point p, t_env *env)
 	return (r);
 }
 
+//t_color sepia(t_color *new, t_color *c)
+
 t_color		raytrace(t_ray r, t_env *env)
 {
 	t_intersection	inter;
@@ -68,11 +70,11 @@ t_color		raytrace(t_ray r, t_env *env)
     tamer->type = hyperboloid;
 	tamer->pos.x = 0;
 	tamer->pos.y = 0;
-	tamer->pos.z = 200;
+	tamer->pos.z = 2000;
     tamer->pos = (t_point){ .x = 0, .y = 0, .z = 200};
-//    tamer->mater.specular = (t_color){ .r = 255, .g = 255, .b = 255, .a = 1};
+//  tamer->mater.specular = (t_color){ .r = 255, .g = 255, .b = 255, .a = 1};
     tamer->mater.ambient = (t_color){ .r = 255, .g = 0, .b = 0, .a = 1};
-	//   tamer->mater.diffuse = (t_color){ .r = 255, .g = 255, .b = 255, .a = 1};
+//	tamer->mater.diffuse = (t_color){ .r = 255, .g = 255, .b = 255, .a = 1};
     env->scene.objs = tamer;
 */
 	c = (t_color){ .r = 0.0, .g = 0.0, .b = 0.0, .a = 1};

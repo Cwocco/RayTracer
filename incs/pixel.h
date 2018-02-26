@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 15:27:04 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/01/31 18:07:47 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/02/26 13:11:38 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,5 @@
 
 void	get_final_color(t_color *c);
 
+void	sepia(t_color *prim_color);
 #endif
