@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:47:44 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/02/26 13:10:56 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/02/28 12:47:05 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void		raytracer_process(t_env *env)
 				r = get_prim_ray(win_pos, env);
 				c = raytrace(r, env);
 			}
+			if (SEPIA == 1)
+				sepia(&c);
 			put_pixel(env, &win_pos, c);
 			win_pos.y++;
 		}

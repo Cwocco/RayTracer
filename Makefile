@@ -6,7 +6,7 @@
 #    By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/24 11:54:00 by rpinoit           #+#    #+#              #
-#    Updated: 2018/02/21 10:56:49 by ada-cunh         ###   ########.fr        #
+#    Updated: 2018/02/28 12:11:39 by ada-cunh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,3 +60,6 @@ fclean: clean
 	rm -rf $(OBJ)
 
 re: clean all
+
+rex: clean all
+	./$(NAME) scenes/scene1.rt
