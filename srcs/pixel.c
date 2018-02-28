@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 12:03:22 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/02/28 18:20:16 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/02/28 18:25:39 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void		fifty_shades_of_grey(t_color *prim_color)
 	prim_color->b = new_c.b;
 }
 
+//ntmgithub
 void		daltonism(t_color *prim_color)
 {
 	t_color new_c;
