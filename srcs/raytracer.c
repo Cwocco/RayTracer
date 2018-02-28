@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:47:44 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/02/28 12:47:05 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/02/28 18:08:40 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ void		raytracer_process(t_env *env)
 			}
 			if (SEPIA == 1)
 				sepia(&c);
+			else if (FIFTYSHADES == 1)
+				fifty_shades_of_grey(&c);
+			else if (DALTO == 1)
+				daltonism(&c);
 			put_pixel(env, &win_pos, c);
 			win_pos.y++;
 		}
