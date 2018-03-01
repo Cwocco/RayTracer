@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:32:17 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/02/28 18:09:32 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/01 13:35:57 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void					process(t_env *env);
 
 void					destroy(t_env *env);
 
+# include "perlin.h"
 # include "anti_alias.h"
 # include "camera.h"
 # include "light.h"
