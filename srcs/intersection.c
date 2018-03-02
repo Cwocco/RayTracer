@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:51:28 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/02/26 12:10:13 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/02 15:19:45 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void	inter_plane(t_ray r, t_object *obj, double *t)
 	d = normal.x * dir.x + normal.y * dir.y + normal.z * dir.z;
 	*t = -n / d > 0.000001 ? -n / d : MAX_RAY_LENGTH;
 }
+
 /*
 void inter_hyper(t_ray r, t_object *obj, double *t)
 {
@@ -130,6 +131,7 @@ void inter_hyper(t_ray r, t_object *obj, double *t)
 	return (solve_equation(poly, t));
 }
 */
+
 t_bool	intersection(t_env *env, t_ray r, t_object *obj, t_intersection *inter)
 {
 	double t;

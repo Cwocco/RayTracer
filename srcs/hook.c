@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 12:06:14 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/02/20 17:11:12 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/03/02 15:36:33 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		expose_hook(t_env *env)
 	return (0);
 }
 
+//Excellent
 int		key_hook(int key, t_env *env)
 {
 	if (key == KEY_ESCAPE)

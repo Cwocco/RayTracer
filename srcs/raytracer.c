@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:47:44 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/02/28 18:08:40 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/02 11:23:35 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ t_ray		get_prim_ray(t_point p, t_env *env)
 	r.depth = MAX_RAY_DEPTH;
 	return (r);
 }
-
-//t_color sepia(t_color *new, t_color *c)
 
 t_color		raytrace(t_ray r, t_env *env)
 {

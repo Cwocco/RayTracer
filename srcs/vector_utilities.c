@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 10:30:57 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/02/21 15:36:38 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/02 17:35:48 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,6 @@
 double	vector_len(t_point a)
 {
 	return (sqrt(a.x * a.x + a.y * a.y + a.z * a.z));
-}
-
-double	dot_product(t_point a, t_point b)
-{
-	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
 
 t_point	vector_multiply(t_point vec, double factor)

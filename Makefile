@@ -6,7 +6,7 @@
 #    By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/24 11:54:00 by rpinoit           #+#    #+#              #
-#    Updated: 2018/03/01 13:29:45 by ada-cunh         ###   ########.fr        #
+#    Updated: 2018/03/02 17:31:25 by ada-cunh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,8 +33,9 @@ SRC = srcs/main.c \
 	  srcs/hook.c \
 	  srcs/anti_alias.c \
 	  srcs/set_perlin.c \
-	  srcs/set_param_perlin.c
-
+	  srcs/set_param_perlin.c \
+	  srcs/main_perlin.c \
+	  srcs/inter_perlin.c 
 
 OBJ = $(SRC:%.c=%.o)
 

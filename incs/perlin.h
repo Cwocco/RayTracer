@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 11:49:03 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/01 14:01:21 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/02 17:30:23 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,8 @@ void	set_c(t_pnoise *n, t_point g3[B + B + 2]);
 void	set_d(t_pnoise *n, t_point g3[B + B + 2]);
 
 double	noise3(t_point vec);
+
+void	inter_perlin(t_ray *ray, t_intersection *inter, t_color *c);
+void	marble_perlin(t_ray *ray, t_intersection *inter, t_color *c);
 
 #endif

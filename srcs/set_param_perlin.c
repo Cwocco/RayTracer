@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 12:42:50 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/01 13:26:47 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/02 11:03:28 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void set_c(t_pnoise *n, t_point g3[B + B + 2])
 	n->c = LERP(n->sy, n->a, n->b);
 }
 
-void set_d (t_pnoise *n, t_point g3[B + B + 2])
+void set_d(t_pnoise *n, t_point g3[B + B + 2])
 {
 	n->q = g3[n->b01 + n->bz1];
 	n->u = AT3(n->rx0, n->ry1, n->rz1);
