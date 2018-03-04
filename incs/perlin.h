@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 11:49:03 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/02 17:30:23 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/04 15:47:51 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ double	noise3(t_point vec);
 
 void	inter_perlin(t_ray *ray, t_intersection *inter, t_color *c);
 void	marble_perlin(t_ray *ray, t_intersection *inter, t_color *c);
+void	get_texture(t_color *c, t_intersection *inter, t_ray *r);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 11:04:59 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/02 17:43:21 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/04 16:00:18 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void inter_perlin(t_ray *r, t_intersection *inter, t_color *c)
 	vec.z = pos.z * 0.5;
 	while (++lvl < 10)
 		noise_coef += (1.0 / lvl) * fabs(noise3(vec));
-	noise_coef = 0.8 * sin((pos.x + pos.y) * 0.05 + noise_coef) + 0.9;
+//	noise_coef = 0.8 * sin((pos.x + pos.y) * 0.05 + noise_coef) + 0.9;
+	noise_coef = 2.0 * sin((pos.x + pos.y) * 0.05 + noise_coef) + 0.9;
 	c->r += inter->obj.color.r * noise_coef;
 	c->g += inter->obj.color.g * noise_coef;
 	c->b += inter->obj.color.b * noise_coef;
@@ -54,4 +55,14 @@ void marble_perlin(t_ray *r, t_intersection *inter, t_color *c)
 	c->r += inter->obj.color.r * noise_coef + (1.0 - noise_coef);
     c->g += inter->obj.color.g * noise_coef + (1.0 - noise_coef);
     c->b += inter->obj.color.b * noise_coef + (1.0 - noise_coef);
+}
+
+void get_texture(t_color *c, t_intersection *inter, t_ray *r)
+{
+	if (TEXTURE == 1)
+		inter_perlin(r, inter, c);
+	else if (TEXTURE == 2)
+		marble_perlin(r, inter, c);
+	else if (TEXTURE == 0)
+		return ;
 }

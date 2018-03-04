@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:32:17 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/02 17:52:00 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/04 15:48:04 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@
 # define MAX_RAY_LENGTH 0xffffff
 
 # define SEPIA 0
-# define FIFTYSHADES 1
+# define FIFTYSHADES 0
 # define DALTO 0
+# define TEXTURE 2
 
 typedef unsigned char	t_bool;
 typedef unsigned int	t_uint32;

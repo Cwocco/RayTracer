@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:47:44 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/02 11:23:35 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/04 14:32:48 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void		raytracer_process(t_env *env)
 			{
 				r = get_prim_ray(win_pos, env);
 				c = raytrace(r, env);
+				
 			}
 			if (SEPIA == 1)
 				sepia(&c);
@@ -89,6 +90,7 @@ t_color		raytrace(t_ray r, t_env *env)
 		inter.normal = get_normal(&inter);
 		c = process_light(env, env->scene.lgts, env->scene.objs, &inter, r);
 		get_final_color(&c);
+		get_texture(&c, &inter, &r);
 	}
 	return (c);
 }
