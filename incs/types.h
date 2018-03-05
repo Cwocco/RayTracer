@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:32:28 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/02/26 13:20:05 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/03 11:09:05 by jpicot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,10 @@ typedef struct			s_camera
 
 typedef struct			s_material
 {
-//	float			shine;
-//  float			shinestrength;
-//  float			transmission;
-//  float			reflection;
+//	double			shine;
+//  double			shinestrength;
+//  double			transmission;
+//  double			reflection;
     t_color			specular;
     t_color			ambient;
     t_color			diffuse;

@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 12:03:22 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/04 14:09:20 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/03 11:25:08 by jpicot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,10 @@ void		daltonism(t_color *prim_color)
 {
 	t_color new_c;
 	double	tmp_g;
-//	double	c;
 
 	new_c.r = prim_color->r;
 	new_c.g = prim_color->g;
 	new_c.b = prim_color->b;
-//	c = (prim_color->r + prim_color->g + prim_color->b) / 765.0;
 	if (new_c.g > new_c.r && new_c.g > new_c.b)
 	{
 		tmp_g = new_c.g;
@@ -74,10 +72,10 @@ void		daltonism(t_color *prim_color)
 		new_c.r = tmp_g;
 	}
 	else if (new_c.g == new_c.r || new_c.g == new_c.b)
-		new_c.g = new_c.r >= new_c.b ? new_c.b : new_c.r;
-	prim_color->r = new_c.r;// * c;
-	prim_color->g = new_c.g;// * c;
-	prim_color->b = new_c.b;//* c;
+		new_c.g = 0;
+	prim_color->r = new_c.r;
+	prim_color->g = new_c.g;
+	prim_color->b = new_c.b;
 }
 
 double		get_val(double val, double min, double max)

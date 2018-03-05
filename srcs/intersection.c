@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:51:28 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/02 15:19:45 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/05 09:30:05 by jpicot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ void	inter_plane(t_ray r, t_object *obj, double *t)
 	d = normal.x * dir.x + normal.y * dir.y + normal.z * dir.z;
 	*t = -n / d > 0.000001 ? -n / d : MAX_RAY_LENGTH;
 }
-
 /*
 void inter_hyper(t_ray r, t_object *obj, double *t)
 {
@@ -131,8 +130,7 @@ void inter_hyper(t_ray r, t_object *obj, double *t)
 	return (solve_equation(poly, t));
 }
 */
-
-t_bool	intersection(t_env *env, t_ray r, t_object *obj, t_intersection *inter)
+t_bool	intersection(const t_env *env, t_ray r, t_object *obj, t_intersection *inter)
 {
 	double t;
 	t_bool ret;
@@ -151,7 +149,7 @@ t_bool	intersection(t_env *env, t_ray r, t_object *obj, t_intersection *inter)
 	ret = 0;
 	while (obj != NULL)
 	{
-		obj->rot = env->obj_rot;
+		obj->rot = env->thenv[0]->obj_rot;
 		if (obj->type == sphere)
 			inter_sphere(r, obj, &t);
 		else if (obj->type == plan)

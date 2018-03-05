@@ -6,18 +6,21 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:32:17 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/04 15:48:04 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/05 19:51:06 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RTV1_H
 # define RTV1_H
 
-# include "SDL.h"
 # include "libft.h"
 # include "types.h"
 # include "event.h"
-# include "mlx.h"
+# include "../minilibx_macos/mlx.h"
+# include <pthread.h>
+# include <math.h>
+# include <stdio.h>
+# include <stdint.h>
 
 # define WIN_W 1000
 # define WIN_H 1000
@@ -42,20 +45,22 @@
 # define KEY_8 28
 # define KEY_9 25
 
+# define NBTHREAD 10
+
 # define MAX_RAY_DEPTH 4
 # define MAX_RAY_LENGTH 0xffffff
 
 # define SEPIA 0
 # define FIFTYSHADES 0
 # define DALTO 0
-# define TEXTURE 2
+# define TEXTURE 1
+# define ANTI 1
 
 typedef unsigned char	t_bool;
 typedef unsigned int	t_uint32;
 
 typedef struct			s_win
 {
-	SDL_Window	*win_sdl;
 	t_2ipair	size;
 	char		*name;
 	t_bool		focus;
@@ -63,8 +68,6 @@ typedef struct			s_win
 
 typedef struct			s_rend
 {
-	SDL_Renderer	*rend_sdl;
-	SDL_Texture		*texture_sdl;
 	t_uint32		*pixels;
 	t_2ipair		size;
 }						t_rend;
@@ -86,8 +89,8 @@ typedef struct			s_env
 	int             bpp;
 	int             sline;
 	int             endian;
-	double			win_w;
-	double			win_h;
+	int				win_w;
+	int				win_h;
 	int				mark;
 	t_scene		scene;
 //	t_event		event;
@@ -97,6 +100,10 @@ typedef struct			s_env
 	char		**argv;
 	t_point		obj_rot;
 	t_point		cam_rot;
+	pthread_t	tid[NBTHREAD];
+	int				i_th;
+	int				init;
+	struct s_env	*thenv[NBTHREAD];
 }						t_env;
 
 void put_pixel(t_env *env, t_point *pos, t_color c);

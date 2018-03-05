@@ -6,18 +6,13 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 10:32:34 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/02 17:35:36 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/03 11:26:16 by jpicot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-double	dot_product(t_point a, t_point b)
-{
-	return (a.x * b.x + a.y * b.y + a.z * b.z);
-}
-
-double	get_sqr(double val)
+double get_sqr(double val)
 {
 	return ((val) * (val));
 }

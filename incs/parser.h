@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:32:01 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/01/31 17:37:14 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/03/03 11:19:14 by jpicot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int     ft_strdigit(const char *s);
 
 void    ft_deltab(void *content, size_t content_size);
 
-double  ft_atod(char *s);
+double	ft_atod(char *s);
 
 int     ft_tablen(char **str);
 

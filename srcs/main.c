@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:47:09 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/02/21 11:36:09 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/05 11:09:30 by jpicot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ int		main(int argc, char **argv)
 //	env.obj_rot = (t_point){90, 0, 90};
 	env.cam_rot = (t_point){0, 0, 0};
 	reader(&env);
+	env.init = 0;
 	init_win(&env, argv[1]);
-	mlx_expose_hook(env.win, expose_hook, &env);
+	env.mark = 1;
+	mlx_draw_rt(&env);
 	mlx_key_hook(env.win, key_hook, &env);
 	//	init(&env);
 	//	process(&env);

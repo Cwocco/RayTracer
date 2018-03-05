@@ -6,13 +6,13 @@
 #    By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/24 11:54:00 by rpinoit           #+#    #+#              #
-#    Updated: 2018/03/02 17:31:25 by ada-cunh         ###   ########.fr        #
+#    Updated: 2018/03/05 19:42:12 by ada-cunh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = rtv1
 
-FLG = -Wall -Wextra -Werror
+FLG = -Wall -Wextra -Werror -lpthread -Ofast
 
 SRC = srcs/main.c \
 	  srcs/error.c \
@@ -34,18 +34,17 @@ SRC = srcs/main.c \
 	  srcs/anti_alias.c \
 	  srcs/set_perlin.c \
 	  srcs/set_param_perlin.c \
-	  srcs/main_perlin.c \
-	  srcs/inter_perlin.c 
+	  srcs/inter_perlin.c \
+	  srcs/main_perlin.c
 
 OBJ = $(SRC:%.c=%.o)
 
 INC = -I./incs \
 	  -I./libft/ \
 	  -I/usr/include \
-	  -I ~/Library/Frameworks/SDL2.framework/Headers \
+	  -I/minilibx_macos/
 
 LIB = -L./libft \
-	  -F ~/Library/Frameworks/SDL2.framework/Versions/Current \
 	  -L./minilibx_macos/
 
 all: $(NAME)

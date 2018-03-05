@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:26:06 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/02/21 15:49:47 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/05 18:52:15 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,6 @@ t_point   cone_normal(t_intersection *inter)
     normal.y *= -1;
     vec_unrotate(&normal, inter->obj.rot);
     normalize_vector(&normal);
-	normal.x *= -1;
-	normal.y *= -1;
-	normal.z *= -1;
 	return (normal);
 }
 
