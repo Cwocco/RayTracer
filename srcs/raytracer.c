@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:47:44 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/05 19:51:16 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/06 17:04:22 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,11 @@ t_color		raytrace(const t_ray r, const t_env *env)
 	{
 		inter.pos = vector_add(r.pos, vector_multiply(r.dir, inter.t)); //+ reflect * EPSILON;
 		inter.normal = get_normal(&inter);
+		if (TEXTURE == 3)
+			bump_mapping(&inter, &r);
 		c = process_light(env, env->thenv[0]->scene.lgts, env->thenv[0]->scene.objs, &inter, r);
 		get_final_color(&c);
+//		get_texture(&c, &inter, (t_ray*)&r);
 	}
 	return (c);
 }

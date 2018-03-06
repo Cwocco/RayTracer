@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:32:17 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/05 19:51:06 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/06 17:30:16 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@
 # define SEPIA 0
 # define FIFTYSHADES 0
 # define DALTO 0
-# define TEXTURE 1
-# define ANTI 1
+# define TEXTURE 2
+# define ANTI 0
 
 typedef unsigned char	t_bool;
 typedef unsigned int	t_uint32;
