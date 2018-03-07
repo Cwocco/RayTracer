@@ -2,7 +2,6 @@ project(rt C)
 cmake_minimum_required(VERSION 3.9)
 
 add_subdirectory(libft)
-add_subdirectory(minilibx_macos)
 
 file(GLOB_RECURSE HDRS ${HDRS} incs/*.h)
 file(GLOB_RECURSE SRCS ${SRCS} srcs/*.c)
