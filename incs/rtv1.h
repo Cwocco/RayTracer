@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:32:17 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/06 17:30:16 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/07 00:21:14 by jpicot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define WIN_W 1000
 # define WIN_H 1000
 
+# define M_LFT 1
+
 # define KEY_ESCAPE 53
 # define KEY_LEFT 123
 # define KEY_DOWN 126
@@ -34,6 +36,7 @@
 # define KEY_PLUS 24
 # define KEY_A 0
 # define KEY_D 2
+# define KEY_M 46
 # define KEY_W 13
 # define KEY_S 1
 # define KEY_1 18
@@ -53,7 +56,7 @@
 # define SEPIA 0
 # define FIFTYSHADES 0
 # define DALTO 0
-# define TEXTURE 0
+# define TEXTURE 2
 # define ANTI 0
 
 typedef unsigned char	t_bool;
@@ -86,12 +89,23 @@ typedef struct			s_env
 	void            *win;
 	void            *img;
 	char            *data;
+	int				active_icon;
+	void			*IMG_light_on_1;
+	void			*IMG_light_on_2;
+	void			*IMG_light_off_1;
+	void			*IMG_light_off_2;
+	void			*IMG_shadow_on_1;
+	void			*IMG_shadow_on_2;
+	void			*IMG_shadow_off_1;
+	void			*IMG_shadow_off_2;
 	int             bpp;
 	int             sline;
 	int             endian;
 	int				win_w;
 	int				win_h;
 	int				mark;
+	int				ambilight;
+	int				shadow;
 	t_scene		scene;
 //	t_event		event;
 //	t_win		win;
@@ -115,13 +129,21 @@ void    mlx_draw_rt(t_env *env);
 
 int     expose_hook(t_env *env);
 
-int     key_hook(int key, t_env *env);
-
 void					init(t_env *env);
 
 void					process(t_env *env);
 
 void					destroy(t_env *env);
+
+int						red_cross(void);
+
+int						loop_hook(t_env *env);
+
+int						mouse_motion(unsigned int x, unsigned y, t_env *e);
+
+int						key_press(int key, t_env *env);
+
+int						button_event(int button, int x, int y, t_env *e);
 
 # include "perlin.h"
 # include "anti_alias.h"

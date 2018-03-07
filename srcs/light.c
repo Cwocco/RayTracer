@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/14 13:10:17 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/03/06 17:32:04 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/07 00:10:30 by jpicot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ t_color		process_light(const t_env *env, t_light *lst_light, t_object *lst_obj,
 	get_texture(&inter->obj.mater.diffuse, inter, &r);
 	get_texture(&inter->obj.mater.specular, inter, &r);
 //	inter->normal = get_normal(inter, env->scene.objs);
-	while (lst_light)
+	while (env->thenv[0]->ambilight == 0 && lst_light)
 	{
-		if (no_object_obstructing_light(env, lst_light, inter, lst_obj))
+		if (env->thenv[0]->shadow == 0 || no_object_obstructing_light(env, lst_light, inter, lst_obj))
 		{
 			inter->light_vector = vector_sub(lst_light->pos, inter->pos);
 			normalize_vector(&inter->light_vector);
