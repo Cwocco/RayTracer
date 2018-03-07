@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:51:28 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/07 19:29:35 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/07 19:28:54 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,13 +117,13 @@ void inter_hyper(t_ray r, t_object *obj, double *t)
 	pos = vector_sub(r.pos, obj->pos);
 	poly.x = (get_sqr(dir.x)// / get_sqr(test.x))
 		+ (get_sqr(dir.y)// / get_sqr(test.y))
-		   + (get_sqr(dir.z)))));// / get_sqr(test.z));
+		   + (get_sqr(dir.z);// / get_sqr(test.z));
 			  poly.y = 2.0 * (((dir.x * pos.x) /// get_sqr(test.x))
 							   + ((dir.y * pos.y)// / get_sqr(test.y))
-								  + ((dir.z * pos.z))))); /// get_sqr(test.z)));
+								  + ((dir.z * pos.z); /// get_sqr(test.z)));
 									 poly.z = (get_sqr(pos.x) // / get_sqr(test.x))
 											   + (get_sqr(pos.y) // / get_sqr(test.y))
-												  + (get_sqr(pos.z))))); // / get_sqr(test.z)) - 1;
+												  + (get_sqr(pos.z); // / get_sqr(test.z)) - 1;
 //	poly.x = pos.z * pos.z - pos.x * pos.x - pos.y * pos.y;
 //	poly.y = 2.0 * (dir.z * pos.z - dir.x * pos.x - dir.y * pos.y);
 //	poly.z = dir.z * dir.z + 10 - dir.x * dir.x - dir.y * dir.y;
