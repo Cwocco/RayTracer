@@ -22,7 +22,7 @@ void	inter_cylinder(t_ray r, t_object *obj, double *t)
 	dir = (t_point){r.dir.x, r.dir.y, r.dir.z};
 	pos = vector_sub(r.pos, obj->pos);
 	rotate_vec(&pos, obj->rot);
-	rotate_vec(&dir, obj->rot);
+	vec_rotate(&dir, obj->rot);
 	poly.x = dir.x * dir.x + dir.z * dir.z;
 	poly.y = 2.0 * (dir.x * pos.x + dir.z * pos.z);
 	poly.z = pos.x * pos.x + pos.z * pos.z - obj->radius * obj->radius;
@@ -37,8 +37,8 @@ void	inter_cylinder(t_ray r, t_object *obj, double *t)
 
 	dir = (t_point){r.dir.x, r.dir.y, r.dir.z};
 	pos = vector_sub(r.pos, obj->pos);
-	rotate_vec(&pos, obj->rot);
-	rotate_vec(&dir, obj->rot);
+	vec_rotate(&pos, obj->rot);
+	vec_rotate(&dir, obj->rot);
 	poly.x = dir.x * dir.x + dir.z * dir.z;
 	poly.y = 2.0 * (pos.x * dir.x + pos.z * dir.z);
 	poly.z = pos.x * pos.x + pos.z * pos.z - 10;
@@ -57,8 +57,8 @@ void	inter_cone(t_ray r, t_object *obj, double *t)
 //  printf("pos.x = %f\n", pos.x);
 //  printf("pos.y = %f\n", pos.y);
 //  printf("pos.z = %f\n", pos.z);
-    rotate_vec(&pos, obj->rot);
-    rotate_vec(&dir, obj->rot);
+	vec_rotate(&pos, obj->rot);
+	vec_rotate(&dir, obj->rot);
 //  printf("pos.x = %f\n", pos.x);
 //  printf("pos.y = %f\n", pos.y);
 //  printf("pos.z = %f\n", pos.z);

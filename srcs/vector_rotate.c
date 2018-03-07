@@ -45,7 +45,7 @@ static void	vec_rotate_z(t_point *v, double ang)
 	v->y = tmp_x * sin(ang) + tmp_y * cos(ang);
 }
 
-void		rotate_vec(t_point *v, t_point rot)
+void		vec_rotate(t_point *v, t_point rot)
 {
 	vec_rotate_y(v, ft_degtorad(rot.y));
 	vec_rotate_x(v, ft_degtorad(rot.x));
