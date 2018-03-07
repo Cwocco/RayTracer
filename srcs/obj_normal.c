@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:26:06 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/03/05 18:52:15 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/07 19:11:38 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,5 +122,7 @@ t_point          get_normal(t_intersection *inter)
         return (cone_normal(inter));
     else if (type == plan)
         return (plane_normal(inter));
+	else if (type == hyperboloid)
+		return (cylinder_normal(inter));
     return ((t_point){0, 0, 0});
 }

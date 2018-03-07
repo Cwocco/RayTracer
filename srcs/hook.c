@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 12:06:14 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/03/05 10:42:08 by jpicot           ###   ########.fr       */
+/*   Updated: 2018/03/07 00:22:24 by jpicot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,36 +49,135 @@ static int		rot_cam_keyhook(const int key, t_env *env)
 static int		pos_cam_keyhook(int key, t_env *env)
 {
 	if (key == KEY_I)
-		env->scene.cam.pos.z += 10;
+		env->scene.cam.pos.z += 30;
 	else if (key == KEY_K)
-		env->scene.cam.pos.z -= 10;
+		env->scene.cam.pos.z -= 30;
 	else if (key == KEY_L)
-		env->scene.cam.pos.x += 10;
+		env->scene.cam.pos.x += 30;
 	else if (key == KEY_J)
-		env->scene.cam.pos.x -= 10;
+		env->scene.cam.pos.x -= 30;
 	else if (key == KEY_9)
-		env->scene.cam.pos.y += 10;
+		env->scene.cam.pos.y += 30;
 	else if (key == KEY_8)
-		env->scene.cam.pos.y -= 10;
+		env->scene.cam.pos.y -= 30;
 	return (1);
 }
 
-int		key_hook(int key, t_env *env)
+int     key_press(int key, t_env *env)
 {
-	if (key == KEY_ESCAPE)
-	{
-		mlx_destroy_window(env->mlx, env->win);
-		exit(EXIT_SUCCESS);
-	}
-	else if ((key > 122 && key < 127) || key == 24 || key == 27)
-		env->mark = rot_obj_keyhook(key, env);
-	else if (key == KEY_A || key == KEY_D || key == KEY_W || key == KEY_S \
-			|| key == KEY_1 || key == KEY_2)
-		env->mark = rot_cam_keyhook(key, env);
-	else if (key == KEY_I || key == KEY_K || key == KEY_L || key == KEY_J || key == KEY_9 \
-			|| key == KEY_8)
-		env->mark = pos_cam_keyhook(key, env);
-	if (env->mark == 1)
-		mlx_draw_rt(env);
-	return (0);
+    if (key == KEY_ESCAPE)
+    {
+        mlx_destroy_window(env->mlx, env->win);
+        exit(EXIT_SUCCESS);
+    }
+    else if ((key > 122 && key < 127) || key == 24 || key == 27)
+        env->mark = rot_obj_keyhook(key, env);
+    else if (key == KEY_A || key == KEY_D || key == KEY_W || key == KEY_S \
+            || key == KEY_1 || key == KEY_2)
+        env->mark = rot_cam_keyhook(key, env);
+    else if (key == KEY_I || key == KEY_K || key == KEY_L || key == KEY_J || key == KEY_9 \
+            || key == KEY_8)
+        env->mark = pos_cam_keyhook(key, env);
+    else if (key == KEY_M)
+    {
+        if (env->ambilight == 0)
+            env->ambilight = 1;
+        else
+            env->ambilight = 0;
+        env->mark = 1;
+    }
+    return (0);
+}
+
+int     mouse_motion(unsigned int x, unsigned int y, t_env *e)
+{
+    if (x < (unsigned int)e->win_w + 300 && y < (unsigned int)e->win_h)
+    {
+        e->active_icon = 0;
+        if (x >= 1033 && x <= 1133 && y >= 33 && y <= 133)
+            e->active_icon = 1;
+        else if (x >= 1166 && x <= 1266 && y >= 33 && y <= 133)
+            e->active_icon = 3;
+    }
+    return (0);
+}
+
+int     button_event(int button, int x, int y, t_env *e)
+{
+    (void)x;
+    (void)y;
+    if (button == M_LFT)
+    {
+        if (e->active_icon == 1 || e->active_icon == 2)
+        {
+            if (e->ambilight == 0)
+                e->ambilight = 1;
+            else
+                e->ambilight = 0;
+            e->mark = 1;
+        }
+        else if (e->active_icon == 3 || e->active_icon == 4)
+        {
+            if (e->shadow == 0)
+                e->shadow = 1;
+            else
+                e->shadow = 0;
+            e->mark = 1;
+        }
+    }
+    return (0);
+}
+
+static void process_dynamic(t_env *env)
+{
+    usleep(140000);
+    if (env->active_icon == 1)
+    {
+        if (env->ambilight == 0)
+            mlx_put_image_to_window(env->mlx, env->win, env->IMG_light_on_1, 1033, 33);
+        else
+            mlx_put_image_to_window(env->mlx, env->win, env->IMG_light_off_1, 1033, 33);
+        env->active_icon = 2;
+    }
+    else if (env->active_icon == 2)
+    {
+        if (env->ambilight == 0)
+            mlx_put_image_to_window(env->mlx, env->win, env->IMG_light_on_2, 1033, 33);
+        else
+            mlx_put_image_to_window(env->mlx, env->win, env->IMG_light_off_2, 1033, 33);
+        env->active_icon = 1;
+    }
+    else if (env->active_icon == 3)
+    {
+        if (env->shadow == 1)
+            mlx_put_image_to_window(env->mlx, env->win, env->IMG_shadow_on_1, 1166, 33);
+        else
+            mlx_put_image_to_window(env->mlx, env->win, env->IMG_shadow_off_1, 1166, 33);
+        env->active_icon = 4;
+    }
+    else if (env->active_icon == 4)
+    {
+        if (env->shadow == 1)
+            mlx_put_image_to_window(env->mlx, env->win, env->IMG_shadow_on_2, 1166, 33);
+        else
+            mlx_put_image_to_window(env->mlx, env->win, env->IMG_shadow_off_2, 1166, 33);
+        env->active_icon = 3;
+    }
+}
+
+int     red_cross(void)
+{
+    exit(EXIT_SUCCESS);
+}
+
+int     loop_hook(t_env *env)
+{
+    if (env->active_icon > 0)
+        process_dynamic(env);
+    if (env->mark == 1)
+    {
+        env->mark = 0;
+        mlx_draw_rt(env);
+    }
+    return (0);
 }

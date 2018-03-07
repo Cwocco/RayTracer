@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 15:30:43 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/03/05 19:50:22 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/07 00:23:54 by jpicot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	init_cam(t_env *env, char **d)
 		ft_exit("Invalid camera data.");
 	cam = &env->scene.cam;
 	cam->fov = ft_atoi(d[13]);
-	cam->d = (env->win_w / 2 / (fabs(tan(cam->fov / 2))));
+	cam->d = (env->win_w / 2 / (fabs(tan(ft_degtorad(30) / 2))));
 	cam->pos = (t_point){ft_atod(d[1]), ft_atod(d[2]), ft_atod(d[3])};
 	cam->uvn.u = (t_point){ft_atod(d[4]), ft_atod(d[5]), ft_atod(d[6])};
 	cam->uvn.v = (t_point){ft_atod(d[7]), ft_atod(d[8]), ft_atod(d[9])};

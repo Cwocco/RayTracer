@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:32:17 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/07 19:21:41 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/07 00:21:14 by jpicot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 # define KEY_8 28
 # define KEY_9 25
 
-# define NBTHREAD 8
+# define NBTHREAD 10
 
 # define MAX_RAY_DEPTH 4
 # define MAX_RAY_LENGTH 0xffffff
@@ -56,7 +56,7 @@
 # define SEPIA 0
 # define FIFTYSHADES 0
 # define DALTO 0
-# define TEXTURE 0
+# define TEXTURE 2
 # define ANTI 0
 
 typedef unsigned char	t_bool;
@@ -112,16 +112,13 @@ typedef struct			s_env
 	char		**argv;
 	t_point		obj_rot;
 	t_point		cam_rot;
-  int				ambilight;
+	pthread_t	tid[NBTHREAD];
+	int				i_th;
+	int				init;
+	int				ambilight;
 	int				shadow;
+	struct s_env	*thenv[NBTHREAD];
 }						t_env;
-
-typedef struct			s_thenv
-{
-	t_env				*env;
-	int					from_y;
-	int					to_y;
-}						t_thenv;
 
 void put_pixel(t_env *env, t_point *pos, t_color c);
 
