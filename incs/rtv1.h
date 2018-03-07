@@ -21,6 +21,7 @@
 # include <math.h>
 # include <stdio.h>
 # include <stdint.h>
+# include <SDL.h>
 
 # define WIN_W 1000
 # define WIN_H 1000
@@ -45,7 +46,7 @@
 # define KEY_8 28
 # define KEY_9 25
 
-# define NBTHREAD 10
+# define NBTHREAD 8
 
 # define MAX_RAY_DEPTH 4
 # define MAX_RAY_LENGTH 0xffffff
@@ -53,72 +54,46 @@
 # define SEPIA 0
 # define FIFTYSHADES 0
 # define DALTO 0
-# define TEXTURE 2
+# define TEXTURE 0
 # define ANTI 0
 
 typedef unsigned char	t_bool;
 typedef unsigned int	t_uint32;
 
-typedef struct			s_win
-{
-	t_2ipair	size;
-	char		*name;
-	t_bool		focus;
-}						t_win;
-
-typedef struct			s_rend
-{
-	t_uint32		*pixels;
-	t_2ipair		size;
-}						t_rend;
-
 typedef struct			s_scene
 {
-	t_ray		prim_r;
-	t_object	*objs;
-	t_light		*lgts;
-	t_camera	cam;
+	t_ray				prim_r;
+	t_object			*objs;
+	t_light				*lgts;
+	t_camera			cam;
 }						t_scene;
 
 typedef struct			s_env
 {
-	void            *mlx;
-	void            *win;
-	void            *img;
-	char            *data;
-	int             bpp;
-	int             sline;
-	int             endian;
-	int				win_w;
-	int				win_h;
-	int				mark;
-	t_scene		scene;
-//	t_event		event;
-//	t_win		win;
-//	t_rend		rend;
-	int			argc;
-	char		**argv;
-	t_point		obj_rot;
-	t_point		cam_rot;
-	pthread_t	tid[NBTHREAD];
-	int				i_th;
-	int				init;
-	struct s_env	*thenv[NBTHREAD];
+	int					win_w;
+	int					win_h;
+	t_scene				scene;
+	SDL_Window			*win;
+	SDL_Renderer		*rend;
+	int					argc;
+	char				**argv;
+	t_point				obj_rot;
+	t_point				cam_rot;
 }						t_env;
 
-void put_pixel(t_env *env, t_point *pos, t_color c);
+typedef struct			s_thenv
+{
+	t_env				*env;
+	int					from_y;
+	int					to_y;
+}						t_thenv;
 
-void    mlx_draw_rt(t_env *env);
-
-int     expose_hook(t_env *env);
-
-int     key_hook(int key, t_env *env);
-
-void					init(t_env *env);
-
-void					process(t_env *env);
-
-void					destroy(t_env *env);
+void	rt_sdldrawpixel(t_env *e, t_pixel pos, t_color c);
+void	rt_sdldraw(t_env *e);
+void	rt_sdlinit(t_env *e, char const *name);
+void	rt_sdlexit(t_env *e);
+void	rt_sdlonkeydown(t_env *e, SDL_Event *ev);
+void	rt_sdlloop(t_env *e);
 
 # include "perlin.h"
 # include "anti_alias.h"

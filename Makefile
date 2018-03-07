@@ -17,7 +17,7 @@ WWFLAGS = $(WFLAGS) -Wpedantic -Wshadow -Wconversion -Wcast-align \
   -Wmissing-declarations -Wfloat-equal -Wbad-function-cast -Wundef \
   -Waggregate-return -Wstrict-overflow=5 -Wold-style-definition -Wpadded \
   -Wredundant-decls -Wall -Werror -Wextra
-RCFLAGS = $(WFLAGS) -O2
+RCFLAGS = $(WFLAGS) -Ofast
 DCFLAGS = $(WFLAGS) -g3 -DDEBUG
 SCFLAGS = -fsanitize=address,undefined -ferror-limit=5 $(DCFLAGS)
 CC ?= gcc
@@ -54,18 +54,17 @@ SRC_NAME = \
 	obj_normal.c \
 	light_phong_shading.c \
 	vector_rotate.c \
-	draw.c \
-	hook.c \
 	anti_alias.c \
 	set_perlin.c \
 	set_param_perlin.c \
 	inter_perlin.c \
+	sdl.c \
 	main_perlin.c
 
 3TH = $(addprefix $(3TH_PATH)/, $(3TH_NAME))
 OBJ = $(addprefix $(OBJ_PATH)/, $(SRC_NAME:.c=.o))
 LNK = $(addprefix -L, $(3TH))
-INC = $(addprefix -I, $(INC_PATH) $(3TH))
+INC = $(addprefix -I, $(INC_PATH) $(3TH) /Library/Frameworks/SDL2.framework/Headers)
 LIB = $(addprefix -l, $(LIB_NAME))
 DEP = $(OBJ:%.o=%.d)
 
@@ -115,7 +114,10 @@ endif
 
 $(PROJECT): $(3DE) $(OBJ)
 	@$(PRINTF) "\r\x1b[20C\x1b[0K$@"
-	$(CC) $(CFLAGS) $(INC) $(LNK) $(OBJ) $(LIB) -framework OpenGL -framework Appkit -o $(PROJECT)
+	$(CC) $(CFLAGS) $(INC) $(LNK) $(OBJ) $(LIB) \
+	  -F /Library/Frameworks/SDL2.framework/Versions/Current \
+	  -framework SDL2 \
+	  -o $(PROJECT)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c | $(OBJ_PATH)
 	@$(PRINTF) "\r\x1b[20C\x1b[0K$<"

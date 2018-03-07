@@ -33,6 +33,12 @@ typedef struct			s_point
 	double		z;
 }						t_point;
 
+typedef struct			s_pixel
+{
+	int					x;
+	int					y;
+}						t_pixel;
+
 typedef t_point			t_norm;
 
 typedef enum			e_object_type

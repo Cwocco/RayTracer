@@ -15,9 +15,9 @@
 
 # include "rtv1.h"
 
-void		*raytracer_process(void *arg);
+int			raytracer_process(t_thenv *env);
 
-t_ray		get_prim_ray(const t_point p, const t_env *env);
+t_ray		get_prim_ray(const t_pixel p, const t_env *env);
 
 t_color		raytrace(const t_ray r, const t_env *env);
 

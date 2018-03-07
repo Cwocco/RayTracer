@@ -23,14 +23,14 @@ t_color     anti_alias_color(t_color c[17])
 	return (color);
 }
 
-t_color     anti_aliasing_rt(t_point win_pos, t_env *env)
+t_color     anti_aliasing_rt(t_pixel win_pos, t_env *env)
 {
 	t_color c[17];
 	t_point pix;
 	t_ray   r;
 	t_point tmp;
 
-	tmp = win_pos;
+	tmp = (t_point){win_pos.x, win_pos.y, 0.0};
 	pix.x = 0;
 	while (pix.x < 4)
 	{
@@ -39,7 +39,7 @@ t_color     anti_aliasing_rt(t_point win_pos, t_env *env)
 		{
 			tmp.x = win_pos.x + pix.x * 0.25;
 			tmp.y = win_pos.y + pix.y * 0.25;
-			r = get_prim_ray(tmp, env);
+			r = get_prim_ray((t_pixel){(int)tmp.x, (int)tmp.y}, env);
 			c[(int)pix.x + (int)pix.y * 4] = raytrace(r, env);
 			pix.y++;
 		}

@@ -15,6 +15,6 @@
 
 #include "rtv1.h"
 
-t_color     anti_aliasing_rt(t_point win_pos, t_env *env);
+t_color     anti_aliasing_rt(t_pixel win_pos, t_env *env);
 
 #endif

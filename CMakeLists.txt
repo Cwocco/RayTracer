@@ -17,11 +17,10 @@ add_executable(rt ${HDRS} srcs/main.c
     srcs/parser_libft.c
     srcs/math_utilities.c
     srcs/pixel.c
+    srcs/sdl.c
     srcs/obj_normal.c
     srcs/light_phong_shading.c
     srcs/vector_rotate.c
-    srcs/draw.c
-    srcs/hook.c
     srcs/anti_alias.c
     srcs/set_perlin.c
     srcs/set_param_perlin.c
@@ -30,5 +29,5 @@ add_executable(rt ${HDRS} srcs/main.c
 target_include_directories(rt PUBLIC incs
   /Library/Frameworks/SDL2.framework/Headers)
 target_link_libraries(rt PUBLIC ft mlx pthread
-  "-framework AppKit" "-framework OpenGL"
-  "-F /Library/Frameworks/SDL2.framework/Versions/Current")
+  "-framework SDL2"
+  "-F/Library/Frameworks/SDL2.framework/Versions/Current")
