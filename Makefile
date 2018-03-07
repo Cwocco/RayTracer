@@ -28,10 +28,6 @@ SRC = srcs/main.c \
 	  srcs/pixel.c \
 	  srcs/obj_normal.c \
 	  srcs/light_phong_shading.c \
-	  srcs/m4.c \
-	  srcs/m4_mul.c \
-	  srcs/m4_rot.c \
-	  srcs/m4_trans.c \
 	  srcs/vector_rotate.c \
 	  srcs/draw.c \
 	  srcs/hook.c \
