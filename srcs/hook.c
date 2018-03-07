@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 12:06:14 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/03/07 00:22:24 by jpicot           ###   ########.fr       */
+/*   Updated: 2018/03/07 20:10:04 by alucas-          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,12 @@ int     key_press(int key, t_env *env)
 
 int     mouse_motion(unsigned int x, unsigned int y, t_env *e)
 {
-    if (x < (unsigned int)e->win_w + 300 && y < (unsigned int)e->win_h)
+    if (x < WIN_W + 300 && y < WIN_H)
     {
         e->active_icon = 0;
-        if (x >= 1033 && x <= 1133 && y >= 33 && y <= 133)
+        if (x >= WIN_W + 33 && x <= WIN_W + 133 && y >= 33 && y <= 133)
             e->active_icon = 1;
-        else if (x >= 1166 && x <= 1266 && y >= 33 && y <= 133)
+        else if (x >= WIN_W + 166 && x <= WIN_W + 266 && y >= 33 && y <= 133)
             e->active_icon = 3;
     }
     return (0);
@@ -134,33 +134,33 @@ static void process_dynamic(t_env *env)
     if (env->active_icon == 1)
     {
         if (env->ambilight == 0)
-            mlx_put_image_to_window(env->mlx, env->win, env->IMG_light_on_1, 1033, 33);
+            mlx_put_image_to_window(env->mlx, env->win, env->IMG_light_on_1, WIN_W + 33, 33);
         else
-            mlx_put_image_to_window(env->mlx, env->win, env->IMG_light_off_1, 1033, 33);
+            mlx_put_image_to_window(env->mlx, env->win, env->IMG_light_off_1, WIN_W + 33, 33);
         env->active_icon = 2;
     }
     else if (env->active_icon == 2)
     {
         if (env->ambilight == 0)
-            mlx_put_image_to_window(env->mlx, env->win, env->IMG_light_on_2, 1033, 33);
+            mlx_put_image_to_window(env->mlx, env->win, env->IMG_light_on_2, WIN_W + 33, 33);
         else
-            mlx_put_image_to_window(env->mlx, env->win, env->IMG_light_off_2, 1033, 33);
+            mlx_put_image_to_window(env->mlx, env->win, env->IMG_light_off_2, WIN_W + 33, 33);
         env->active_icon = 1;
     }
     else if (env->active_icon == 3)
     {
         if (env->shadow == 1)
-            mlx_put_image_to_window(env->mlx, env->win, env->IMG_shadow_on_1, 1166, 33);
+            mlx_put_image_to_window(env->mlx, env->win, env->IMG_shadow_on_1, WIN_W + 166, 33);
         else
-            mlx_put_image_to_window(env->mlx, env->win, env->IMG_shadow_off_1, 1166, 33);
+            mlx_put_image_to_window(env->mlx, env->win, env->IMG_shadow_off_1, WIN_W + 166, 33);
         env->active_icon = 4;
     }
     else if (env->active_icon == 4)
     {
         if (env->shadow == 1)
-            mlx_put_image_to_window(env->mlx, env->win, env->IMG_shadow_on_2, 1166, 33);
+            mlx_put_image_to_window(env->mlx, env->win, env->IMG_shadow_on_2, WIN_W + 166, 33);
         else
-            mlx_put_image_to_window(env->mlx, env->win, env->IMG_shadow_off_2, 1166, 33);
+            mlx_put_image_to_window(env->mlx, env->win, env->IMG_shadow_off_2, WIN_W + 166, 33);
         env->active_icon = 3;
     }
 }

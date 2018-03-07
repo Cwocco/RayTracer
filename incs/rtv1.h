@@ -22,8 +22,8 @@
 # include <stdio.h>
 # include <stdint.h>
 
-# define WIN_W 1000
-# define WIN_H 1000
+# define WIN_W 800
+# define WIN_H 800
 
 # define M_LFT 1
 
@@ -56,7 +56,7 @@
 # define SEPIA 0
 # define FIFTYSHADES 0
 # define DALTO 0
-# define TEXTURE 2
+# define TEXTURE 0
 # define ANTI 0
 
 typedef unsigned char	t_bool;
