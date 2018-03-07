@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:51:28 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/07 19:29:35 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/07 20:15:20 by alucas-          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	inter_cone(t_ray r, t_object *obj, double *t)
 //  printf("pos.y = %f\n", pos.y);
 //  printf("pos.z = %f\n", pos.z);
 //    radius = sin(ft_degtorad(obj->radius)) * sin(ft_degtorad(obj->radius));
-    poly.x = dir.x * dir.x - dir.y * dir.y + dir.z * dir.z; 
+    poly.x = dir.x * dir.x - dir.y * dir.y + dir.z * dir.z;
 	poly.y = 2.0 * (pos.x * dir.x - pos.y * dir.y + pos.z * dir.z);
 	poly.z = pos.x * pos.x - pos.y * pos.y + pos.z * pos.z;
     return (solve_equation(poly, t));
@@ -106,7 +106,6 @@ void inter_hyper(t_ray r, t_object *obj, double *t)
 	t_point dir;
 	t_point pos;
 	t_point poly;
-	t_point test;
 
 	dir = (t_point){r.dir.x, r.dir.y, r.dir.z};
 //	test = (t_point){ .x = 40, .y = 25, .z = 25};
@@ -117,13 +116,13 @@ void inter_hyper(t_ray r, t_object *obj, double *t)
 	pos = vector_sub(r.pos, obj->pos);
 	poly.x = (get_sqr(dir.x)// / get_sqr(test.x))
 		+ (get_sqr(dir.y)// / get_sqr(test.y))
-		   + (get_sqr(dir.z)))));// / get_sqr(test.z));
+		   + (get_sqr(dir.z))));// / get_sqr(test.z));
 			  poly.y = 2.0 * (((dir.x * pos.x) /// get_sqr(test.x))
 							   + ((dir.y * pos.y)// / get_sqr(test.y))
 								  + ((dir.z * pos.z))))); /// get_sqr(test.z)));
 									 poly.z = (get_sqr(pos.x) // / get_sqr(test.x))
 											   + (get_sqr(pos.y) // / get_sqr(test.y))
-												  + (get_sqr(pos.z))))); // / get_sqr(test.z)) - 1;
+												  + (get_sqr(pos.z)))); // / get_sqr(test.z)) - 1;
 //	poly.x = pos.z * pos.z - pos.x * pos.x - pos.y * pos.y;
 //	poly.y = 2.0 * (dir.z * pos.z - dir.x * pos.x - dir.y * pos.y);
 //	poly.z = dir.z * dir.z + 10 - dir.x * dir.x - dir.y * dir.y;
@@ -134,7 +133,7 @@ t_bool	intersection(const t_env *env, t_ray r, t_object *obj, t_intersection *in
 {
 	double t;
 	t_bool ret;
-	t_object *tamer;
+/*	t_object *tamer;
 
 	tamer = (t_object*)malloc(sizeof(t_object));
 	tamer->next = NULL;
@@ -145,7 +144,7 @@ t_bool	intersection(const t_env *env, t_ray r, t_object *obj, t_intersection *in
 	tamer->mater.diffuse = (t_color){ .r = 255, .g = 255, .b = 255, .a = 1};
 	tamer->color = (t_color){ .r = 255, .g = 0, .b = 0, .a = 1};
 	obj = tamer;
-
+*/
 	t = MAX_RAY_LENGTH;
 	ret = 0;
 	while (obj != NULL)
