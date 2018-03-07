@@ -12,28 +12,24 @@
 
 #include "rtv1.h"
 
-void		*raytracer_process(void *arg)
+void	*raytracer_process(t_thenv *thenv)
 {
 	t_point		win_pos;
 	t_ray		r;
 	t_color		c;
-	t_env		*env;
-	double		win_max;
 
-	env = (t_env *)arg;
-	win_pos.x = (env->thenv[0]->win_w / NBTHREAD) * env->i_th;
-	win_max = (env->thenv[0]->win_w / NBTHREAD) * (env->i_th + 1);
-	while (win_pos.x < win_max)
+	win_pos.x = 0;
+	while (win_pos.x < thenv->env->win_w)
 	{
-		win_pos.y = 0;
-		while (win_pos.y < env->thenv[0]->win_h)
+		win_pos.y = thenv->from_y;
+		while (++win_pos.y < thenv->to_y)
 		{
             if (ANTI == 1)
-            	c = anti_aliasing_rt(win_pos, env);
+            	c = anti_aliasing_rt(win_pos, thenv->env);
 			else
 			{
-				r = get_prim_ray(win_pos, env);
-				c = raytrace(r, env);
+				r = get_prim_ray(win_pos, thenv->env);
+				c = raytrace(r, thenv->env);
 			}
 			if (SEPIA == 1)
 				sepia(&c);
@@ -41,27 +37,25 @@ void		*raytracer_process(void *arg)
 				fifty_shades_of_grey(&c);
 			else if (DALTO == 1)
 				daltonism(&c);
-			put_pixel(env, &win_pos, c);
-			win_pos.y++;
+			put_pixel(thenv->env, &win_pos, c);
 		}
 		win_pos.x++;
 	}
 	pthread_exit(NULL);
-	return (NULL);
 }
 
 t_ray		get_prim_ray(const t_point p, const t_env *env)
 {
-	t_camera	*cam;
-	t_ray		r;
+	t_camera const	*cam;
+	t_ray			r;
 
-	cam = &env->thenv[0]->scene.cam;
-	r.dir.x = p.x - (env->thenv[0]->win_w / 2);
-	r.dir.y = p.y - (env->thenv[0]->win_h / 2);
+	cam = &env->scene.cam;
+	r.dir.x = p.x - (env->win_w / 2);
+	r.dir.y = p.y - (env->win_h / 2);
 	r.dir.z = cam->d;
 	normalize_vector(&r.dir);
 	r.pos = cam->pos;
-	vec_rotate(&r.dir, env->thenv[0]->cam_rot);
+	vec_rotate(&r.dir, env->cam_rot);
 	normalize_vector(&r.dir);
 	r.depth = MAX_RAY_DEPTH;
 	return (r);
@@ -89,13 +83,13 @@ t_color		raytrace(const t_ray r, const t_env *env)
 	*/
 	c = (t_color){ .r = 0.0, .g = 0.0, .b = 0.0, .a = 1};
 	inter.t = MAX_RAY_LENGTH;
-	if (intersection(env, r, env->thenv[0]->scene.objs, &inter))
+	if (intersection(env, r, env->scene.objs, &inter))
 	{
 		inter.pos = vector_add(r.pos, vector_multiply(r.dir, inter.t)); //+ reflect * EPSILON;
 		inter.normal = get_normal(&inter);
 		if (TEXTURE == 3)
 			bump_mapping(&inter, &r);
-		c = process_light(env, env->thenv[0]->scene.lgts, env->thenv[0]->scene.objs, &inter, r);
+		c = process_light(env, env->scene.lgts, env->scene.objs, &inter, r);
 		get_final_color(&c);
 //		get_texture(&c, &inter, (t_ray*)&r);
 	}

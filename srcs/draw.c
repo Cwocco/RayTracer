@@ -17,34 +17,32 @@ void put_pixel(t_env *env, t_point *pos, t_color c)
 	int pts;
 
 	(void)c;
-	pts = ((int)pos->x * 4) + ((int)pos->y * env->thenv[0]->sline);
-	env->thenv[0]->data[pts] = c.b;
-	env->thenv[0]->data[++pts] = c.g;
-	env->thenv[0]->data[++pts] = c.r;
+	pts = ((int)pos->x * 4) + ((int)pos->y * env->sline);
+	env->data[pts] = (char)c.b;
+	env->data[++pts] = (char)c.g;
+	env->data[++pts] = (char)c.r;
 }
 
 void	mlx_draw_rt(t_env *env)
 {
-	env->img = mlx_new_image(env->mlx, env->win_w, env->win_h);
-	env->data = mlx_get_data_addr(env->img, &env->bpp, &env->sline,
-			&env->endian);
-	env->i_th = -1;
-	while (++env->i_th < NBTHREAD)
+	int			i;
+	t_thenv		thenv[NBTHREAD];
+	pthread_t	ths[NBTHREAD];
+
+	ft_bzero(thenv, sizeof(t_thenv) * NBTHREAD);
+	ft_bzero(ths, sizeof(pthread_t) * NBTHREAD);
+	mlx_clear_window(env->mlx, env->win);
+	i = -1;
+	while (++i < NBTHREAD)
 	{
-		if (env->init == 0)
-		{
-			env->thenv[env->i_th] = ft_memalloc(sizeof(t_env));
-			env->thenv[env->i_th]->thenv[0] = env;
-		}
-		env->thenv[env->i_th]->i_th = env->i_th;
-		if (pthread_create(&env->tid[env->i_th], NULL, raytracer_process, env->thenv[env->i_th]) != 0)
-			ft_putstr("Erreur de thread.\n");
+		thenv[i].env = env;
+		thenv[i].from_y = ((env->win_h / NBTHREAD) * i) - 1;
+		thenv[i].to_y = (env->win_h / NBTHREAD) * (i + 1);
+		pthread_create(ths + i, NULL, (void *(*)(void *))raytracer_process,
+			thenv + i);
 	}
-	env->i_th = -1;
-	while (++env->i_th < NBTHREAD)
-		pthread_join(env->tid[env->i_th], NULL);
-	env->init = 1;
+	while (i--)
+		pthread_join(ths[i], NULL);
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
-	mlx_destroy_image(env->mlx, env->img);
 	env->mark = 0;
 }

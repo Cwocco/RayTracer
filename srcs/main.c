@@ -16,6 +16,9 @@ static void init_win(t_env *env, char *name)
 {
 	env->mlx = mlx_init();
 	env->win = mlx_new_window(env->mlx, env->win_w, env->win_h, name);
+	env->img = mlx_new_image(env->mlx, env->win_w, env->win_h);
+	env->data = mlx_get_data_addr(env->img, &env->bpp, &env->sline,
+		&env->endian);
 }
 
 int		main(int argc, char **argv)
@@ -33,7 +36,6 @@ int		main(int argc, char **argv)
 //	env.obj_rot = (t_point){90, 0, 90};
 	env.cam_rot = (t_point){0, 0, 0};
 	reader(&env);
-	env.init = 0;
 	init_win(&env, argv[1]);
 	env.mark = 1;
 	mlx_draw_rt(&env);

@@ -149,7 +149,7 @@ t_bool	intersection(const t_env *env, t_ray r, t_object *obj, t_intersection *in
 	ret = 0;
 	while (obj != NULL)
 	{
-		obj->rot = env->thenv[0]->obj_rot;
+		obj->rot = env->obj_rot;
 		if (obj->type == sphere)
 			inter_sphere(r, obj, &t);
 		else if (obj->type == plan)
