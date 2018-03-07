@@ -16,7 +16,7 @@
 # include "libft.h"
 # include "types.h"
 # include "event.h"
-# include "../minilibx_macos/mlx.h"
+# include "mlx.h"
 # include <pthread.h>
 # include <math.h>
 # include <stdio.h>
