@@ -61,7 +61,7 @@ t_ray		get_prim_ray(const t_point p, const t_env *env)
 	r.dir.z = cam->d;
 	normalize_vector(&r.dir);
 	r.pos = cam->pos;
-	rotate_vec(&r.dir, env->thenv[0]->cam_rot);
+	vec_rotate(&r.dir, env->thenv[0]->cam_rot);
 	normalize_vector(&r.dir);
 	r.depth = MAX_RAY_DEPTH;
 	return (r);

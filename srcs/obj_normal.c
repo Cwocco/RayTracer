@@ -43,7 +43,7 @@ void	get_cone_normal(t_intersection *inter)
 	t_point	normal;
 
 	normal = vector_sub(inter->pos, inter->obj.pos);
-	rotate_vec(&normal, inter->obj.rot);
+	vec_rotate(&normal, inter->obj.rot);
 	normal.y *= -1;
 	vec_unrotate(&normal, inter->obj.rot);
 	inter->normal = normal;
@@ -80,7 +80,7 @@ t_point   cylinder_normal(t_intersection *inter)
     t_point      normal;
 
     normal = vector_sub(inter->pos, inter->obj.pos);
-    rotate_vec(&normal, inter->obj.rot);
+	vec_rotate(&normal, inter->obj.rot);
     normal.y = 0;
     vec_unrotate(&normal, inter->obj.rot);
     normalize_vector(&normal);
@@ -92,7 +92,7 @@ t_point   cone_normal(t_intersection *inter)
     t_point      normal;
 
     normal = vector_sub(inter->pos, inter->obj.pos);
-    rotate_vec(&normal, inter->obj.rot);
+	vec_rotate(&normal, inter->obj.rot);
     normal.y *= -1;
     vec_unrotate(&normal, inter->obj.rot);
     normalize_vector(&normal);

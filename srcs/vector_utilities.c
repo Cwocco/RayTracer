@@ -43,6 +43,15 @@ void	normalize_vector(t_point *p)
 		p->y = p->y / len;
 		p->z = p->z / len;
 	}
+	/*
+	len = 1.0 / sqrt((p->x * p->x) + (p->y * p->y) + (p->z * p->z));
+	if (len > 0)
+	{
+		p->x = p->x * len;
+		p->y = p->y * len;
+		p->z = p->z * len;
+	}
+	*/
 }
 
 t_point	vector_sub(t_point p1, t_point p2)

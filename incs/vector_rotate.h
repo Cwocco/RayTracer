@@ -15,6 +15,6 @@
 
 void vec_unrotate(t_point *vec, t_point rotate);
 
-void rotate_vec(t_point *vec, t_point rotate);
+void vec_rotate(t_point *vec, t_point rotate);
 
 #endif
