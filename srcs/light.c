@@ -61,9 +61,9 @@ t_color		process_light(const t_env *env, t_light *lst_light, t_object *lst_obj,
 	get_texture(&inter->obj.mater.diffuse, inter, &r);
 	get_texture(&inter->obj.mater.specular, inter, &r);
 //	inter->normal = get_normal(inter, env->scene.objs);
-	while (env->thenv[0]->ambilight == 0 && lst_light)
+	while (env->ambilight == 0 && lst_light)
 	{
-		if (env->thenv[0]->shadow == 0 || no_object_obstructing_light(env, lst_light, inter, lst_obj))
+		if (env->shadow == 0 || no_object_obstructing_light(env, lst_light, inter, lst_obj))
 		{
 			inter->light_vector = vector_sub(lst_light->pos, inter->pos);
 			normalize_vector(&inter->light_vector);

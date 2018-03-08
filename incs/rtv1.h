@@ -22,8 +22,8 @@
 # include <stdio.h>
 # include <stdint.h>
 
-# define WIN_W 1000
-# define WIN_H 1000
+# define WIN_W 800
+# define WIN_H 800
 
 # define M_LFT 1
 
@@ -48,7 +48,7 @@
 # define KEY_8 28
 # define KEY_9 25
 
-# define NBTHREAD 10
+# define NBTHREAD 8
 
 # define MAX_RAY_DEPTH 4
 # define MAX_RAY_LENGTH 0xffffff
@@ -56,7 +56,7 @@
 # define SEPIA 0
 # define FIFTYSHADES 0
 # define DALTO 0
-# define TEXTURE 2
+# define TEXTURE 0
 # define ANTI 0
 
 typedef unsigned char	t_bool;
@@ -104,6 +104,8 @@ typedef struct			s_env
 	int				win_w;
 	int				win_h;
 	int				mark;
+	int				ambilight;
+	int				shadow;
 	t_scene		scene;
 //	t_event		event;
 //	t_win		win;
@@ -112,13 +114,14 @@ typedef struct			s_env
 	char		**argv;
 	t_point		obj_rot;
 	t_point		cam_rot;
-	pthread_t	tid[NBTHREAD];
-	int				i_th;
-	int				init;
-	int				ambilight;
-	int				shadow;
-	struct s_env	*thenv[NBTHREAD];
 }						t_env;
+
+typedef struct			s_thenv
+{
+	t_env				*env;
+	int					from_y;
+	int					to_y;
+}						t_thenv;
 
 void put_pixel(t_env *env, t_point *pos, t_color c);
 
