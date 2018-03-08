@@ -71,6 +71,7 @@ static void init_win(t_env *env, char *name)
 	env->img = mlx_new_image(env->mlx, env->win_w, env->win_h);
 	env->data = mlx_get_data_addr(env->img, &env->bpp, &env->sline,
 		&env->endian);
+	mlx_string_put(env->mlx, env->win, WIN_W /2, WIN_H /2, 0xff0000, "Loading..");
 	import_interface(env);
 }
 
