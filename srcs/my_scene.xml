@@ -1,0 +1,90 @@
+<rt>
+	<basic>
+		<program>
+			<size>1000, 1000</size>
+			<title>RT by ada-cunh, rpinoit and jpicot</title>
+			<ambient_intensity>1</ambient_intensity>
+			<ressource>
+				<icon>../ressources/icon.xpm</icon>
+				<mouse>../ressources/mouse/1.xpm</mouse>
+				<mouse>../ressources/mouse/2.xpm</mouse>
+			</ressource>
+			</mouse>
+		</program>
+		<camera>
+			<position>0, 0, 0</position>
+			<rotation>0, 0, 0</rotation>
+			<field_of_view>30</field_of_view>
+		</camera>
+	<object>
+		<sphere>
+			<position>5, 5, 50</position>
+			<radius>10</radius>
+			<rotation>20, 50, 180</rotation>
+			<material>
+				<ambient>255, 0, 0</ambient>
+				<diffuse>255, 255, 255</diffuse>
+				<specular>255, 255, 255</specular>
+			</material>
+			<reflection>0</reflection>
+			<refraction>1</refraction>
+			<texture>0</texture>
+			<bump_coefficient>0.5</bump_coefficient>
+		</sphere>
+		<plane>
+			<position>0, 0, -50</position>
+			<normale>0, 0, -50</normale>
+			<rotation>20, 50, 180</rotation>
+			<material>
+				<ambient>255, 0, 0</ambient>
+				<diffuse>255, 255, 255</diffuse>
+				<specular>255, 255, 255</specular>
+			</material>
+			<reflection>0</reflection>
+			<refraction>1</refraction>
+			<texture>0</texture>
+			<bump_coefficient>0.5</bump_coefficient>
+		</plane>
+		<cone>
+			<position>5, 5, 50</position>
+			<radius>6</radius>
+			<rotation>20, 50, 180</rotation>
+			<material>
+				<ambient>255, 0, 0</ambient>
+				<diffuse>255, 255, 255</diffuse>
+				<specular>255, 255, 255</specular>
+			</material>
+			<reflection>0</reflection>
+			<refraction>1</refraction>
+			<texture>0</texture>
+			<bump_coefficient>0.5</bump_coefficient>
+		</cone>
+		<cylinder>
+			<position>5, 5, 50</position>
+			<radius>10</radius>
+			<rotation>20, 50, 180</rotation>
+			<material>
+				<ambient>255, 0, 0</ambient>
+				<diffuse>255, 255, 255</diffuse>
+				<specular>255, 255, 255</specular>
+			</material>
+			<reflection>0</reflection>
+			<refraction>1</refraction>
+			<texture>0</texture>
+			<bump_coefficient>0.5</bump_coefficient>
+		</cylinder>
+	<light>
+		<point>
+			<position>0, 0, 0</position>
+			<direction>0, 0, -1</direction>
+			<color>255, 255, 255</color>
+			<intensity>1</intensity>
+		<point>
+	</light>
+	<option>
+		<anti_aliasing>0</anti_aliasing>
+		<sepia>0</sepia>
+		<fifty_shades>0</fifty_shades>
+		<colour_blind>0</colour_blind>
+	</option>
+</rt>
