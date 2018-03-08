@@ -36,7 +36,7 @@ void	mlx_draw_rt(t_env *env)
 	{
 		thenv[i].env = env;
 		thenv[i].from_y = ((env->win_h / NBTHREAD) * i) - 1;
-		thenv[i].to_y = (env->win_h / NBTHREAD) * (i + 1);
+		thenv[i].to_y = (env->win_h / NBTHREAD) * (i + 1) + 1;
 		pthread_create(ths + i, NULL, (void *(*)(void *))raytracer_process,
 			thenv + i);
 	}
