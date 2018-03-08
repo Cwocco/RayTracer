@@ -6,7 +6,7 @@
 #    By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/24 11:54:00 by rpinoit           #+#    #+#              #
-#    Updated: 2018/03/05 19:42:12 by ada-cunh         ###   ########.fr        #
+#    Updated: 2018/03/08 18:10:35 by ada-cunh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,8 @@ SRC_NAME = \
 	set_perlin.c \
 	set_param_perlin.c \
 	inter_perlin.c \
-	main_perlin.c
+	main_perlin.c \
+	ellipse.c
 
 3TH = $(addprefix $(3TH_PATH)/, $(3TH_NAME))
 OBJ = $(addprefix $(OBJ_PATH)/, $(SRC_NAME:.c=.o))

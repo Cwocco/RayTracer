@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:32:28 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/03 11:09:05 by jpicot           ###   ########.fr       */
+/*   Updated: 2018/03/08 18:12:38 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef enum			e_object_type
 	plan,
 	cylinder,
 	cone,
-	hyperboloid
+	ellipse
 }						t_object_type;
 
 /* typedef struct			s_object

@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:32:17 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/07 00:21:14 by jpicot           ###   ########.fr       */
+/*   Updated: 2018/03/08 18:11:02 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ int						key_press(int key, t_env *env);
 
 int						button_event(int button, int x, int y, t_env *e);
 
+# include "ellipse.h"
 # include "perlin.h"
 # include "anti_alias.h"
 # include "camera.h"

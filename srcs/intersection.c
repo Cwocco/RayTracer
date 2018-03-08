@@ -6,13 +6,12 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:51:28 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/07 20:15:20 by alucas-          ###   ########.fr       */
+/*   Updated: 2018/03/08 17:48:30 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
-#include <stdio.h>
-/*
+
 void	inter_cylinder(t_ray r, t_object *obj, double *t)
 {
 	t_point pos;
@@ -21,52 +20,30 @@ void	inter_cylinder(t_ray r, t_object *obj, double *t)
 
 	dir = (t_point){r.dir.x, r.dir.y, r.dir.z};
 	pos = vector_sub(r.pos, obj->pos);
-	rotate_vec(&pos, obj->rot);
+	vec_rotate(&pos, obj->rot);
 	vec_rotate(&dir, obj->rot);
 	poly.x = dir.x * dir.x + dir.z * dir.z;
 	poly.y = 2.0 * (dir.x * pos.x + dir.z * pos.z);
 	poly.z = pos.x * pos.x + pos.z * pos.z - obj->radius * obj->radius;
 	return (solve_equation(poly, t));
 }
-*/
-void	inter_cylinder(t_ray r, t_object *obj, double *t)
+
+void	inter_cone(t_ray r, t_object *obj, double *t)
 {
 	t_point pos;
 	t_point dir;
 	t_point poly;
+	double  radius;
 
 	dir = (t_point){r.dir.x, r.dir.y, r.dir.z};
 	pos = vector_sub(r.pos, obj->pos);
 	vec_rotate(&pos, obj->rot);
 	vec_rotate(&dir, obj->rot);
-	poly.x = dir.x * dir.x + dir.z * dir.z;
-	poly.y = 2.0 * (pos.x * dir.x + pos.z * dir.z);
-	poly.z = pos.x * pos.x + pos.z * pos.z - 10;
-	return (solve_equation(poly, t));
-}
-
-void	inter_cone(t_ray r, t_object *obj, double *t)
-{
-    t_point pos;
-    t_point dir;
-    t_point poly;
-//    double  radius;
-
-    dir = (t_point){r.dir.x, r.dir.y, r.dir.z};
-    pos = vector_sub(r.pos, obj->pos);
-//  printf("pos.x = %f\n", pos.x);
-//  printf("pos.y = %f\n", pos.y);
-//  printf("pos.z = %f\n", pos.z);
-	vec_rotate(&pos, obj->rot);
-	vec_rotate(&dir, obj->rot);
-//  printf("pos.x = %f\n", pos.x);
-//  printf("pos.y = %f\n", pos.y);
-//  printf("pos.z = %f\n", pos.z);
-//    radius = sin(ft_degtorad(obj->radius)) * sin(ft_degtorad(obj->radius));
-    poly.x = dir.x * dir.x - dir.y * dir.y + dir.z * dir.z;
+	radius = sin(ft_degtorad(obj->radius)) * sin(ft_degtorad(obj->radius));
+	poly.x = dir.x * dir.x - dir.y * dir.y + dir.z * dir.z;
 	poly.y = 2.0 * (pos.x * dir.x - pos.y * dir.y + pos.z * dir.z);
 	poly.z = pos.x * pos.x - pos.y * pos.y + pos.z * pos.z;
-    return (solve_equation(poly, t));
+	return (solve_equation(poly, t));
 }
 
 void	inter_sphere(t_ray r, t_object *obj, double *t)
@@ -101,31 +78,37 @@ void	inter_plane(t_ray r, t_object *obj, double *t)
 	*t = -n / d > 0.000001 ? -n / d : MAX_RAY_LENGTH;
 }
 
-void inter_hyper(t_ray r, t_object *obj, double *t)
+double dot2(t_point a, t_point b)
+{
+	double ret;
+
+	ret = (a.x * b.x) - (a.y * b.y) + (a.z * b.z);
+	return (ret);
+}
+
+void inter_ellipse(t_ray r, t_object *obj, double *t)
 {
 	t_point dir;
 	t_point pos;
 	t_point poly;
+	t_point test;
 
 	dir = (t_point){r.dir.x, r.dir.y, r.dir.z};
-//	test = (t_point){ .x = 40, .y = 25, .z = 25};
+	test = (t_point){ .x = 40, .y = 25, .z = 25};
 //	printf("tagrossmer\n");
 //	obj->pos.x = 0;
 //	obj->pos.y = 0;
 //	obj->pos.z = 200;
 	pos = vector_sub(r.pos, obj->pos);
-	poly.x = (get_sqr(dir.x)// / get_sqr(test.x))
-		+ (get_sqr(dir.y)// / get_sqr(test.y))
-		   + (get_sqr(dir.z))));// / get_sqr(test.z));
-			  poly.y = 2.0 * (((dir.x * pos.x) /// get_sqr(test.x))
-							   + ((dir.y * pos.y)// / get_sqr(test.y))
-								  + ((dir.z * pos.z))))); /// get_sqr(test.z)));
-									 poly.z = (get_sqr(pos.x) // / get_sqr(test.x))
-											   + (get_sqr(pos.y) // / get_sqr(test.y))
-												  + (get_sqr(pos.z)))); // / get_sqr(test.z)) - 1;
-//	poly.x = pos.z * pos.z - pos.x * pos.x - pos.y * pos.y;
-//	poly.y = 2.0 * (dir.z * pos.z - dir.x * pos.x - dir.y * pos.y);
-//	poly.z = dir.z * dir.z + 10 - dir.x * dir.x - dir.y * dir.y;
+	poly.x = (get_sqr(dir.x) / get_sqr(test.x))
+		+ (get_sqr(dir.y) / get_sqr(test.y))
+		+ (get_sqr(dir.z) / get_sqr(test.z));
+	poly.y = 2.0 * (((dir.x * pos.x) / get_sqr(test.x))
+					+ ((dir.y * pos.y) / get_sqr(test.y))
+					+ ((dir.z * pos.z) / get_sqr(test.z)));
+	poly.z = (get_sqr(pos.x) / get_sqr(test.x))
+		+ (get_sqr(pos.y) / get_sqr(test.y))
+		+ (get_sqr(pos.z) / get_sqr(test.z)) - 10;
 	return (solve_equation(poly, t));
 }
 
@@ -158,9 +141,9 @@ t_bool	intersection(const t_env *env, t_ray r, t_object *obj, t_intersection *in
 			inter_cylinder(r, obj, &t);
 		else if (obj->type == cone)
 			inter_cone(r, obj, &t);
-		else if (obj->type == hyperboloid)
-			inter_hyper(r, obj, &t);
-		if (t < inter->t /*&& t > 0.000001*/)
+		else if (obj->type == ellipse)
+			inter_ellipse(r, obj, &t);
+		if (t < inter->t && t > 0.000001)
 		{
 			inter->obj = *obj;
 			inter->t = t;
