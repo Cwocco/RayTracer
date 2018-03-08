@@ -9,13 +9,14 @@
 				<mouse>../ressources/mouse/1.xpm</mouse>
 				<mouse>../ressources/mouse/2.xpm</mouse>
 			</ressource>
-			</mouse>
+			<mouse></mouse>
 		</program>
 		<camera>
 			<position>0, 0, 0</position>
 			<rotation>0, 0, 0</rotation>
 			<field_of_view>30</field_of_view>
 		</camera>
+	</basic>
 	<object>
 		<sphere>
 			<position>5, 5, 50</position>
@@ -73,18 +74,19 @@
 			<texture>0</texture>
 			<bump_coefficient>0.5</bump_coefficient>
 		</cylinder>
-	<light>
-		<point>
-			<position>0, 0, 0</position>
-			<direction>0, 0, -1</direction>
-			<color>255, 255, 255</color>
-			<intensity>1</intensity>
-		<point>
-	</light>
-	<option>
-		<anti_aliasing>0</anti_aliasing>
-		<sepia>0</sepia>
-		<fifty_shades>0</fifty_shades>
-		<colour_blind>0</colour_blind>
-	</option>
+		<light>
+			<point>
+				<position>0, 0, 0</position>
+				<direction>0, 0, -1</direction>
+				<color>255, 255, 255</color>
+				<intensity>1</intensity>
+			</point>
+		</light>
+		<option>
+			<anti_aliasing>0</anti_aliasing>
+			<sepia>0</sepia>
+			<fifty_shades>0</fifty_shades>
+			<colour_blind>0</colour_blind>
+		</option>
+	</object>
 </rt>
