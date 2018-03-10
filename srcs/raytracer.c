@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:47:44 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/10 19:02:58 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/03/10 19:19:25 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_ray		get_prim_ray(const t_point p, const t_env *env)
 	vec_rotate(&r.dir, env->cam_rot);
 	normalize_vector(&r.dir);
 	r.refra_depth = MAX_RAY_DEPTH;
-	r.refle_depth = MAX_RAY_DEPTH;
+	r.refle_depth = 1;
 	return (r);
 }
 
@@ -88,7 +88,7 @@ static void	recurse_refraction(t_env *env, t_intersection *i, t_ray *r,
 	re.pos = i->pos;
 	re.dir = vec_add(vec_mul(v, n), vec_mul(i->normal, (n * tmp[0] - tmp[2])));
 	normalize_vector(&re.dir);
-	re.refle_depth -= 1;
+	re.refra_depth -= 1;
 	ref_c = raytrace(re, env);
 	c->r *= (1 - i->obj.refraction);
 	c->g *= (1 - i->obj.refraction);
@@ -109,7 +109,6 @@ static void	recurse_reflection(t_env *env, t_intersection *inter, t_ray *r,
 	t_point	vision;
 
 	vision = vector_sub(r->pos, inter->pos);
-	normalize_vector(&vision);
 	reflected.pos = inter->pos;
 	reflected.dir = vector_sub(vec_mul(inter->normal,
 		2.0 * dot_product(inter->normal, vision)), vision);
@@ -119,7 +118,7 @@ static void	recurse_reflection(t_env *env, t_intersection *inter, t_ray *r,
 	c->r *= (1 - inter->obj.reflection);
 	c->g *= (1 - inter->obj.reflection);
 	c->b *= (1 - inter->obj.reflection);
-	if (ref_c.r != 0.0 && ref_c.g != 0.0 && ref_c.b != 0.0)
+	if (ref_c.r != 0.0 && ref_c.r != 0.0 && ref_c.r != 0.0)
 	{
 		c->r += inter->obj.reflection * ref_c.r;
 		c->g += inter->obj.reflection * ref_c.g;
@@ -142,9 +141,9 @@ t_color		raytrace(t_ray r, t_env *env)
 			bump_mapping(&inter, &r);
 		c = process_light(env, &inter, r);
 		get_final_color(&c);
-		if (inter.obj.reflection && r.refra_depth)
+		if (inter.obj.reflection > 0 && r.refra_depth > 0)
 			recurse_reflection(env, &inter, &r, &c);
-		if (inter.obj.refraction && r.refle_depth)
+		if (inter.obj.refraction > 0 && r.refle_depth > 0)
 			recurse_refraction(env, &inter, &r, &c);
 	}
 	return (c);
