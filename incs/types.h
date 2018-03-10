@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:32:28 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/10 14:04:07 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/10 15:44:46 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ typedef struct			s_ray
 {
 	t_point		pos;
 	t_point		dir;
-	t_uint32	depth;
+	int			refle_depth;
+	int			refra_depth;
 }						t_ray;
 
 typedef struct			s_camera
@@ -95,6 +96,8 @@ typedef struct			s_object
 
 	t_ray			normal_vector;
 	t_point			rot;
+	double			reflection;
+	double			refraction;
 	struct s_object *next;
 }						t_object;
 
