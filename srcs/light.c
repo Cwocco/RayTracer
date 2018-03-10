@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/14 13:10:17 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/03/10 17:03:56 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/03/10 17:22:07 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 **No object obstructing light
 */
 
-static inline int	check_obstruct(t_env *env, t_light *light,
+static inline double	check_obstruct(t_env *env, t_light *light,
 					t_intersection *inter, t_object *lst_obj)
 {
 	t_intersection	new_inter;
@@ -36,7 +36,7 @@ static inline int	check_obstruct(t_env *env, t_light *light,
 	normalize_vector(&light_ray.dir);
 	intersection(env, light_ray, lst_obj, &new_inter);
 	if (new_inter.t < light_distance)
-		return (new_inter.obj.refraction);
+		return (new_inter.obj.refraction > 0 ? new_inter.obj.refraction : 0);
 	return (1);
 }
 

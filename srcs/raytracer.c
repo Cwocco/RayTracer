@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:47:44 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/10 16:01:54 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/03/10 17:20:20 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,16 @@ static void	recurse_refraction(t_env *env, t_intersection *i, t_ray *r,
 	t_ray	re;
 	t_point v;
 	double	n;
-	double	cos[2];
+	double	tmp[3];
 
 	n = 1.0 / 1.0;
 	v = vector_sub(i->pos, r->pos);
 	normalize_vector(&v);
-	cos[0] = -dot_product(i->normal, v);
-	cos[1] = sqrt(1.0 - (n * n - n * n * (1 - cos[0] * cos[0])));
+	tmp[0] = -dot_product(i->normal, v);
+	tmp[1] = n * n * (1.0 - tmp[0] * tmp[0]);
+	tmp[2] = sqrt(1.0 - tmp[1]);
 	re.pos = i->pos;
-	re.dir = vec_add(vec_mul(v, n), vec_mul(i->normal, (n * cos[0] - cos[1])));
+	re.dir = vec_add(vec_mul(v, n), vec_mul(i->normal, (n * tmp[0] - tmp[2])));
 	normalize_vector(&re.dir);
 	re.refle_depth -= 1;
 	ref_c = raytrace(re, env);
