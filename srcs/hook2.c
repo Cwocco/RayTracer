@@ -6,13 +6,13 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 10:53:10 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/10 10:27:21 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/10 15:21:06 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rtv1.h>
 
-static void		process_dynamic(t_env *env)
+void			process_dynamic(t_env *env)
 {
 	usleep(140000);
 	if (env->active_icon == 1)

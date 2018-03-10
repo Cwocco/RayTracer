@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:32:17 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/10 14:49:09 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/10 15:19:17 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,5 +139,9 @@ int						mouse_motion(unsigned int x, unsigned y, t_env *e);
 int						key_press(int key, t_env *env);
 
 int						button_event(int button, int x, int y, t_env *e);
+
+void					process_dynamic(t_env *env);
+
+int						rot_obj_keyhook(const int key, t_env *env);
 
 #endif
