@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 18:25:39 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/03/10 17:21:07 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/03/10 17:48:44 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,37 +24,38 @@ void	set_ambient_light(t_color *c, t_object obj)
 		.a = 1 };
 }
 
-void	add_diffuse_light(t_color *c, t_object obj, t_light *light, double cos, double coef)
+void	add_diffuse_light(t_color *c, t_object obj, t_light *light, double f[2])
 {
 	t_color light_intensity;
 
 	light_intensity = (t_color){ .r = 0.5, .g = 0.5, .b = 0.5, .a = 1};
-	c->r += (cos
+	c->r += (f[0]
 		* (obj.mater.diffuse.r / 255.0)
 		* (light->color.r / 255.0)
 		* (obj.color.r / 255.0)
-		* light_intensity.r) * coef;
-	c->g += (cos
+		* light_intensity.r) * f[1];
+	c->g += (f[0]
 		* (obj.mater.diffuse.g / 255.0)
 		* (light->color.g / 255.0)
 		* (obj.color.g / 255.0)
-		* light_intensity.g) * coef;
-	c->b += (cos
+		* light_intensity.g) * f[1];
+	c->b += (f[0]
 		* (obj.mater.diffuse.b / 255.0)
 		* (light->color.b / 255.0)
 		* (obj.color.b / 255.0)
-		* light_intensity.b) * coef;
+		* light_intensity.b) * f[1];
 }
 
-void	add_specular_light(t_color *c, t_point r_pos, t_intersection *inter, double coef)
+void	add_specular_light(t_color *c, t_point r_pos, t_intersection *inter,
+		double f)
 {
 	t_point	refra;
 	t_point	vision;
 	double	cos_omega;
 	t_point	tmp;
-	double	light_i;
+	double	i;
 
-	light_i = 0.8;
+	i = 0.8;
 	tmp = vec_mul(inter->normal,
 		2.0 * dot_product(inter->normal, inter->light_vector));
 	refra = vector_sub(tmp, inter->light_vector);
@@ -64,8 +65,8 @@ void	add_specular_light(t_color *c, t_point r_pos, t_intersection *inter, double
 	cos_omega = pow(fmax(0, dot_product(refra, vision)), 300.0);
 	if (cos_omega >= 0)
 	{
-		c->r += (cos_omega * (inter->obj.mater.specular.r / 255.0 * light_i)) * coef;
-		c->g += (cos_omega * (inter->obj.mater.specular.g / 255.0 * light_i)) * coef;
-		c->b += (cos_omega * (inter->obj.mater.specular.b / 255.0 * light_i)) * coef;
+		c->r += (cos_omega * (inter->obj.mater.specular.r / 255.0 * i)) * f;
+		c->g += (cos_omega * (inter->obj.mater.specular.g / 255.0 * i)) * f;
+		c->b += (cos_omega * (inter->obj.mater.specular.b / 255.0 * i)) * f;
 	}
 }

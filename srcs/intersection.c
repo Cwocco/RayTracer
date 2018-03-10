@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:51:28 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/10 17:17:17 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/03/10 17:54:43 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,6 @@ t_bool	intersection(const t_env *env, t_ray r, t_object *obj,
 		{
 			inter->obj = *obj;
 			inter->t = t;
-			if (inter->obj.type == sphere)
-				inter->obj.refraction = 0.8;
-			else
-				inter->obj.refraction = 0;
 		}
 		obj = obj->next;
 	}
