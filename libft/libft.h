@@ -6,7 +6,7 @@
 /*   By: rpinoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 10:38:40 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/02/02 13:33:04 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/03/10 14:43:00 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@ typedef struct		s_2ipair
 	int x;
 	int y;
 }					t_2ipair;
+
+typedef struct      s_3ipair
+{
+    int x;
+    int y;
+	int z;
+}                   t_3ipair;
 
 typedef struct		s_2dpair
 {

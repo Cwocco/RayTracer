@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 11:04:59 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/10 13:48:52 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/10 14:47:17 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,6 @@ void	get_texture(t_color *c, t_intersection *inter, t_ray *r)
 		inter_perlin(r, inter, c);
 	else if (TEXTURE == 2)
 		marble_perlin(r, inter, c);
+	else if (TEXTURE == 4)
+		set_damier(&inter->pos, c);
 }
