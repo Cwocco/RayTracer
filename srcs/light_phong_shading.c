@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 18:25:39 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/03/10 13:47:57 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/10 17:05:54 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,29 @@ void	set_ambient_light(t_color *c, t_object obj)
 		.a = 1 };
 }
 
-void	add_diffuse_light(t_color *c, t_object obj, t_light *light, double cos)
+void	add_diffuse_light(t_color *c, t_object obj, t_light *light, double cos, double coef)
 {
 	t_color light_intensity;
 
 	light_intensity = (t_color){ .r = 0.5, .g = 0.5, .b = 0.5, .a = 1};
-	c->r += cos
+	c->r += (cos
 		* (obj.mater.diffuse.r / 255.0)
 		* (light->color.r / 255.0)
 		* (obj.color.r / 255.0)
-		* light_intensity.r;
-	c->g += cos
+		* light_intensity.r) * coef;
+	c->g += (cos
 		* (obj.mater.diffuse.g / 255.0)
 		* (light->color.g / 255.0)
 		* (obj.color.g / 255.0)
-		* light_intensity.g;
-	c->b += cos
+		* light_intensity.g) * coef;
+	c->b += (cos
 		* (obj.mater.diffuse.b / 255.0)
 		* (light->color.b / 255.0)
 		* (obj.color.b / 255.0)
-		* light_intensity.b;
+		* light_intensity.b) * coef;
 }
 
-void	add_specular_light(t_color *c, t_point r_pos, t_intersection *inter)
+void	add_specular_light(t_color *c, t_point r_pos, t_intersection *inter, double coef)
 {
 	t_point	refra;
 	t_point	vision;
@@ -64,8 +64,8 @@ void	add_specular_light(t_color *c, t_point r_pos, t_intersection *inter)
 	cos_omega = pow(fmax(0, dot_product(refra, vision)), 300.0);
 	if (cos_omega >= 0)
 	{
-		c->r += cos_omega * (inter->obj.mater.specular.r / 255.0 * light_i);
-		c->g += cos_omega * (inter->obj.mater.specular.g / 255.0 * light_i);
-		c->b += cos_omega * (inter->obj.mater.specular.b / 255.0 * light_i);
+		c->r += (cos_omega * (inter->obj.mater.specular.r / 255.0 * light_i)) * coef;
+		c->g += (cos_omega * (inter->obj.mater.specular.g / 255.0 * light_i)) * coef;
+		c->b += (cos_omega * (inter->obj.mater.specular.b / 255.0 * light_i)) * coef;
 	}
 }
