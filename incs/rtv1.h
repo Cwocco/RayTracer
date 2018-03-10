@@ -92,10 +92,10 @@ typedef struct			s_env
 	void				*img_light_on_2;
 	void				*img_light_off_1;
 	void				*img_light_off_2;
-	void				*img_shadow_on_1;
+	void				*img_shadow_on1;
 	void				*img_shadow_on_2;
-	void				*img_shadow_off_1;
-	void				*img_shadow_off_2;
+	void				*img_shadow_off1;
+	void				*img_shadow_off2;
 	int					bpp;
 	int					sline;
 	int					endian;

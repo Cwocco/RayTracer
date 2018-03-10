@@ -25,6 +25,9 @@ add_executable(rt ${HDRS} srcs/main.c
     srcs/anti_alias.c
     srcs/set_perlin.c
     srcs/set_param_perlin.c
+    srcs/ellipse.c
+    srcs/hook2.c
+    srcs/set_damier.c
     srcs/inter_perlin.c
     srcs/main_perlin.c)
 target_include_directories(rt PUBLIC incs

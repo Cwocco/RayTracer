@@ -71,39 +71,37 @@ t_ray		get_prim_ray(const t_point p, const t_env *env)
 	return (r);
 }
 
-void	recurse_refraction(t_env *env, t_intersection *inter, t_ray *r,
-		t_color *c)
+static void	recurse_refraction(t_env *env, t_intersection *i, t_ray *r,
+	t_color *c)
 {
 	t_color ref_c;
-	t_ray	refracted;
-	t_point vision;
+	t_ray	re;
+	t_point v;
 	double	n;
-	double	cos1;
-	double	cos2;
+	double	cos[2];
 
 	n = 1.0 / 1.0;
-	vision = vector_sub(inter->pos, r->pos);
-	normalize_vector(&vision);
-	cos1 = -dot_product(inter->normal, vision);
-	cos2 = sqrt(1.0 - (n * n - n * n * (1 - cos1 * cos1)));
-	refracted.pos = inter->pos;
-	refracted.dir = vector_add(vector_multiply(vision, n),
-			vector_multiply(inter->normal, (n * cos1 - cos2)));
-	normalize_vector(&refracted.dir);
-	refracted.refle_depth -= 1;
-	ref_c = raytrace(refracted, env);
-	c->r *= (1 - inter->obj.refraction);
-	c->g *= (1 - inter->obj.refraction);
-	c->b *= (1 - inter->obj.refraction);
+	v = vector_sub(i->pos, r->pos);
+	normalize_vector(&v);
+	cos[0] = -dot_product(i->normal, v);
+	cos[1] = sqrt(1.0 - (n * n - n * n * (1 - cos[0] * cos[0])));
+	re.pos = i->pos;
+	re.dir = vec_add(vec_mul(v, n), vec_mul(i->normal, (n * cos[0] - cos[1])));
+	normalize_vector(&re.dir);
+	re.refle_depth -= 1;
+	ref_c = raytrace(re, env);
+	c->r *= (1 - i->obj.refraction);
+	c->g *= (1 - i->obj.refraction);
+	c->b *= (1 - i->obj.refraction);
 	if (ref_c.r != 0.0 && ref_c.g != 0.0 && ref_c.b != 0.0)
 	{
-		c->r += inter->obj.refraction * ref_c.r;
-		c->g += inter->obj.refraction * ref_c.g;
-		c->b += inter->obj.refraction * ref_c.b;
+		c->r += i->obj.refraction * ref_c.r;
+		c->g += i->obj.refraction * ref_c.g;
+		c->b += i->obj.refraction * ref_c.b;
 	}
 }
 
-void	recurse_reflection(t_env *env, t_intersection *inter, t_ray *r,
+static void	recurse_reflection(t_env *env, t_intersection *inter, t_ray *r,
 		t_color *c)
 {
 	t_color	ref_c;
@@ -113,8 +111,8 @@ void	recurse_reflection(t_env *env, t_intersection *inter, t_ray *r,
 	vision = vector_sub(r->pos, inter->pos);
 	normalize_vector(&vision);
 	reflected.pos = inter->pos;
-	reflected.dir = vector_sub(vector_multiply(inter->normal,
-				2.0 * dot_product(inter->normal, vision)), vision);
+	reflected.dir = vector_sub(vec_mul(inter->normal,
+		2.0 * dot_product(inter->normal, vision)), vision);
 	normalize_vector(&reflected.dir);
 	reflected.refle_depth -= 1;
 	ref_c = raytrace(reflected, env);
@@ -138,7 +136,7 @@ t_color		raytrace(t_ray r, t_env *env)
 	inter.t = MAX_RAY_LENGTH;
 	if (intersection(env, r, env->scene.objs, &inter))
 	{
-		inter.pos = vector_add(r.pos, vector_multiply(r.dir, inter.t));
+		inter.pos = vec_add(r.pos, vec_mul(r.dir, inter.t));
 		inter.normal = get_normal(&inter);
 		if (TEXTURE == 3)
 			bump_mapping(&inter, &r);

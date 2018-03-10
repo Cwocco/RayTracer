@@ -55,8 +55,8 @@ void	add_specular_light(t_color *c, t_point r_pos, t_intersection *inter)
 	double	light_i;
 
 	light_i = 0.8;
-	tmp = vector_multiply(inter->normal,
-			2.0 * dot_product(inter->normal, inter->light_vector));
+	tmp = vec_mul(inter->normal,
+		2.0 * dot_product(inter->normal, inter->light_vector));
 	refra = vector_sub(tmp, inter->light_vector);
 	normalize_vector(&refra);
 	vision = vector_sub(r_pos, inter->pos);

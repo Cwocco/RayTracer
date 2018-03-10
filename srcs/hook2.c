@@ -12,6 +12,30 @@
 
 #include <rtv1.h>
 
+void			process_dynamic2(t_env *env)
+{
+	if (env->active_icon == 3)
+	{
+		if (env->shadow == 1)
+			mlx_put_image_to_window(env->mlx, env->win,
+				env->img_shadow_on1, WIN_W + 166, 33);
+		else
+			mlx_put_image_to_window(env->mlx, env->win,
+				env->img_shadow_off1, WIN_W + 166, 33);
+		env->active_icon = 4;
+	}
+	else if (env->active_icon == 4)
+	{
+		if (env->shadow == 1)
+			mlx_put_image_to_window(env->mlx, env->win,
+				env->img_shadow_on_2, WIN_W + 166, 33);
+		else
+			mlx_put_image_to_window(env->mlx, env->win,
+				env->img_shadow_off2, WIN_W + 166, 33);
+		env->active_icon = 3;
+	}
+}
+
 void			process_dynamic(t_env *env)
 {
 	usleep(140000);
@@ -35,26 +59,8 @@ void			process_dynamic(t_env *env)
 					env->img_light_off_2, WIN_W + 33, 33);
 		env->active_icon = 1;
 	}
-	else if (env->active_icon == 3)
-	{
-		if (env->shadow == 1)
-			mlx_put_image_to_window(env->mlx, env->win,
-					env->img_shadow_on_1, WIN_W + 166, 33);
-		else
-			mlx_put_image_to_window(env->mlx, env->win,
-					env->img_shadow_off_1, WIN_W + 166, 33);
-		env->active_icon = 4;
-	}
-	else if (env->active_icon == 4)
-	{
-		if (env->shadow == 1)
-			mlx_put_image_to_window(env->mlx, env->win,
-					env->img_shadow_on_2, WIN_W + 166, 33);
-		else
-			mlx_put_image_to_window(env->mlx, env->win,
-					env->img_shadow_off_2, WIN_W + 166, 33);
-		env->active_icon = 3;
-	}
+	else
+		process_dynamic2(env);
 }
 
 int				button_event(int button, int x, int y, t_env *e)

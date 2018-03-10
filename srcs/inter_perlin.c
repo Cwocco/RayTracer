@@ -23,7 +23,7 @@ void	bump_mapping(t_intersection *inter, const t_ray *r)
 
 	bump_coef = 0.5;
 	n = &inter->normal;
-	vec = vector_add(r->pos, vector_multiply(r->dir, inter->t));
+	vec = vec_add(r->pos, vec_mul(r->dir, inter->t));
 	noise_coef.x = noise3((t_point){0.1 * vec.x, 0.1 * vec.y, 0.1 * vec.z});
 	noise_coef.y = noise3((t_point){0.1 * vec.y, 0.1 * vec.z, 0.1 * vec.x});
 	noise_coef.z = noise3((t_point){0.1 * vec.z, 0.1 * vec.x, 0.1 * vec.y});
@@ -42,7 +42,7 @@ void	inter_perlin(t_ray *r, t_intersection *inter, t_color *c)
 
 	noise_coef = 0;
 	lvl = 1;
-	pos = vector_add(r->pos, vector_multiply(r->dir, inter->t));
+	pos = vec_add(r->pos, vec_mul(r->dir, inter->t));
 	vec.x = pos.x * 0.5;
 	vec.y = pos.y * 0.5;
 	vec.z = pos.z * 0.5;
@@ -63,7 +63,7 @@ void	marble_perlin(t_ray *r, t_intersection *inter, t_color *c)
 
 	noise_coef = 0;
 	lvl = 1;
-	pos = vector_add(r->pos, vector_multiply(r->dir, inter->t));
+	pos = vec_add(r->pos, vec_mul(r->dir, inter->t));
 	while (++lvl < 10)
 	{
 		vec.x = pos.x * 0.05 * lvl;

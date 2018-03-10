@@ -24,8 +24,8 @@ void	set_damier(t_point *p, t_color *c)
 	c1 = (t_color){0.0, 0.0, 0.0, 1};
 	c2 = (t_color){255.0, 255.0, 255.0, 1};
 	pos = (t_3ipair){round(p->x / (double)DAM_SIZE),
-				round(p->y / (double)DAM_SIZE),
-				round(p->z / (double)DAM_SIZE)};
+		round(p->y / (double)DAM_SIZE),
+		round(p->z / (double)DAM_SIZE)};
 	if (pos.x % 2 == 0)
 	{
 		if (((pos.y % 2 == 0) && (pos.z % 2 == 0)) ||

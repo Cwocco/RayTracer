@@ -13,58 +13,71 @@
 #include "rtv1.h"
 #include "error.h"
 #include "parser.h"
-#include "libft.h"
+
+#define LHT_ON1 "./ressources/light_on_1.xpm"
+#define LHT_ON2 "./ressources/light_on_2.xpm"
+#define LHT_OFF1 "./ressources/light_off_1.xpm"
+#define LHT_OFF2 "./ressources/light_off_2.xpm"
+#define SHD_ON1 "/ressources/shadow_on_1.xpm"
+#define SHD_ON2 "/ressources/shadow_on_2.xpm"
+#define SHD_OFF1 "/ressources/shadow_off_1.xpm"
+#define SHD_OFF2 "/ressources/shadow_off_2.xpm"
+
+static void			import_interface2(t_env *e, int fd, int w, int h)
+{
+	if (!(e->img_light_off_2 = mlx_xpm_file_to_image(e->mlx, LHT_OFF2, &w, &h)))
+		ft_exit(LHT_OFF2" not finded or corrupted. Exiting.\n");
+	close(fd);
+	if ((fd = open(SHD_ON1, O_RDONLY)) == -1)
+		ft_exit(SHD_ON1" not finded or you haven't the rights. Exiting.\n");
+	if (!(e->img_shadow_on1 = mlx_xpm_file_to_image(e->mlx, SHD_ON1, &w, &h)))
+		ft_exit(SHD_ON1" not finded or corrupted. Exiting.\n");
+	mlx_put_image_to_window(e->mlx, e->win, e->img_shadow_on1, WIN_W + 166, 33);
+	close(fd);
+	if ((fd = open(SHD_ON2, O_RDONLY)) == -1)
+		ft_exit(SHD_ON2" not finded or you haven't the rights. Exiting.\n");
+	if (!(e->img_shadow_on_2 = mlx_xpm_file_to_image(e->mlx, SHD_ON2, &w, &h)))
+		ft_exit(SHD_ON2" not finded or corrupted. Exiting.\n");
+	close(fd);
+	if ((fd = open(SHD_OFF1, O_RDONLY)) == -1)
+		ft_exit(SHD_OFF1" not finded or you haven't the rights. Exiting.\n");
+	if (!(e->img_shadow_off1 = mlx_xpm_file_to_image(e->mlx, SHD_OFF1, &w, &h)))
+		ft_exit(SHD_OFF1" not finded or corrupted. Exiting.\n");
+	close(fd);
+	if ((fd = open(SHD_OFF2, O_RDONLY)) == -1)
+		ft_exit(SHD_OFF2" not finded or you haven't the rights. Exiting.\n");
+	if (!(e->img_shadow_off2 = mlx_xpm_file_to_image(e->mlx, SHD_OFF2, &w, &h)))
+		ft_exit(SHD_OFF2" not finded or corrupted. Exiting.\n");
+	close(fd);
+}
 
 static void			import_interface(t_env *e)
 {
-	int		w;
-	int		h;
-	int		fd;
+	int w;
+	int h;
+	int fd;
 
 	h = 100;
 	w = 100;
-	if ((fd = open("./ressources/light_on_1.xpm", O_RDONLY)) == -1)
-		ft_exit("./ressources/light_on_1.xpm not finded or you haven't the rights. Exiting.\n");
-	if (!(e->img_light_on_1 = mlx_xpm_file_to_image(e->mlx, "./ressources/light_on_1.xpm", &w, &h)))
-		ft_exit("./ressources/light_on_1_xpm not finded or corrupted. Exiting.\n");
+	if ((fd = open(LHT_ON1, O_RDONLY)) == -1)
+		ft_exit(LHT_ON1" not finded or you haven't the rights. Exiting.\n");
+	if (!(e->img_light_on_1 = mlx_xpm_file_to_image(e->mlx, LHT_ON1, &w, &h)))
+		ft_exit(LHT_ON1" not finded or corrupted. Exiting.\n");
 	mlx_put_image_to_window(e->mlx, e->win, e->img_light_on_1, WIN_W + 33, 33);
 	close(fd);
-	if ((fd = open("./ressources/light_on_2.xpm", O_RDONLY)) == -1)
-		ft_exit("./ressources/light_on_2.xpm not finded or you haven't the rights. Exiting.\n");
-	if (!(e->img_light_on_2 = mlx_xpm_file_to_image(e->mlx, "./ressources/light_on_2.xpm", &w, &h)))
-		ft_exit("./ressources/light_on_2_xpm not finded or corrupted. Exiting.\n");
+	if ((fd = open(LHT_ON2, O_RDONLY)) == -1)
+		ft_exit(LHT_ON2" not finded or you haven't the rights. Exiting.\n");
+	if (!(e->img_light_on_2 = mlx_xpm_file_to_image(e->mlx, LHT_ON2, &w, &h)))
+		ft_exit(LHT_ON2" not finded or corrupted. Exiting.\n");
 	close(fd);
-	if ((fd = open("./ressources/light_off_1.xpm", O_RDONLY)) == -1)
-		ft_exit("./ressources/light_off_1.xpm not finded or you haven't the rights. Exiting.\n");
-	if (!(e->img_light_off_1 = mlx_xpm_file_to_image(e->mlx, "./ressources/light_off_1.xpm", &w, &h)))
-		ft_exit("./ressources/light_off_1_xpm not finded or corrupted. Exiting.\n");
+	if ((fd = open(LHT_OFF1, O_RDONLY)) == -1)
+		ft_exit(LHT_OFF1" not finded or you haven't the rights. Exiting.\n");
+	if (!(e->img_light_off_1 = mlx_xpm_file_to_image(e->mlx, LHT_OFF1, &w, &h)))
+		ft_exit(LHT_OFF1" not finded or corrupted. Exiting.\n");
 	close(fd);
-	if ((fd = open("./ressources/light_off_2.xpm", O_RDONLY)) == -1)
-		ft_exit("./ressources/light_off_2.xpm not finded or you haven't the rights. Exiting.\n");
-	if (!(e->img_light_off_2 = mlx_xpm_file_to_image(e->mlx, "./ressources/light_off_2.xpm", &w, &h)))
-		ft_exit("./ressources/light_off_2_xpm not finded or corrupted. Exiting.\n");
-	close(fd);
-	if ((fd = open("./ressources/shadow_on_1.xpm", O_RDONLY)) == -1)
-		ft_exit("./ressources/shadowt_on_1.xpm not finded or you haven't the rights. Exiting.\n");
-	if (!(e->img_shadow_on_1 = mlx_xpm_file_to_image(e->mlx, "./ressources/shadow_on_1.xpm", &w, &h)))
-		ft_exit("./ressources/shadow_on_1_xpm not finded or corrupted. Exiting.\n");
-	mlx_put_image_to_window(e->mlx, e->win, e->img_shadow_on_1, WIN_W + 166, 33);
-	close(fd);
-	if ((fd = open("./ressources/shadow_on_2.xpm", O_RDONLY)) == -1)
-		ft_exit("./ressources/shadow_on_2.xpm not finded or you haven't the rights. Exiting.\n");
-	if (!(e->img_shadow_on_2 = mlx_xpm_file_to_image(e->mlx, "./ressources/shadow_on_2.xpm", &w, &h)))
-		ft_exit("./ressources/shadow_on_2_xpm not finded or corrupted. Exiting.\n");
-	close(fd);
-	if ((fd = open("./ressources/shadow_off_1.xpm", O_RDONLY)) == -1)
-		ft_exit("./ressources/shadow_off_1.xpm not finded or you haven't the rights. Exiting.\n");
-	if (!(e->img_shadow_off_1 = mlx_xpm_file_to_image(e->mlx, "./ressources/shadow_off_1.xpm", &w, &h)))
-		ft_exit("./ressources/shadow_off_1_xpm not finded or corrupted. Exiting.\n");
-	close(fd);
-	if ((fd = open("./ressources/shadow_off_2.xpm", O_RDONLY)) == -1)
-		ft_exit("./ressources/shadow_off_2.xpm not finded or you haven't the rights. Exiting.\n");
-	if (!(e->img_shadow_off_2 = mlx_xpm_file_to_image(e->mlx, "./ressources/shadow_off_2.xpm", &w, &h)))
-		ft_exit("./ressources/shadow_off_2_xpm not finded or corrupted. Exiting.\n");
-	close(fd);
+	if ((fd = open(LHT_OFF2, O_RDONLY)) == -1)
+		ft_exit(LHT_OFF2" not finded or you haven't the rights. Exiting.\n");
+	import_interface2(e, fd, w, h);
 }
 
 static void			init_win(t_env *env, char *name)
@@ -73,8 +86,9 @@ static void			init_win(t_env *env, char *name)
 	env->win = mlx_new_window(env->mlx, env->win_w + 300, env->win_h, name);
 	env->img = mlx_new_image(env->mlx, env->win_w, env->win_h);
 	env->data = mlx_get_data_addr(env->img, &env->bpp, &env->sline,
-			&env->endian);
-	mlx_string_put(env->mlx, env->win, WIN_W / 2, WIN_H / 2, 0xff0000, "Loading..");
+		&env->endian);
+	mlx_string_put(env->mlx, env->win, WIN_W / 2, WIN_H / 2, 0xff0000,
+		"Loading..");
 	import_interface(env);
 }
 

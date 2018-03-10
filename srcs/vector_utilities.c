@@ -19,7 +19,7 @@ double	dot_product(t_point a, t_point b)
 	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
 
-t_point	vector_multiply(t_point vec, double factor)
+t_point	vec_mul(t_point vec, double factor)
 {
 	t_point ret;
 
@@ -52,7 +52,7 @@ t_point	vector_sub(t_point p1, t_point p2)
 	return (p);
 }
 
-t_point	vector_add(t_point p1, t_point p2)
+t_point	vec_add(t_point p1, t_point p2)
 {
 	t_point p;
 
