@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:51:28 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/10 14:19:22 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/10 16:18:53 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "obj_normal.h"
 #include "vector_utilities.h"
 #include "vector_rotate.h"
+
+t_bool g_ret = 0;
 
 void	inter_cylinder(t_ray r, t_object *obj, double *t)
 {
@@ -87,10 +89,8 @@ t_bool	intersection(const t_env *env, t_ray r, t_object *obj,
 				t_intersection *inter)
 {
 	double t;
-	t_bool ret;
 
 	t = MAX_RAY_LENGTH;
-	ret = 0;
 	while (obj != NULL)
 	{
 		obj->rot = env->obj_rot;
@@ -104,12 +104,12 @@ t_bool	intersection(const t_env *env, t_ray r, t_object *obj,
 			inter_cone(r, obj, &t);
 		else if (obj->type == ellipse)
 			inter_ellipse(r, obj, &t);
-		if (t < inter->t && t > 0.000001 && (ret = 1))
+		if (t < inter->t && t > 0.000001 && (g_ret = 1))
 		{
 			inter->obj = *obj;
 			inter->t = t;
 		}
 		obj = obj->next;
 	}
-	return (ret);
+	return (g_ret);
 }
