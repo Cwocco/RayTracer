@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:47:09 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/10 13:45:22 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/10 16:52:36 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 #define LHT_ON2 "./ressources/light_on_2.xpm"
 #define LHT_OFF1 "./ressources/light_off_1.xpm"
 #define LHT_OFF2 "./ressources/light_off_2.xpm"
-#define SHD_ON1 "/ressources/shadow_on_1.xpm"
-#define SHD_ON2 "/ressources/shadow_on_2.xpm"
-#define SHD_OFF1 "/ressources/shadow_off_1.xpm"
-#define SHD_OFF2 "/ressources/shadow_off_2.xpm"
+#define SHD_ON1 "./ressources/shadow_on_1.xpm"
+#define SHD_ON2 "./ressources/shadow_on_2.xpm"
+#define SHD_OFF1 "./ressources/shadow_off_1.xpm"
+#define SHD_OFF2 "./ressources/shadow_off_2.xpm"
 
 static void			import_interface2(t_env *e, int fd, int w, int h)
 {

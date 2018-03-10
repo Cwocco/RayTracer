@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/14 13:10:17 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/03/10 13:47:46 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/10 17:22:07 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 **No object obstructing light
 */
 
-static inline int	check_obstruct(t_env *env, t_light *light,
+static inline double	check_obstruct(t_env *env, t_light *light,
 					t_intersection *inter, t_object *lst_obj)
 {
 	t_intersection	new_inter;
@@ -36,7 +36,7 @@ static inline int	check_obstruct(t_env *env, t_light *light,
 	normalize_vector(&light_ray.dir);
 	intersection(env, light_ray, lst_obj, &new_inter);
 	if (new_inter.t < light_distance)
-		return (0);
+		return (new_inter.obj.refraction > 0 ? new_inter.obj.refraction : 0);
 	return (1);
 }
 
@@ -45,6 +45,7 @@ t_color				process_light(t_env *env, t_intersection *inter, t_ray r)
 	t_object	*lst_obj;
 	t_light		*lst_light;
 	t_color		c;
+	double		coef;
 	double		cos_teta;
 
 	lst_light = env->scene.lgts;
@@ -55,14 +56,14 @@ t_color				process_light(t_env *env, t_intersection *inter, t_ray r)
 	set_ambient_light(&c, inter->obj);
 	while (env->ambilight == 0 && lst_light)
 	{
-		if (env->shadow == 0 || check_obstruct(env, lst_light, inter, lst_obj))
+		if (env->shadow == 0 || (coef = check_obstruct(env, lst_light, inter, lst_obj)) > 0)
 		{
 			inter->light_vector = vector_sub(lst_light->pos, inter->pos);
 			normalize_vector(&inter->light_vector);
 			cos_teta = dot_product(inter->normal, inter->light_vector);
 			if (cos_teta >= 0 && cos_teta <= 1)
-				add_diffuse_light(&c, inter->obj, lst_light, cos_teta);
-			add_specular_light(&c, r.pos, inter);
+				add_diffuse_light(&c, inter->obj, lst_light, cos_teta, coef);
+			add_specular_light(&c, r.pos, inter, coef);
 		}
 		lst_light = lst_light->next;
 	}
