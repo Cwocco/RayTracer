@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:32:17 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/08 18:11:02 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/10 14:24:10 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 
 # include "libft.h"
 # include "types.h"
-# include "event.h"
 # include "mlx.h"
 # include <pthread.h>
 # include <math.h>
-# include <stdio.h>
 # include <stdint.h>
 
 # define WIN_W 1000
@@ -56,7 +54,7 @@
 # define SEPIA 0
 # define FIFTYSHADES 0
 # define DALTO 0
-# define TEXTURE 2
+# define TEXTURE 0
 # define ANTI 0
 
 typedef unsigned char	t_bool;
@@ -64,56 +62,53 @@ typedef unsigned int	t_uint32;
 
 typedef struct			s_win
 {
-	t_2ipair	size;
-	char		*name;
-	t_bool		focus;
+	t_2ipair			size;
+	char				*name;
+	t_bool				focus;
 }						t_win;
 
 typedef struct			s_rend
 {
-	t_uint32		*pixels;
-	t_2ipair		size;
+	t_uint32			*pixels;
+	t_2ipair			size;
 }						t_rend;
 
 typedef struct			s_scene
 {
-	t_ray		prim_r;
-	t_object	*objs;
-	t_light		*lgts;
-	t_camera	cam;
+	t_ray				prim_r;
+	t_object			*objs;
+	t_light				*lgts;
+	t_camera			cam;
 }						t_scene;
 
 typedef struct			s_env
 {
-	void            *mlx;
-	void            *win;
-	void            *img;
-	char            *data;
-	int				active_icon;
-	void			*IMG_light_on_1;
-	void			*IMG_light_on_2;
-	void			*IMG_light_off_1;
-	void			*IMG_light_off_2;
-	void			*IMG_shadow_on_1;
-	void			*IMG_shadow_on_2;
-	void			*IMG_shadow_off_1;
-	void			*IMG_shadow_off_2;
-	int             bpp;
-	int             sline;
-	int             endian;
-	int				win_w;
-	int				win_h;
-	int				mark;
-	int				ambilight;
-	int				shadow;
-	t_scene		scene;
-//	t_event		event;
-//	t_win		win;
-//	t_rend		rend;
-	int			argc;
-	char		**argv;
-	t_point		obj_rot;
-	t_point		cam_rot;
+	void				*mlx;
+	void				*win;
+	void				*img;
+	char				*data;
+	int					active_icon;
+	void				*img_light_on_1;
+	void				*img_light_on_2;
+	void				*img_light_off_1;
+	void				*img_light_off_2;
+	void				*img_shadow_on_1;
+	void				*img_shadow_on_2;
+	void				*img_shadow_off_1;
+	void				*img_shadow_off_2;
+	int					bpp;
+	int					sline;
+	int					endian;
+	int					win_w;
+	int					win_h;
+	int					mark;
+	int					ambilight;
+	int					shadow;
+	t_scene				scene;
+	int					argc;
+	char				**argv;
+	t_point				obj_rot;
+	t_point				cam_rot;
 }						t_env;
 
 typedef struct			s_thenv
@@ -123,11 +118,11 @@ typedef struct			s_thenv
 	int					to_y;
 }						t_thenv;
 
-void put_pixel(t_env *env, t_point *pos, t_color c);
+void					put_pixel(t_env *env, t_point *pos, t_color c);
 
-void    mlx_draw_rt(t_env *env);
+void					mlx_draw_rt(t_env *env);
 
-int     expose_hook(t_env *env);
+int						expose_hook(t_env *env);
 
 void					init(t_env *env);
 
@@ -144,22 +139,5 @@ int						mouse_motion(unsigned int x, unsigned y, t_env *e);
 int						key_press(int key, t_env *env);
 
 int						button_event(int button, int x, int y, t_env *e);
-
-# include "ellipse.h"
-# include "perlin.h"
-# include "anti_alias.h"
-# include "camera.h"
-# include "light.h"
-# include "raytracer.h"
-# include "drawer.h"
-# include "math_utilities.h"
-# include "error.h"
-# include "obj_normal.h"
-# include "event.h"
-# include "parser.h"
-# include "vector_utilities.h"
-# include "intersection.h"
-# include "pixel.h"
-# include "vector_rotate.h"
 
 #endif

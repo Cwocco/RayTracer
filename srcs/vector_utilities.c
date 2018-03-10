@@ -6,16 +6,13 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 10:30:57 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/03 11:23:59 by jpicot           ###   ########.fr       */
+/*   Updated: 2018/03/10 13:41:55 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
-
-double	vector_len(t_point a)
-{
-	return (sqrt(a.x * a.x + a.y * a.y + a.z * a.z));
-}
+#include "error.h"
+#include "obj_normal.h"
 
 double	dot_product(t_point a, t_point b)
 {
@@ -43,15 +40,6 @@ void	normalize_vector(t_point *p)
 		p->y = p->y / len;
 		p->z = p->z / len;
 	}
-	/*
-	len = 1.0 / sqrt((p->x * p->x) + (p->y * p->y) + (p->z * p->z));
-	if (len > 0)
-	{
-		p->x = p->x * len;
-		p->y = p->y * len;
-		p->z = p->z * len;
-	}
-	*/
 }
 
 t_point	vector_sub(t_point p1, t_point p2)
@@ -64,7 +52,7 @@ t_point	vector_sub(t_point p1, t_point p2)
 	return (p);
 }
 
-t_point vector_add(t_point p1, t_point p2)
+t_point	vector_add(t_point p1, t_point p2)
 {
 	t_point p;
 
