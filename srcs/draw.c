@@ -6,13 +6,31 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 12:09:11 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/03/10 13:39:25 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/10 19:25:47 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include "light.h"
 #include "raytracer.h"
+#include "perlin.h"
+#include "anti_alias.h"
+#include "light.h"
+#include "obj_normal.h"
+#include "vector_utilities.h"
+#include "intersection.h"
+#include "pixel.h"
+#include "vector_rotate.h"
+
+void	raytracer_process_option(t_thenv *thenv, t_color *c)
+{
+	if (thenv->env->sepia == 1)
+		sepia(c);
+	else if (thenv->env->fifty == 1)
+		fifty_shades_of_grey(c);
+	else if (thenv->env->dalto == 1)
+		daltonism(c);
+}
 
 void	put_pixel(t_env *env, t_point *pos, t_color c)
 {
@@ -40,7 +58,7 @@ void	mlx_draw_rt(t_env *env)
 		thenv[i].from_y = ((env->win_h / NBTHREAD) * i) - 1;
 		thenv[i].to_y = (env->win_h / NBTHREAD) * (i + 1) + 1;
 		pthread_create(ths + i, NULL, (void *(*)(void *))raytracer_process,
-			thenv + i);
+				thenv + i);
 	}
 	while (i--)
 		pthread_join(ths[i], NULL);

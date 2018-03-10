@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:47:44 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/10 19:19:25 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/03/10 19:28:42 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,7 @@ void		*raytracer_process(t_thenv *thenv)
 				r = get_prim_ray(win_pos, thenv->env);
 				c = raytrace(r, thenv->env);
 			}
-			if (thenv->env->sepia == 1)
-				sepia(&c);
-			else if (thenv->env->fifty == 1)
-				fifty_shades_of_grey(&c);
-			else if (thenv->env->dalto == 1)
-				daltonism(&c);
+			raytracer_process_option(thenv, &c);
 			put_pixel(thenv->env, &win_pos, c);
 		}
 	}
@@ -71,22 +66,20 @@ t_ray		get_prim_ray(const t_point p, const t_env *env)
 }
 
 static void	recurse_refraction(t_env *env, t_intersection *i, t_ray *r,
-	t_color *c)
+		t_color *c)
 {
 	t_color ref_c;
 	t_ray	re;
 	t_point v;
-	double	n;
 	double	tmp[3];
 
-	n = 1.0 / 1.0;
 	v = vector_sub(i->pos, r->pos);
 	normalize_vector(&v);
 	tmp[0] = -dot_product(i->normal, v);
-	tmp[1] = n * n * (1.0 - tmp[0] * tmp[0]);
+	tmp[1] = 1 * 1 * (1.0 - tmp[0] * tmp[0]);
 	tmp[2] = sqrt(1.0 - tmp[1]);
 	re.pos = i->pos;
-	re.dir = vec_add(vec_mul(v, n), vec_mul(i->normal, (n * tmp[0] - tmp[2])));
+	re.dir = vec_add(vec_mul(v, 1), vec_mul(i->normal, (1 * tmp[0] - tmp[2])));
 	normalize_vector(&re.dir);
 	re.refra_depth -= 1;
 	ref_c = raytrace(re, env);
@@ -111,7 +104,7 @@ static void	recurse_reflection(t_env *env, t_intersection *inter, t_ray *r,
 	vision = vector_sub(r->pos, inter->pos);
 	reflected.pos = inter->pos;
 	reflected.dir = vector_sub(vec_mul(inter->normal,
-		2.0 * dot_product(inter->normal, vision)), vision);
+				2.0 * dot_product(inter->normal, vision)), vision);
 	normalize_vector(&reflected.dir);
 	reflected.refle_depth -= 1;
 	ref_c = raytrace(reflected, env);

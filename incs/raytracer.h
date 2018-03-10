@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:32:10 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/10 10:24:42 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/10 19:25:17 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define RAYTRACER_H
 
 # include "rtv1.h"
+
+void		raytracer_process_option(t_thenv *thenv, t_color *c);
 
 void		*raytracer_process(t_thenv *thenv);
 
