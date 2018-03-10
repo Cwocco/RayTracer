@@ -6,7 +6,7 @@
 /*   By: rpinoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 10:38:40 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/03/10 14:43:00 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/10 17:59:58 by jpicot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,18 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+typedef struct		s_3ipair
+{
+	int x;
+	int y;
+	int	z;
+}					t_3ipair;
+
 typedef struct		s_2ipair
 {
 	int x;
 	int y;
 }					t_2ipair;
-
-typedef struct      s_3ipair
-{
-    int x;
-    int y;
-	int z;
-}                   t_3ipair;
 
 typedef struct		s_2dpair
 {
@@ -113,7 +113,7 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					ft_count_words(char const *s, char c);
 int					ft_atoi_base(const char *str, int str_base);
-const char			*ft_isspace(const char *str);
+int					ft_isspace(int c);
 void				ft_print_words_tables(char **tab);
 char				*ft_itoa_base(int value, int base);
 void				ft_swap(int *a, int *b);
@@ -123,5 +123,11 @@ int					ft_isnegative(int n);
 int					get_next_line(const int fd, char **line);
 double				ft_degtorad(double deg);
 double				ft_radtodeg(double rad);
+double				ft_pow(double nb, int e);
+double				ft_atod(const char *str);
+int					ft_tablen(char **str);
+void				ft_deltab(void *content, size_t content_size);
+void				ft_lstrev(t_list **alst);
+int					ft_strdigit(const char *s);
 
 #endif

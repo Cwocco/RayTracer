@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tablen.c                                        :+:      :+:    :+:   */
+/*   ft_lstrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpinoit <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/13 16:58:36 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/03/08 17:53:49 by rpinoit          ###   ########.fr       */
+/*   Created: 2018/03/08 17:55:23 by rpinoit           #+#    #+#             */
+/*   Updated: 2018/03/08 18:01:02 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_tablen(char **str)
+void	ft_lstrev(t_list **alst)
 {
-	size_t i;
+	t_list *cur;
+	t_list *next;
+	t_list *prev;
 
-	i = 0;
-	while (*str++)
-		i++;
-	return (i);
+	prev = NULL;
+	cur = *alst;
+	while (cur != NULL)
+	{
+		next = cur->next;
+		cur->next = prev;
+		prev = cur;
+		cur = next;
+	}
+	*alst = prev;
 }

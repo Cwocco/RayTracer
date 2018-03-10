@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:32:28 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/10 17:06:05 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/03/10 18:12:09 by jpicot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct			s_object
 	t_point			rot;
 	double			reflection;
 	double			refraction;
+	int				texture;
 	struct s_object *next;
 }						t_object;
 

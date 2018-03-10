@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tablen.c                                        :+:      :+:    :+:   */
+/*   ft_strdigit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpinoit <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/13 16:58:36 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/03/08 17:53:49 by rpinoit          ###   ########.fr       */
+/*   Created: 2018/03/08 17:57:13 by rpinoit           #+#    #+#             */
+/*   Updated: 2018/03/08 18:00:02 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_tablen(char **str)
+int	ft_strdigit(const char *s)
 {
-	size_t i;
+	int i;
+	int mark;
 
 	i = 0;
-	while (*str++)
+	mark = 0;
+	while (s[i])
+	{
+		if (s[i] == '.')
+		{
+			i++;
+			mark++;
+		}
+		if (!(s[i] >= '0' && s[i] <= '9') || mark > 1)
+			return (0);
 		i++;
-	return (i);
+	}
+	return (1);
 }

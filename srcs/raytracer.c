@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:47:44 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/10 17:20:20 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/03/10 18:51:05 by jpicot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,27 @@ void		*raytracer_process(t_thenv *thenv)
 	t_ray		r;
 	t_color		c;
 
-	win_pos.x = 0;
-	while (win_pos.x < thenv->env->win_w)
+	win_pos.x = -1;
+	while (++win_pos.x < thenv->env->win_w)
 	{
 		win_pos.y = thenv->from_y;
 		while (++win_pos.y < thenv->to_y)
 		{
-			if (ANTI == 1)
+			if (thenv->env->anti == 1)
 				c = anti_aliasing_rt(win_pos, thenv->env);
 			else
 			{
 				r = get_prim_ray(win_pos, thenv->env);
 				c = raytrace(r, thenv->env);
 			}
-			if (SEPIA == 1)
+			if (thenv->env->sepia == 1)
 				sepia(&c);
-			else if (FIFTYSHADES == 1)
+			else if (thenv->env->fifty == 1)
 				fifty_shades_of_grey(&c);
-			else if (DALTO == 1)
+			else if (thenv->env->dalto == 1)
 				daltonism(&c);
 			put_pixel(thenv->env, &win_pos, c);
 		}
-		win_pos.x++;
 	}
 	pthread_exit(NULL);
 }
@@ -139,7 +138,7 @@ t_color		raytrace(t_ray r, t_env *env)
 	{
 		inter.pos = vec_add(r.pos, vec_mul(r.dir, inter.t));
 		inter.normal = get_normal(&inter);
-		if (TEXTURE == 3)
+		if (inter.obj.texture == 3)
 			bump_mapping(&inter, &r);
 		c = process_light(env, &inter, r);
 		get_final_color(&c);

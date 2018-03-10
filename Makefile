@@ -6,7 +6,7 @@
 #    By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/24 11:54:00 by rpinoit           #+#    #+#              #
-#    Updated: 2018/03/10 14:42:08 by ada-cunh         ###   ########.fr        #
+#    Updated: 2018/03/10 17:49:13 by jpicot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ SRC_NAME = \
 	parser.c \
 	parser_obj.c \
 	parser_utils.c \
-	parser_libft.c \
+	parser_fill.c \
 	math_utilities.c \
 	pixel.c \
 	obj_normal.c \

@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:32:17 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/10 15:19:17 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/10 18:11:19 by jpicot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,10 @@ typedef struct			s_env
 	char				**argv;
 	t_point				obj_rot;
 	t_point				cam_rot;
+	int					anti;
+	int					sepia;
+	int					fifty;
+	int					dalto;
 }						t_env;
 
 typedef struct			s_thenv

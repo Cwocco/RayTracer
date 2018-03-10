@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tablen.c                                        :+:      :+:    :+:   */
+/*   ft_pow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpinoit <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/13 16:58:36 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/03/08 17:53:49 by rpinoit          ###   ########.fr       */
+/*   Created: 2018/03/08 17:48:50 by rpinoit           #+#    #+#             */
+/*   Updated: 2018/03/08 18:00:39 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_tablen(char **str)
+double	ft_pow(double nb, int e)
 {
-	size_t i;
+	double	ret;
 
-	i = 0;
-	while (*str++)
-		i++;
-	return (i);
+	ret = 1.0;
+	while (e > 0 && e--)
+		ret *= nb;
+	while (e < 0 && e++)
+		ret /= nb;
+	return (ret);
 }

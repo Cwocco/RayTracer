@@ -3,186 +3,181 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alucas- <alucas-@student.42.fr>            +#+  +:+       +#+         #
+#    By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/11/07 09:52:36 by alucas-           #+#    #+#              #
-#    Updated: 2018/03/04 17:39:11 by alucas-          ###   ########.fr        #
+#    Created: 2018/03/08 17:44:25 by rpinoit           #+#    #+#              #
+#    Updated: 2018/03/08 17:58:17 by rpinoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-PROJECT ?= libft
-WFLAGS = -Werror -Wextra -Wall
-WWFLAGS = $(WFLAGS) -Wpedantic -Wshadow -Wconversion -Wcast-align \
-  -Wstrict-prototypes -Wmissing-prototypes -Wunreachable-code -Winit-self \
-  -Wmissing-declarations -Wfloat-equal -Wbad-function-cast -Wundef \
-  -Waggregate-return -Wstrict-overflow=5 -Wold-style-definition -Wpadded \
-  -Wredundant-decls -Wall -Werror -Wextra
-RCFLAGS = $(WFLAGS) -Ofast
-DCFLAGS = $(WFLAGS) -g3 -DDEBUG
-SCFLAGS = $(DCFLAGS) -fsanitize=address,undefined -ferror-limit=5
-CC ?= gcc
+NAME = libft.a
+CC = gcc
+RM = rm -f
+CFLAGS = -c -Wall -Werror -Wextra
+FILES = ft_lstdel.c \
+		ft_memmove.c \
+		ft_strchr.c \
+		ft_strlen.c \
+		ft_strstr.c \
+		ft_lstdelone.c \
+		ft_memset.c \
+		ft_strclr.c \
+		ft_strmap.c \
+		ft_strsub.c \
+		ft_atoi.c \
+		ft_lstiter.c \
+		ft_putchar.c \
+		ft_strcmp.c \
+		ft_strmapi.c \
+		ft_strtrim.c \
+		ft_bzero.c \
+		ft_lstmap.c \
+		ft_putchar_fd.c \
+		ft_strcpy.c \
+		ft_strncat.c \
+		ft_tolower.c \
+		ft_isalnum.c \
+		ft_lstnew.c \
+		ft_putendl.c \
+		ft_strdel.c \
+		ft_strncmp.c \
+		ft_toupper.c \
+		ft_isalpha.c \
+		ft_memalloc.c \
+		ft_putendl_fd.c \
+		ft_strdup.c \
+		ft_strncpy.c \
+		ft_isascii.c \
+		ft_memccpy.c \
+		ft_putnbr.c \
+		ft_strequ.c \
+		ft_strnequ.c \
+		ft_isdigit.c \
+		ft_memchr.c \
+		ft_putnbr_fd.c \
+		ft_striter.c \
+		ft_strnew.c \
+		ft_isprint.c \
+		ft_memcmp.c \
+		ft_putstr.c \
+		ft_striteri.c \
+		ft_strnstr.c \
+		ft_itoa.c \
+		ft_memcpy.c \
+		ft_putstr_fd.c \
+		ft_strjoin.c \
+		ft_strrchr.c \
+		ft_lstadd.c \
+		ft_memdel.c \
+		ft_strcat.c \
+		ft_strlcat.c \
+		ft_strsplit.c \
+		ft_count_words.c \
+		ft_atoi_base.c \
+		ft_isspace.c \
+		ft_print_words_tables.c \
+		ft_itoa_base.c \
+		ft_swap.c \
+		ft_sqrt.c \
+		ft_find_next_prime.c \
+		ft_isnegative.c \
+		get_next_line.c \
+		ft_degtorad.c \
+		ft_radtodeg.c \
+		ft_atod.c \
+		ft_pow.c \
+		ft_tablen.c \
+		ft_deltab.c \
+		ft_lstrev.c \
+		ft_strdigit.c
 
-INC_PATH = .
-SRC_PATH = .
-OBJ_DIR ?= obj
-OBJ_PATH ?= $(OBJ_DIR)/rel
-3TH_PATH =
+O_DIR = ft_lstdel.o \
+		ft_memmove.o \
+		ft_strchr.o \
+		ft_strlen.o \
+		ft_strstr.o \
+		ft_lstdelone.o \
+		ft_memset.o \
+		ft_strclr.o \
+		ft_strmap.o \
+		ft_strsub.o \
+		ft_atoi.o \
+		ft_lstiter.o \
+		ft_putchar.o \
+		ft_strcmp.o \
+		ft_strmapi.o \
+		ft_strtrim.o \
+		ft_bzero.o \
+		ft_lstmap.o \
+		ft_putchar_fd.o \
+		ft_strcpy.o \
+		ft_strncat.o \
+		ft_tolower.o \
+		ft_isalnum.o \
+		ft_lstnew.o \
+		ft_putendl.o \
+		ft_strdel.o \
+		ft_strncmp.o \
+		ft_toupper.o \
+		ft_isalpha.o \
+		ft_memalloc.o \
+		ft_putendl_fd.o \
+		ft_strdup.o \
+		ft_strncpy.o \
+		ft_isascii.o \
+		ft_memccpy.o \
+		ft_putnbr.o \
+		ft_strequ.o \
+		ft_strnequ.o \
+		ft_isdigit.o \
+		ft_memchr.o \
+		ft_putnbr_fd.o \
+		ft_striter.o \
+		ft_strnew.o \
+		ft_isprint.o \
+		ft_memcmp.o \
+		ft_putstr.o \
+		ft_striteri.o \
+		ft_strnstr.o \
+		ft_itoa.o \
+		ft_memcpy.o \
+		ft_putstr_fd.o \
+		ft_strjoin.o \
+		ft_strrchr.o \
+		ft_lstadd.o \
+		ft_memdel.o \
+		ft_strcat.o \
+		ft_strlcat.o \
+		ft_strsplit.o \
+		ft_count_words.o \
+		ft_atoi_base.o \
+		ft_isspace.o \
+		ft_print_words_tables.o \
+		ft_itoa_base.o \
+		ft_swap.o \
+		ft_sqrt.o \
+		ft_find_next_prime.o \
+		ft_isnegative.o \
+		get_next_line.o \
+		ft_degtorad.o \
+		ft_radtodeg.o \
+		ft_atod.o \
+	   	ft_pow.o \
+		ft_tablen.o \
+		ft_deltab.o \
+		ft_lstrev.o \
+		ft_strdigit.o
 
-LIBS =
-ifneq (,$(findstring dev,$(PROJECT)))
-LIB_NAME = $(addsuffix .dev, $(LIBS))
-else ifneq (,$(findstring san,$(PROJECT)))
-LIB_NAME = $(addsuffix .san, $(LIBS))
-else
-LIB_NAME = $(LIBS)
-endif
-3TH_NAME =
-SRC_NAME = \
-	ft_lstdel.c \
-	ft_memmove.c \
-	ft_strchr.c \
-	ft_strlen.c \
-	ft_strstr.c \
-	ft_lstdelone.c \
-	ft_memset.c \
-	ft_strclr.c \
-	ft_strmap.c \
-	ft_strsub.c \
-	ft_atoi.c \
-	ft_lstiter.c \
-	ft_putchar.c \
-	ft_strcmp.c \
-	ft_strmapi.c \
-	ft_strtrim.c \
-	ft_bzero.c \
-	ft_lstmap.c \
-	ft_putchar_fd.c \
-	ft_strcpy.c \
-	ft_strncat.c \
-	ft_tolower.c \
-	ft_isalnum.c \
-	ft_lstnew.c \
-	ft_putendl.c \
-	ft_strdel.c \
-	ft_strncmp.c \
-	ft_toupper.c \
-	ft_isalpha.c \
-	ft_memalloc.c \
-	ft_putendl_fd.c \
-	ft_strdup.c \
-	ft_strncpy.c \
-	ft_isascii.c \
-	ft_memccpy.c \
-	ft_putnbr.c \
-	ft_strequ.c \
-	ft_strnequ.c \
-	ft_isdigit.c \
-	ft_memchr.c \
-	ft_putnbr_fd.c \
-	ft_striter.c \
-	ft_strnew.c \
-	ft_isprint.c \
-	ft_memcmp.c \
-	ft_putstr.c \
-	ft_striteri.c \
-	ft_strnstr.c \
-	ft_itoa.c \
-	ft_memcpy.c \
-	ft_putstr_fd.c \
-	ft_strjoin.c \
-	ft_strrchr.c \
-	ft_lstadd.c \
-	ft_memdel.c \
-	ft_strcat.c \
-	ft_strlcat.c \
-	ft_strsplit.c \
-	ft_count_words.c \
-	ft_atoi_base.c \
-	ft_isspace.c \
-	ft_print_words_tables.c \
-	ft_itoa_base.c \
-	ft_swap.c \
-	ft_sqrt.c \
-	ft_find_next_prime.c \
-	ft_isnegative.c \
-	get_next_line.c \
-	ft_degtorad.c \
-	ft_radtodeg.c 
+all: $(NAME)
 
-3TH = $(addprefix $(3TH_PATH)/, $(3TH_NAME))
-OBJ = $(addprefix $(OBJ_PATH)/, $(SRC_NAME:.c=.o))
-LNK = $(addprefix -L, $(3TH))
-INC = $(addprefix -I, $(INC_PATH) $(addsuffix /include, $(3TH)))
-LIB = $(addprefix -l, $(LIB_NAME))
-DEP = $(OBJ:%.o=%.d)
-
-PRINTF=test $(VERBOSE)$(TRAVIS) || printf
-
-all:
-ifneq ($(3TH_NAME),)
-	+$(foreach 3th,$(3TH_NAME),$(MAKE) -C $(3TH_PATH)/$(3th) &&) true
-endif
-	@$(PRINTF) "%-20s" "$(PROJECT).a: lib"
-	+$(MAKE) -j4 $(PROJECT).a "CFLAGS = $(RCFLAGS)" "OBJ_PATH = $(OBJ_DIR)/rel"
-	@$(PRINTF) "\r\x1b[20C\x1b[0K\x1b[32m✔\x1b[0m\n"
-
-dev:
-ifneq ($(3TH_NAME),)
-	+$(foreach 3th,$(3TH_NAME),$(MAKE) -C $(3TH_PATH)/$(3th) dev &&) true
-endif
-	@$(PRINTF) "%-20s" "$(PROJECT).dev: exe"
-	+$(MAKE) -j4 $(PROJECT).dev.a "PROJECT = $(PROJECT).dev" "CFLAGS = $(DCFLAGS)" \
-	  "OBJ_PATH = $(OBJ_DIR)/dev"
-	@$(PRINTF) "\r\x1b[20C\x1b[0K\x1b[32m✔\x1b[0m\n"
-
-san:
-ifneq ($(3TH_NAME),)
-	+$(foreach 3th,$(3TH_NAME),$(MAKE) -C $(3TH_PATH)/$(3th) san &&) true
-endif
-	@$(PRINTF) "%-20s" "$(PROJECT).san: exe"
-	+$(MAKE) -j4 $(PROJECT).san.a "PROJECT = $(PROJECT).san" "CFLAGS = $(SCFLAGS)" \
-	  "OBJ_PATH = $(OBJ_DIR)/san" "CC = clang"
-	@$(PRINTF) "\r\x1b[20C\x1b[0K\x1b[32m✔\x1b[0m\n"
-
-mecry:
-ifneq ($(3TH_NAME),)
-	+$(foreach 3th,$(3TH_NAME),$(MAKE) -C $(3TH_PATH)/$(3th) mecry &&) true
-endif
-	@$(PRINTF) "%-20s" "$(PROJECT).a: make me cry.."
-	+$(MAKE) -j4 $(PROJECT).a "CFLAGS = $(WWFLAGS)" "OBJ_PATH = $(OBJ_DIR)/rel"
-	@$(PRINTF) "\r\x1b[20C\x1b[0K\x1b[32m✔\x1b[0m\n"
-
-$(PROJECT).a: $(OBJ)
-	@$(PRINTF) "\r\x1b[20C\x1b[0K$@"
-	ar -rc $(PROJECT).a $(OBJ)
-	ranlib $(PROJECT).a
-
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c | $(OBJ_PATH)
-	@$(PRINTF) "\r\x1b[20C\x1b[0K$<"
-	$(CC) $(CFLAGS) $(INC) -MMD -MP -c $< -o $@
-
-$(OBJ_PATH):
-	mkdir -p $(dir $(OBJ))
+$(NAME):
+	$(CC) $(CFLAGS) $(FILES)
+	ar rc libft.a $(O_DIR)
 
 clean:
-	rm -rf $(OBJ_DIR)
-	@$(PRINTF) "%-20s\033[32m✔\033[0m\n" "$(PROJECT): $@"
+	$(RM) $(O_DIR)
 
 fclean: clean
-ifneq ($(3TH_NAME),)
-	+$(foreach 3th,$(3TH_NAME),$(MAKE) -C $(3TH_PATH)/$(3th) fclean &&) true
-endif
-	rm -f $(PROJECT){,.san,.dev}.a
-	@$(PRINTF) "%-20s\033[32m✔\033[0m\n" "$(PROJECT): $@"
+	$(RM) $(NAME)
 
-re: clean all
-
--include $(DEP)
-
-ifndef VERBOSE
- ifndef TRAVIS
-.SILENT:
- endif
-endif
-
-.PHONY: all, dev, san, mecry, $(PROJECT).a, clean, fclean, re
+re: fclean all

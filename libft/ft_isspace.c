@@ -6,16 +6,13 @@
 /*   By: rpinoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 14:55:27 by rpinoit           #+#    #+#             */
-/*   Updated: 2017/11/16 15:04:11 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/03/08 18:01:10 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-const char	*ft_isspace(const char *str)
+int	ft_isspace(int c)
 {
-	while (*str == ' ' || *str == '\r' || *str == '\t' || *str == '\v' || \
-			*str == '\f' || *str == '\n')
-		str++;
-	return (str);
+	return (c == ' ' || (c >= 9 && c <= 13));
 }
