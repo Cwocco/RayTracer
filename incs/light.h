@@ -6,7 +6,7 @@
 /*   By: ada-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 12:41:34 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/10 17:06:43 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/03/10 17:47:55 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 void		set_ambient_light(t_color *c, t_object obj);
 
 void		add_diffuse_light(t_color *c, t_object obj, t_light *light,
-						double cos_teta, double coef);
+						double f[2]);
 
 void		add_specular_light(t_color *c, t_point r_pos,
 						t_intersection *inter, double coef);
