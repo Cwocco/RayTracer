@@ -6,7 +6,7 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 10:26:21 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/03 11:18:41 by jpicot           ###   ########.fr       */
+/*   Updated: 2018/03/10 11:21:02 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define MATH_UTILITIES_H
 
 # include "rtv1.h"
+
+double	vector_len(t_point a);
 
 double	get_sqr(double val);
 

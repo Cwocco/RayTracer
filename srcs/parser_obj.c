@@ -6,11 +6,13 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 16:00:22 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/03/03 11:25:29 by jpicot           ###   ########.fr       */
+/*   Updated: 2018/03/10 13:46:11 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+#include "error.h"
+#include "parser.h"
 
 void	check_color(int	r, int g, int b, int a)
 {

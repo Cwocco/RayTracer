@@ -6,7 +6,7 @@
 #    By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/24 11:54:00 by rpinoit           #+#    #+#              #
-#    Updated: 2018/03/08 18:10:35 by ada-cunh         ###   ########.fr        #
+#    Updated: 2018/03/10 09:03:07 by ada-cunh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ SRC_NAME = \
 	vector_rotate.c \
 	draw.c \
 	hook.c \
+	hook2.c \
 	anti_alias.c \
 	set_perlin.c \
 	set_param_perlin.c \

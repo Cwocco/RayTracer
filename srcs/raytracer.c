@@ -6,13 +6,22 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:47:44 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/06 17:04:22 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/10 13:54:30 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+#include "perlin.h"
+#include "anti_alias.h"
+#include "light.h"
+#include "raytracer.h"
+#include "obj_normal.h"
+#include "vector_utilities.h"
+#include "intersection.h"
+#include "pixel.h"
+#include "vector_rotate.h"
 
-void	*raytracer_process(t_thenv *thenv)
+void		*raytracer_process(t_thenv *thenv)
 {
 	t_point		win_pos;
 	t_ray		r;
@@ -24,8 +33,8 @@ void	*raytracer_process(t_thenv *thenv)
 		win_pos.y = thenv->from_y;
 		while (++win_pos.y < thenv->to_y)
 		{
-            if (ANTI == 1)
-            	c = anti_aliasing_rt(win_pos, thenv->env);
+			if (ANTI == 1)
+				c = anti_aliasing_rt(win_pos, thenv->env);
 			else
 			{
 				r = get_prim_ray(win_pos, thenv->env);
@@ -61,37 +70,21 @@ t_ray		get_prim_ray(const t_point p, const t_env *env)
 	return (r);
 }
 
-//t_color sepia(t_color *new, t_color *c)
-
-t_color		raytrace(const t_ray r, const t_env *env)
+t_color		raytrace(const t_ray r, t_env *env)
 {
 	t_intersection	inter;
 	t_color			c;
-	/*	t_object *tamer;
 
-		tamer = (t_object*)malloc(sizeof(t_object));
-		tamer->next = NULL;
-		tamer->type = hyperboloid;
-		tamer->pos.x = 0;
-		tamer->pos.y = 0;
-		tamer->pos.z = 2000;
-		tamer->pos = (t_point){ .x = 0, .y = 0, .z = 200};
-	//  tamer->mater.specular = (t_color){ .r = 255, .g = 255, .b = 255, .a = 1};
-	tamer->mater.ambient = (t_color){ .r = 255, .g = 0, .b = 0, .a = 1};
-	//	tamer->mater.diffuse = (t_color){ .r = 255, .g = 255, .b = 255, .a = 1};
-	env->scene.objs = tamer;
-	*/
 	c = (t_color){ .r = 0.0, .g = 0.0, .b = 0.0, .a = 1};
 	inter.t = MAX_RAY_LENGTH;
 	if (intersection(env, r, env->scene.objs, &inter))
 	{
-		inter.pos = vector_add(r.pos, vector_multiply(r.dir, inter.t)); //+ reflect * EPSILON;
+		inter.pos = vector_add(r.pos, vector_multiply(r.dir, inter.t));
 		inter.normal = get_normal(&inter);
 		if (TEXTURE == 3)
 			bump_mapping(&inter, &r);
-		c = process_light(env, env->scene.lgts, env->scene.objs, &inter, r);
+		c = process_light(env, &inter, r);
 		get_final_color(&c);
-//		get_texture(&c, &inter, (t_ray*)&r);
 	}
 	return (c);
 }

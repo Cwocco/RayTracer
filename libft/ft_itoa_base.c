@@ -6,13 +6,12 @@
 /*   By: rpinoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 15:29:47 by rpinoit           #+#    #+#             */
-/*   Updated: 2017/12/05 12:57:34 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/03/10 14:22:42 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 static char	*ft_push_in_tab_base(int len, long tmp_value, int base)
 {

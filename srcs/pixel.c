@@ -6,11 +6,12 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 12:03:22 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/03 11:25:08 by jpicot           ###   ########.fr       */
+/*   Updated: 2018/03/10 13:50:46 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+#include "pixel.h"
 
 void		get_final_color(t_color *c)
 {
@@ -55,7 +56,6 @@ void		fifty_shades_of_grey(t_color *prim_color)
 	prim_color->b = new_c.b;
 }
 
-//ntmgithub
 void		daltonism(t_color *prim_color)
 {
 	t_color new_c;

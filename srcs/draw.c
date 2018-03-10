@@ -6,13 +6,15 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 12:09:11 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/03/07 00:00:22 by jpicot           ###   ########.fr       */
+/*   Updated: 2018/03/10 13:39:25 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+#include "light.h"
+#include "raytracer.h"
 
-void put_pixel(t_env *env, t_point *pos, t_color c)
+void	put_pixel(t_env *env, t_point *pos, t_color c)
 {
 	int pts;
 

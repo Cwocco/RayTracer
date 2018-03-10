@@ -6,11 +6,16 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:51:28 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/08 17:48:30 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/10 14:19:22 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+#include "ellipse.h"
+#include "math_utilities.h"
+#include "obj_normal.h"
+#include "vector_utilities.h"
+#include "vector_rotate.h"
 
 void	inter_cylinder(t_ray r, t_object *obj, double *t)
 {
@@ -33,7 +38,7 @@ void	inter_cone(t_ray r, t_object *obj, double *t)
 	t_point pos;
 	t_point dir;
 	t_point poly;
-	double  radius;
+	double	radius;
 
 	dir = (t_point){r.dir.x, r.dir.y, r.dir.z};
 	pos = vector_sub(r.pos, obj->pos);
@@ -78,56 +83,12 @@ void	inter_plane(t_ray r, t_object *obj, double *t)
 	*t = -n / d > 0.000001 ? -n / d : MAX_RAY_LENGTH;
 }
 
-double dot2(t_point a, t_point b)
-{
-	double ret;
-
-	ret = (a.x * b.x) - (a.y * b.y) + (a.z * b.z);
-	return (ret);
-}
-
-void inter_ellipse(t_ray r, t_object *obj, double *t)
-{
-	t_point dir;
-	t_point pos;
-	t_point poly;
-	t_point test;
-
-	dir = (t_point){r.dir.x, r.dir.y, r.dir.z};
-	test = (t_point){ .x = 40, .y = 25, .z = 25};
-//	printf("tagrossmer\n");
-//	obj->pos.x = 0;
-//	obj->pos.y = 0;
-//	obj->pos.z = 200;
-	pos = vector_sub(r.pos, obj->pos);
-	poly.x = (get_sqr(dir.x) / get_sqr(test.x))
-		+ (get_sqr(dir.y) / get_sqr(test.y))
-		+ (get_sqr(dir.z) / get_sqr(test.z));
-	poly.y = 2.0 * (((dir.x * pos.x) / get_sqr(test.x))
-					+ ((dir.y * pos.y) / get_sqr(test.y))
-					+ ((dir.z * pos.z) / get_sqr(test.z)));
-	poly.z = (get_sqr(pos.x) / get_sqr(test.x))
-		+ (get_sqr(pos.y) / get_sqr(test.y))
-		+ (get_sqr(pos.z) / get_sqr(test.z)) - 10;
-	return (solve_equation(poly, t));
-}
-
-t_bool	intersection(const t_env *env, t_ray r, t_object *obj, t_intersection *inter)
+t_bool	intersection(const t_env *env, t_ray r, t_object *obj,
+				t_intersection *inter)
 {
 	double t;
 	t_bool ret;
-/*	t_object *tamer;
 
-	tamer = (t_object*)malloc(sizeof(t_object));
-	tamer->next = NULL;
-	tamer->type = hyperboloid;
-	tamer->pos = (t_point){ .x = 0, .y = 0, .z = 0};
-	tamer->mater.specular = (t_color){ .r = 255, .g = 255, .b = 255, .a = 1};
-	tamer->mater.ambient = (t_color){ .r = 255, .g = 0, .b = 0, .a = 1};
-	tamer->mater.diffuse = (t_color){ .r = 255, .g = 255, .b = 255, .a = 1};
-	tamer->color = (t_color){ .r = 255, .g = 0, .b = 0, .a = 1};
-	obj = tamer;
-*/
 	t = MAX_RAY_LENGTH;
 	ret = 0;
 	while (obj != NULL)
@@ -143,11 +104,10 @@ t_bool	intersection(const t_env *env, t_ray r, t_object *obj, t_intersection *in
 			inter_cone(r, obj, &t);
 		else if (obj->type == ellipse)
 			inter_ellipse(r, obj, &t);
-		if (t < inter->t && t > 0.000001)
+		if (t < inter->t && t > 0.000001 && (ret = 1))
 		{
 			inter->obj = *obj;
 			inter->t = t;
-			ret = 1;
 		}
 		obj = obj->next;
 	}

@@ -6,11 +6,12 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 18:25:39 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/03/03 11:23:30 by jpicot           ###   ########.fr       */
+/*   Updated: 2018/03/10 13:47:57 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+#include "vector_utilities.h"
 
 void	set_ambient_light(t_color *c, t_object obj)
 {

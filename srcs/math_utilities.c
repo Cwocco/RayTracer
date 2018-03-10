@@ -6,13 +6,19 @@
 /*   By: ada-cunh <ada-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 10:32:34 by ada-cunh          #+#    #+#             */
-/*   Updated: 2018/03/03 11:26:16 by jpicot           ###   ########.fr       */
+/*   Updated: 2018/03/10 11:24:25 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+#include "math_utilities.h"
 
-double get_sqr(double val)
+double	vector_len(t_point a)
+{
+	return (sqrt(a.x * a.x + a.y * a.y + a.z * a.z));
+}
+
+double	get_sqr(double val)
 {
 	return ((val) * (val));
 }

@@ -6,11 +6,14 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:26:06 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/03/08 18:17:42 by ada-cunh         ###   ########.fr       */
+/*   Updated: 2018/03/10 13:55:01 by ada-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+#include "ellipse.h"
+#include "vector_utilities.h"
+#include "vector_rotate.h"
 
 t_point			sphere_normal(t_intersection *inter)
 {
