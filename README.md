@@ -1,3 +1,3 @@
-# RTv1
+# RT
 
 Un projet facile
